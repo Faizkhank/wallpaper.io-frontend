@@ -5,7 +5,7 @@ import "./App.css";
 
 const login = () => {
   const googleLogin = () => {
-    window.open("http://localhost:4000/google", "_self", {
+    window.open("https://api-wallpaper-io.onrender.com/google", "_self", {
       headers: { "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689" },
     });
   };

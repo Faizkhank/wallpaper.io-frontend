@@ -27,7 +27,7 @@ export default function Preview(props) {
     if (user) {
       setlike(!like);
       try {
-        axios.post("http://localhost:3000/Likes/wallpaper/" + props._id, {
+        axios.post("/Likes/wallpaper/" + props._id, {
           withCredentials: true,
           headers: {
             "Access-Control-Allow-Origin": true,
@@ -43,17 +43,14 @@ export default function Preview(props) {
     if (user) {
       checklike();
       async function checklike() {
-        const check = await axios.get(
-          "http://localhost:3000/checklike/" + props._id,
-          {
-            withCredentials: true,
-            headers: {
-              "Access-Control-Allow-Origin": true,
-              "Content-Type": "application/json",
-              "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689",
-            },
-          }
-        );
+        const check = await axios.get("/checklike/" + props._id, {
+          withCredentials: true,
+          headers: {
+            "Access-Control-Allow-Origin": true,
+            "Content-Type": "application/json",
+            "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689",
+          },
+        });
         setlike(check.data);
       }
     }

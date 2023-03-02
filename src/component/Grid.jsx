@@ -7,7 +7,7 @@ export default function Collage() {
   const [Data, setData] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:3000/home", {
+      .get("/home", {
         withCredentials: true,
         headers: {
           "Access-Control-Allow-Origin": true,

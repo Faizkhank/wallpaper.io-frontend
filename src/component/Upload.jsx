@@ -22,19 +22,14 @@ export default function Upload() {
     formData.append("UploaderID", user.user.id);
     console.log(formData);
     axios
-      .post(
-        "http://localhost:3000/api-wallpaper.io/file/upload",
-        formData,
-        config,
-        {
-          withCredentials: true,
-          headers: {
-            "Access-Control-Allow-Origin": true,
-            "Content-Type": "application/json",
-            "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689",
-          },
-        }
-      )
+      .post("http://localhost:3000/file/upload", formData, config, {
+        withCredentials: true,
+        headers: {
+          "Access-Control-Allow-Origin": true,
+          "Content-Type": "application/json",
+          "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689",
+        },
+      })
       .then((res) => {
         console.log(res);
         setbar(0);

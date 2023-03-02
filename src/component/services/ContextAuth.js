@@ -5,7 +5,7 @@ const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState("");
   const logout = () => {
-    window.open("http://localhost:4000/logout", "_self");
+    window.open("https://api-wallpaper-io.onrender.com/logout", "_self");
   };
   useEffect(() => {
     axios
