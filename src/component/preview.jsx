@@ -27,14 +27,17 @@ export default function Preview(props) {
     if (user) {
       setlike(!like);
       try {
-        axios.post("/Likes/wallpaper/" + props._id, {
-          withCredentials: true,
-          headers: {
-            "Access-Control-Allow-Origin": true,
-            "Content-Type": "application/json",
-            "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689",
-          },
-        });
+        axios.post(
+          "https://api-wallpaper-io.onrender.com/Likes/wallpaper/" + props._id,
+          {
+            withCredentials: true,
+            headers: {
+              "Access-Control-Allow-Origin": true,
+              "Content-Type": "application/json",
+              "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689",
+            },
+          }
+        );
       } catch (err) {}
     }
   };
@@ -43,14 +46,17 @@ export default function Preview(props) {
     if (user) {
       checklike();
       async function checklike() {
-        const check = await axios.get("/checklike/" + props._id, {
-          withCredentials: true,
-          headers: {
-            "Access-Control-Allow-Origin": true,
-            "Content-Type": "application/json",
-            "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689",
-          },
-        });
+        const check = await axios.get(
+          "https://api-wallpaper-io.onrender.com/checklike/" + props._id,
+          {
+            withCredentials: true,
+            headers: {
+              "Access-Control-Allow-Origin": true,
+              "Content-Type": "application/json",
+              "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689",
+            },
+          }
+        );
         setlike(check.data);
       }
     }

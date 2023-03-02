@@ -9,7 +9,7 @@ export default function UserProfile() {
   const [user, setUser] = useState("");
   useEffect(() => {
     axios
-      .get("/user/" + param.id, {
+      .get("https://api-wallpaper-io.onrender.com/user/" + param.id, {
         headers: {
           "Access-Control-Allow-Origin": true,
           "Content-Type": "application/json",
@@ -20,7 +20,7 @@ export default function UserProfile() {
         setuserpic(data.data);
       });
     axios
-      .get("/users/info/" + param.id, {
+      .get("https://api-wallpaper-io.onrender.com/users/info/" + param.id, {
         headers: {
           "Access-Control-Allow-Origin": true,
           "Content-Type": "application/json",
