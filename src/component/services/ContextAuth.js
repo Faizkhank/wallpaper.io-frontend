@@ -9,7 +9,7 @@ export const AuthContextProvider = ({ children }) => {
   };
   useEffect(() => {
     axios
-      .get("login/success", {
+      .get("/login/success", {
         withCredentials: true,
         headers: {
           "Access-Control-Allow-Origin": true,
