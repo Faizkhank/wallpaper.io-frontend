@@ -1,0 +1,47 @@
+.color
+{
+    background-color: rgba(10, 10, 10, 0.85);
+    position: fixed;
+    z-index: 99;
+    top: 0;
+}
+.cards {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+.card {
+    display: flex;
+    justify-content: center;
+}
+img {
+    aspect-ratio: auto;
+    width: 50%;
+    object-fit:contain;
+    transform-origin: 20% 40%;
+}
+.Card img:hover
+{
+    cursor: zoom-in;
+}
+.likes
+{
+    animation: pop 0.1s ease-in;
+}
+@keyframes pop {
+	0%   { transform:scale(0.8) }
+	25% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+.button
+{
+    animation: fadein 0.2s ease;
+    transform-origin: center;
+}
+@keyframes fadein {
+	0%   { transform:scale(0.9) }
+	100% { transform: scale(1); }
+    0%   {opacity: 0; }
+	100% { opacity: 1; }
+}

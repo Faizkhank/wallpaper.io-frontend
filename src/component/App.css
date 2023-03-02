@@ -1,0 +1,33 @@
+.banner1 {
+    position: relative;
+    animation: mymove 20s infinite;
+  }
+  .banner2 {
+    position: relative;
+    animation: mymove 15s infinite;
+  }
+  .banner3 {
+    position: relative;
+    animation: mymove 20s infinite;
+  }
+  @keyframes mymove {
+	0%   { transform: translateY(0%); }
+	25% { transform: translateY(-10%); }
+  50% { transform: translateY(20%); }
+  75% { transform: translateY(10%); }
+  100% { transform: translateY(0%); }
+}
+@keyframes mymove2 {
+	0%   { transform: translateY(20%); }
+	25% { transform: translateY(10%); }
+  50% { transform: translateY(0%); }
+  75% { transform: translateY(-10%); }
+  100% { transform: translateY(-20%); }
+}
+@keyframes mymove3 {
+	0%   { transform: translateY(0%); }
+	25% { transform: translateY(-10%); }
+  50% { transform: translateY(20%); }
+  75% { transform: translateY(10%); }
+  100% { transform: translateY(0%); }
+}
