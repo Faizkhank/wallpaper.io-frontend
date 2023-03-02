@@ -7,7 +7,7 @@ export default function Collage() {
   const [Data, setData] = useState([]);
   useEffect(() => {
     axios
-      .get("/home", {
+      .get("https://api-wallpaper-io.onrender.com/home", {
         withCredentials: true,
         headers: {
           "Access-Control-Allow-Origin": true,
