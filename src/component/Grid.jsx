@@ -16,7 +16,9 @@ export default function Collage() {
         },
       })
       .then((data) => {
-        setData(data.data);
+        if (data.data !== null) {
+          setData(data.data);
+        }
       })
       .catch((err) => {
         console.log(err);
