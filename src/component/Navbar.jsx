@@ -115,7 +115,9 @@ export default function Navbar() {
                 ) : (
                   <Link
                     to={"/Upload"}
-                    className="font-semibold decoration-teal-700 cursor-pointer text-base p-3  mr-4 "
+                    className={`font-semibold decoration-teal-700 cursor-pointer text-base p-3  mr-4 ${
+                      offset ? " text-black" : "text-white"
+                    }`}
                   >
                     Upload
                   </Link>
