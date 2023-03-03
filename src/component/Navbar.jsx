@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import Register from "./Register";
 import { useLocation } from "react-router-dom";
 import "./collage.css";
-
 export default function Navbar() {
   const location = useLocation();
   const { user, logout } = UserAuth();
