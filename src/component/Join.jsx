@@ -1,6 +1,5 @@
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
-import { UserAuth } from "../component/services/ContextAuth";
 import "./App.css";
 
 const login = () => {

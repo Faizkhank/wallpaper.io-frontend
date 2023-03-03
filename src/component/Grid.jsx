@@ -7,7 +7,7 @@ export default function Collage() {
   const [Data, setData] = useState([]);
   useEffect(() => {
     axios
-      .get("https://api-wallpaper-io.onrender.com/home", {
+      .get("/home", {
         withCredentials: true,
         headers: {
           "Access-Control-Allow-Origin": true,
@@ -25,9 +25,9 @@ export default function Collage() {
       });
   }, []);
   return (
-    <div>
+    <div className="mt-36 bg-white">
       <div className="flex justify-center">
-        <div className="lg:columns-3 sm:columns-1 md:columns-2 container">
+        <div className="lg:columns-3 sm:columns-2 md:columns-2 xs:columns-2 container ">
           {Data.map((item) => (
             <Card
               Image={item.Url}

@@ -91,25 +91,35 @@ export default function Preview(props) {
                   alt="user"
                 />
               </Link>
-              <h1 className="mt-7 font-sans">{props.name}</h1>
+              <h1 className="mt-7 font-sans xs:hidden lg:block ">
+                {props.name}
+              </h1>
             </div>
             <div className="flex">
-              <button className="pr-2 pl-2 h-14 hover:border-1 border-2 rounded-xl mt-4 mr-4 flex p-3 hover:border-black justify-center">
-                <svg className="m-0" viewBox="0 0 24 24" width="24" height="24">
+              <button
+                type="button"
+                className="pr-2 pl-2 h-14 hover:border-1 border-2 rounded-xl mt-4 mr-4 flex p-3 hover:border-grey-400 justify-center"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
                   <path
-                    id="collection_border-75c45573e9363c7b32ebea7827cfee9f_Path_2324"
-                    d="M0,0H24V24H0Z"
-                    fill="none"
-                  ></path>
-                  <path
-                    id="collection_border-75c45573e9363c7b32ebea7827cfee9f_Path_2325"
-                    d="M15,7V19.97l-4.21-1.81L10,17.82l-.79.34L5,19.97V7H15m4-6H8.99A2,2,0,0,0,7,3H17a2.006,2.006,0,0,1,2,2V18l2,1V3A2.006,2.006,0,0,0,19,1ZM15,5H5A2.006,2.006,0,0,0,3,7V23l7-3,7,3V7A2.006,2.006,0,0,0,15,5Z"
-                  ></path>
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z"
+                  />
                 </svg>
-                <span className="sm:block hidden">Collect</span>
+
+                <span className="sm:block hidden rounded-lg">Collect</span>
               </button>
               <button
-                className="pr-2 pl-2 h-14 hover:border-1 border-2 rounded-xl mt-4 mr-4 flex p-3 hover:border-black justify-center"
+                type="button"
+                className="pr-2 pl-2 h-14 hover:border-1 border-2 rounded-xl mt-4 mr-4 flex p-3 hover:border-grey-400 justify-center"
                 onClick={HandleLike}
               >
                 <svg
@@ -117,8 +127,8 @@ export default function Preview(props) {
                   fill={`${like ? "red" : "white"}`}
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
-                  stroke={`${like ? "red" : "grey"}`}
-                  className={`w-6 h-6 mr-1 ${like ? "likes" : "null"}`}
+                  stroke={`${like ? "red" : "red"}`}
+                  className={`w-6 h-6  ${like ? "likes" : "null"}`}
                 >
                   <path
                     strokeLinecap="round"

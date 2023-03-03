@@ -5,13 +5,38 @@ import { UserAuth } from "../component/services/ContextAuth";
 import { Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import Register from "./Register";
+import { useLocation } from "react-router-dom";
 import "./collage.css";
 
 export default function Navbar() {
+  const location = useLocation();
+  const { user, logout } = UserAuth();
   const [show, setshow] = useState(false);
   const [drop, setdrop] = useState(false);
   const [suggest, setsuggest] = useState(false);
-  const { user, logout } = UserAuth();
+  const [offset, setOffset] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (location.pathname != "/") {
+        setOffset(true);
+      } else {
+        setOffset(window.pageYOffset >= 400);
+      }
+    };
+    // clean up code
+    window.removeEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  useEffect(() => {
+    if (location.pathname != "/") {
+      setOffset(true);
+    } else {
+      setOffset(false);
+    }
+  }, [location.pathname]);
+
   return (
     <div>
       <Transition
@@ -27,21 +52,31 @@ export default function Navbar() {
       >
         <Register state={setshow} show={show} />
       </Transition>
-      <div className="top-0 fixed w-[100vw] z-10 bg-white">
+      <div
+        className={`top-0 fixed w-[100vw] z-10 duration-250 ${
+          offset ? "bg-white shadow-lg" : "bg-transparent"
+        }`}
+      >
         <div>
-          <nav className=" bg-transparent  h-14 px-8 flex lg:justify-around sm:justify-between shadow">
+          <nav className=" bg-transparent  h-14 px-8 flex lg:justify-around sm:justify-between ">
             <div className="w-40 h-20 flex">
               <Link to={"/"}>
-                <h2 className="font-semibold text-lg  tracking-wid text-center p-3 cursor-pointer">
+                <h2
+                  className={`font-semibold text-lg ${
+                    offset ? " text-black" : "text-white"
+                  }  tracking-wid text-center p-3 cursor-pointer `}
+                >
                   Wallpaper.io
                 </h2>
               </Link>
             </div>
             <div>
-              <div className="lg:w-[1000px] md:w-[600px] sm:w-[350px] xs:w-[250px] flex justify-center">
+              <div className="lg:w-[1000px] md:w-[600px] sm:w-[320px] xs:w-[300px] flex justify-center ">
                 <input
                   type="text"
-                  className="relative font-semibold outline-none border-white rounded-lg w-full sm:w-2/3 p-3 mt-1 bg-white shadow text-base text-black placeholder-gray-700  focus:shadow-outline h-12"
+                  className={`relative font-semibold outline-none focus:outline-none border-white rounded-t-lg  w-full sm:w-2/3 p-3 mt-1 bg-white text-base text-black placeholder-gray-700  focus:shadow-outline h-12 mr-2 ${
+                    suggest ? "null" : "rounded-b-lg"
+                  }`}
                   placeholder="Search"
                   onClick={() => {
                     setsuggest(!suggest);
@@ -50,8 +85,8 @@ export default function Navbar() {
                 <MagnifyingGlassIcon className=" w-9 fill-gray-300 relative right-11 " />
               </div>
               {suggest ? (
-                <div className="lg:w-[1000px] md:w-[600px] sm:w-[350px] xs:w-[250px] flex justify-center">
-                  <div className="relative z-50 top-0 right-0 left-0 bg-white shadow-xl w-2/3 mr-9">
+                <div className="lg:w-[1000px] md:w-[600px] sm:w-[320px] xs:w-[300px] flex justify-center">
+                  <div className="relative z-50 top-0 right-0 left-0 bg-white shadow-xl w-2/3 mr-11 rounded-b-lg ">
                     <ul>
                       <li className="font-bold">
                         <a>Abstract</a>

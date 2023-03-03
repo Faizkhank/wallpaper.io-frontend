@@ -2,6 +2,7 @@ import { React, useState } from "react";
 import axios from "axios";
 import { UserAuth } from "../component/services/ContextAuth";
 import { Transition } from "@headlessui/react";
+import uploadimg from "./images/image-.gif";
 export default function Upload() {
   const { user } = UserAuth() || {};
   const [file, setfile] = useState("");
@@ -48,20 +49,7 @@ export default function Upload() {
             className="flex flex-col items-center justify-center w-full h-80 border-4 border-purple-700 border-dashed border-6 rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700  dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
           >
             <div className="flex flex-col items-center justify-center pt-5 pb-">
-              <svg
-                aria-hidden="true"
-                className="w-10 h-10 mb-3 text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                ></path>
-              </svg>
+              <img src={uploadimg} className=" w-36" />
               <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
                 <span className="font-semibold">Click to upload</span> or drag
                 and drop
@@ -125,51 +113,7 @@ export default function Upload() {
           </p>
         ) : null}
       </div>
-      <div className="flex justify-center">
-        <Transition
-          as="div"
-          show={true}
-          enter="transition-all duration-100"
-          enterFrom="transform translate-y-0 scale-90"
-          enterTo="transform translate-y-2 scale-100"
-          className="w-4/6 h-auto"
-        >
-          <div className="flex">
-            <div className="relative z-0 w-1/6 mb-6 group p-2 m-3">
-              <input
-                type="topic"
-                name="topic"
-                id="topic"
-                className="block py-2.5 px-0 w-full text-sm text-gray-900  bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-500 peer"
-                placeholder=" "
-                required
-              />
-              <label
-                for="topic"
-                className="peer-focus:font-semibold absolute text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-600 peer-focus:dark:text-purple-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >
-                topic
-              </label>
-            </div>
-            <div className="relative z-0 w-1/6 mb-6 group p-2 m-3">
-              <input
-                type="topic"
-                name="topic"
-                id="topic"
-                className="block py-2.5 px-0 w-full text-sm text-gray-900  bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-500 peer"
-                placeholder=" "
-                required
-              />
-              <label
-                for="topic"
-                className="peer-focus:font-semibold absolute text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-600 peer-focus:dark:text-purple-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >
-                topic
-              </label>
-            </div>
-          </div>
-        </Transition>
-      </div>
+
       <div className="flex justify-center">
         <div className="w-4/6  mt-5 flex flex-wrap">
           <p className="flex p-2">
