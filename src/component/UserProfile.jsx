@@ -9,7 +9,7 @@ export default function UserProfile() {
   const [user, setUser] = useState("");
   useEffect(() => {
     axios
-      .get("/user/" + param.id, {
+      .get("https://wallpaper-weld.vercel.app/user/" + param.id, {
         headers: {
           "Access-Control-Allow-Origin": true,
           "Content-Type": "application/json",
