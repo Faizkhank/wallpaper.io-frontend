@@ -18,10 +18,7 @@ export const AuthContextProvider = ({ children }) => {
         },
       })
       .then((res) => {
-        console.log(res);
-        if (res.data !== null) {
-          setUser(res.data);
-        }
+        setUser(res.data);
       })
       .catch((err) => {
         console.log(err);

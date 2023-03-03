@@ -15,7 +15,6 @@ export default function Navbar() {
   const [drop, setdrop] = useState(false);
   const [suggest, setsuggest] = useState(false);
   const [offset, setOffset] = useState(false);
-
   useEffect(() => {
     const onScroll = () => {
       if (location.pathname != "/") {
