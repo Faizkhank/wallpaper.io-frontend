@@ -33,13 +33,13 @@ export default function UserProfile() {
   }, []);
   return (
     <div>
-      <div className="flex justify-center mt-36">
+      <div className="flex justify-center mt-22 ">
         <div className="flex">
           <div>
             {param ? (
               <img
                 src={user.photos}
-                className="lg:w-[250px] lg:h-[250px] md:w-[200px] md:h-[200px] sm:w-[100px] rounded-full xs:w-[100px] xs:h-[100px]"
+                className="lg:w-[150px] lg:h-[250px] md:w-[200px] md:h-[200px] sm:w-[100px] rounded-full xs:w-[100px] xs:h-[100px]"
               />
             ) : null}
             <div className="flex justify-center">
