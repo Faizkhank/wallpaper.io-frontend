@@ -1,6 +1,5 @@
 {
   "name": "tail",
-  "proxy":"https://api-wallpaper-io.onrender.com/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
