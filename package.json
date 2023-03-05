@@ -1,7 +1,6 @@
 {
   "name": "tail",
   "version": "0.1.0",
-
   "private": true,
   "dependencies": {
     "@headlessui/react": "^1.7.10",
