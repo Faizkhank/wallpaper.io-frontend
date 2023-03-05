@@ -51,8 +51,8 @@ export default function Navbar() {
         <Register state={setshow} show={show} />
       </Transition>
       <div
-        className={`top-0 fixed w-[100vw] z-10 duration-250 ${
-          offset ? "bg-white shadow-lg" : "bg-transparent"
+        className={`top-0 fixed w-[100vw] z-10 h-[80px] duration-250 ${
+          offset ? "bg-white border-b border-gray-100" : "bg-transparent"
         }`}
       >
         <div>
@@ -60,7 +60,7 @@ export default function Navbar() {
             <div className="w-40 h-20 flex">
               <Link to={"/"}>
                 <h2
-                  className={`font-semibold text-lg ${
+                  className={`font-semibold text-lg mt-3 ${
                     offset ? " text-black" : "text-white"
                   }  tracking-wid text-center p-3 cursor-pointer `}
                 >
@@ -72,15 +72,15 @@ export default function Navbar() {
               <div className="lg:w-[1000px] md:w-[600px] sm:w-[320px] xs:w-[300px] flex justify-center ">
                 <input
                   type="text"
-                  className={`relative font-semibold outline-none focus:outline-none border-white rounded-t-lg  w-full sm:w-2/3 p-3 mt-1 bg-white text-base text-black placeholder-gray-700  focus:shadow-outline h-12 mr-2 ${
+                  className={`relative font-semibold outline-none bg-gray-300 focus:outline-none focus:border-white focus:ring-0 rounded-t-lg border-0 w-full sm:w-2/3 p-3 mt-4  text-base text-black placeholder-gray-400  focus:shadow-outline h-12 mr-2 ${
                     suggest ? "null" : "rounded-b-lg"
                   }`}
-                  placeholder="Search"
+                  placeholder="Search for photos"
                   onClick={() => {
                     setsuggest(!suggest);
                   }}
                 />
-                <MagnifyingGlassIcon className=" w-9 fill-gray-300 relative right-11 " />
+                <MagnifyingGlassIcon className="w-9 fill-gray-300 relative right-11 mt-3" />
               </div>
               {suggest ? (
                 <div className="lg:w-[1000px] md:w-[600px] sm:w-[320px] xs:w-[300px] flex justify-center">
@@ -108,14 +108,14 @@ export default function Navbar() {
                 {!user ? (
                   <a
                     onClick={() => setshow(!show)}
-                    className="font-semibold decoration-teal-700 h-11 mt-1 cursor-pointer text-base p-2  mr-4 rounded-lg bg-purple-500"
+                    className="font-semibold decoration-teal-700 h-11 mt-4 cursor-pointer text-base p-2  mr-4 rounded-lg bg-purple-500"
                   >
                     Register
                   </a>
                 ) : (
                   <Link
                     to={"/Upload"}
-                    className={`font-semibold decoration-teal-700 cursor-pointer text-base p-3  mr-4 ${
+                    className={`font-semibold decoration-teal-700 cursor-pointer mt-4 text-base p-3  mr-4 ${
                       offset ? " text-black" : "text-white"
                     }`}
                   >
@@ -124,13 +124,13 @@ export default function Navbar() {
                 )}
                 {user ? (
                   <img
-                    className=" w-11 h-11 rounded-full mt-1 hover:border-3 border-0"
+                    className=" w-11 h-11 rounded-full mt-4 hover:border-3 border-0"
                     src={user.user.photos}
                     onClick={() => setdrop(!drop)}
                   />
                 ) : (
                   <Link
-                    className="font-semibold decoration-teal-700 cursor-pointer text-base bg-violet-500 w-18 h-11 rounded-lg mt-1 mr-2 pt-2 p-2 mb-1 overflow-clip"
+                    className="font-semibold mt-4 decoration-teal-700 cursor-pointer text-base bg-violet-500 w-18 h-11 rounded-lg  mr-2 pt-2 p-2 mb-1 overflow-clip"
                     to={"/login"}
                   >
                     Sign in

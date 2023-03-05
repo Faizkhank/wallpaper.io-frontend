@@ -76,7 +76,7 @@ export default function Preview(props) {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-11 h-11 mt-2 absolute z-40 text-slate-50 sm:top-0 top-0"
+          className="w-12 h-12 mt-2 absolute z-40 text-slate-50 sm:top-0 top-0"
         >
           <path
             strokeLinecap="round"
@@ -91,20 +91,25 @@ export default function Preview(props) {
             <div className="flex">
               <Link to={"/user/" + props.UploaderID}>
                 <img
-                  className="rounded-full w-14 h-14 m-4 sm:ml-0 lg:ml-1"
+                  className="rounded-full w-11 h-11 m-4 sm:ml-0 lg:ml-1 duration-150 ease-in hover:scale-125"
                   id="zoom"
                   src={props.photoURL}
                   alt="user"
                 />
               </Link>
-              <h1 className="mt-7 font-sans xs:hidden lg:block ">
-                {props.name}
-              </h1>
+              <div>
+                <h1 className="mt-3 font-semibold text-lg xs:hidden lg:block ">
+                  {props.name}
+                </h1>
+                <a className=" text-sm font-semibold text-gray-400 p-0  hover:text-slate-500 cursor-pointer">
+                  follow
+                </a>
+              </div>
             </div>
             <div className="flex">
               <button
                 type="button"
-                className="pr-2 pl-2 h-14 hover:border-1 border-2 rounded-xl mt-4 mr-4 flex p-3 hover:border-grey-400 justify-center"
+                className="pr-2 pl-2 h-12 border border-gray-300  hover:bg-slate-100 rounded-lg mt-4 mr-4 flex p-2 w-[120px] justify-center"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -112,7 +117,7 @@ export default function Preview(props) {
                   viewBox="0 0 24 24"
                   strokeWidth={1}
                   stroke="currentColor"
-                  className="w-6 h-6"
+                  className="w-6 h-6 mr-2 mt-[2px]"
                 >
                   <path
                     strokeLinecap="round"
@@ -121,11 +126,13 @@ export default function Preview(props) {
                   />
                 </svg>
 
-                <span className="sm:block hidden rounded-lg">Collect</span>
+                <span className="sm:block hidden rounded-lg mt-[2px]">
+                  Collect
+                </span>
               </button>
               <button
                 type="button"
-                className="pr-2 pl-2 h-14 hover:border-1 border-2 rounded-xl mt-4 mr-4 flex p-3 hover:border-grey-400 justify-center"
+                className="pr-2 pl-2 h-12 border border-gray-300 hover:bg-slate-100 rounded-lg w-[120px] mt-4 mr-4 flex p-2 justify-center"
                 onClick={HandleLike}
               >
                 <svg
@@ -134,7 +141,7 @@ export default function Preview(props) {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke={`${like ? "red" : "red"}`}
-                  className={`w-6 h-6  ${like ? "likes" : "null"}`}
+                  className={`w-6 h-6 mr-2 ${like ? "likes" : "null"} mt-[2px]`}
                 >
                   <path
                     strokeLinecap="round"
@@ -142,13 +149,14 @@ export default function Preview(props) {
                     d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
                   />
                 </svg>
-                <span className="sm:block hidden">
-                  Like {props.Likes.length}
+                <span className="sm:block hidden mr-2 mt-[2px]">Likes</span>
+                <span className="sm:block hidden mt-[3px]">
+                  {props.Likes.length}
                 </span>
               </button>
               <a
                 href={props.Image}
-                className="w-44 h-14 mr-1 hover:border-1 border-2 rounded-xl mt-4 flex bg-violet-600 text-stone-50 p-3 justify-center hover:border-black"
+                className="w-44 h-12 mr-1 group rounded-lg mt-4 flex bg-violet-600 duration-200 ease-in hover:bg-violet-500 text-stone-50 p-3 justify-center hover:border-black"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -156,7 +164,7 @@ export default function Preview(props) {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6 mr-2"
+                  className="w-6 h-6 mr-2 group-hover:animate-bounce duration-200"
                 >
                   <path
                     strokeLinecap="round"
@@ -164,7 +172,7 @@ export default function Preview(props) {
                     d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m.75 12l3 3m0 0l3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
                   />
                 </svg>
-                Download
+                <span>Download</span>
               </a>
             </div>
           </div>
@@ -195,7 +203,7 @@ export default function Preview(props) {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-4 h-4 p-1 bg-gray-400 rounded-full text-white mr-3 mt-1"
+                className="w-4 h-4 p-1 bg-gray-300 rounded-full text-white mr-3 mt-1"
               >
                 <path
                   strokeLinecap="round"
@@ -203,7 +211,7 @@ export default function Preview(props) {
                   d="M4.5 12.75l6 6 9-13.5"
                 />
               </svg>
-              <span className="font-bold text-sm text-slate-400">
+              <span className="font-bold text-sm text-slate-400  hover:text-slate-500 cursor-pointer">
                 Free to use
               </span>
             </p>
@@ -211,8 +219,8 @@ export default function Preview(props) {
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
-                fill="grey"
-                className="w-5 h-5 mr-2"
+                fill="lightgray"
+                className="w-5 h-5 mr-2 "
               >
                 <path
                   fillRule="evenodd"
@@ -221,7 +229,7 @@ export default function Preview(props) {
                 />
               </svg>
 
-              <span className="font-bold text-sm text-slate-400">
+              <span className="font-bold text-sm text-slate-400 hover:text-slate-500 cursor-pointer">
                 Free to use
               </span>
             </p>
