@@ -23,6 +23,7 @@ export default function Preview(props) {
     window.history.pushState("", "", location.pathname);
     props.state(false);
   }
+  console.log(user);
   const HandleLike = async () => {
     if (user) {
       setlike(!like);
@@ -31,7 +32,7 @@ export default function Preview(props) {
           "https://api-wallpaper-io.onrender.com/Likes/wallpaper/" +
             props._id +
             "/" +
-            user.id,
+            user.user.id,
           {
             headers: {
               "Access-Control-Allow-Origin": true,
