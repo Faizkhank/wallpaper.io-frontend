@@ -50,10 +50,7 @@ export default function Preview(props) {
       checklike();
       async function checklike() {
         const check = await axios.get(
-          "https://api-wallpaper-io.onrender.com/checklike/" +
-            props._id +
-            "/" +
-            user.id,
+          "https://api-wallpaper-io.onrender.com/checklike/" + props._id,
           {
             withCredentials: true,
             headers: {
