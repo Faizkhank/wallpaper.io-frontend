@@ -21,8 +21,11 @@ export default function Sidebar(props) {
       >
         {props.user ? (
           <div className="flex">
-            <img src={props.user.photos} className="w-11 h-11 rounded-full" />
-            <p>{props.user.displayName}</p>
+            <img
+              src={props.user.user.photos}
+              className="w-11 h-11 rounded-full"
+            />
+            <p>{props.user.user.displayName}</p>
           </div>
         ) : null}
         <ul className="mt-5">
