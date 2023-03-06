@@ -50,6 +50,22 @@ export default function Preview(props) {
     window.history.pushState("", "", "/photo/" + props.Filename.split(".")[0]);
     if (user) {
       checklike();
+      Views();
+      async function Views() {
+        await axios.get(
+          "https://api-wallpaper-io.onrender.com/Views/" + props._id,
+
+          {
+            withCredentials: true,
+            headers: {
+              "Access-Control-Allow-Origin": true,
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Credentials": true,
+              "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689",
+            },
+          }
+        );
+      }
       async function checklike() {
         const check = await axios.get(
           "https://api-wallpaper-io.onrender.com/checklike/" + props._id,
