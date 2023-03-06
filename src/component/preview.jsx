@@ -25,6 +25,7 @@ export default function Preview(props) {
   }
   const HandleLike = async () => {
     if (user) {
+      console.log();
       setlike(!like);
       try {
         axios.post(
