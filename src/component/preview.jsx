@@ -53,7 +53,7 @@ export default function Preview(props) {
       Views();
       async function Views() {
         await axios.get(
-          "https://api-wallpaper-io.onrender.com/Views/" + props._id,
+          "https://api-wallpaper-io.onrender.com/userview/" + props._id,
 
           {
             withCredentials: true,
