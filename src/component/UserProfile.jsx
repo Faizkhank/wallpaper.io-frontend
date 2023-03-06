@@ -7,6 +7,7 @@ export default function UserProfile() {
   const param = useParams();
   const [userpic, setuserpic] = useState([]);
   const [user, setUser] = useState("");
+  console.log(user);
   useEffect(() => {
     axios
       .get("https://api-wallpaper-io.onrender.com/user/" + param.id, {
