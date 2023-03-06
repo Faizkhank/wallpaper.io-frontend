@@ -69,7 +69,7 @@ export default function Navbar() {
               </Link>
             </div>
             <div>
-              <div className="lg:w-[1000px] md:w-[600px] sm:w-[320px] xs:w-[300px] flex justify-center">
+              <div className="lg:w-[1000px] md:w-[600px] sm:w-[320px] xs:w-[300px] flex justify-center sm:mr-0 mr-6">
                 <input
                   type="text"
                   className={`relative font-semibold outline-none bg-gray-300 focus:outline-none focus:border-white focus:ring-0 rounded-t-lg border-0 w-full sm:w-/3 p-3 mt-4  text-base text-black placeholder-gray-400  focus:shadow-outline h-12 mr-2 ${
@@ -217,7 +217,7 @@ export default function Navbar() {
                 </div>
               </Transition>
               <div className="sm:hidden flex justify-around">
-                <Sidebar user={user} logout={logout} />
+                <Sidebar user={user} logout={logout} offset={offset} />
               </div>
             </div>
           </nav>

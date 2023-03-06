@@ -4,10 +4,13 @@ import { Link } from "react-router-dom";
 
 export default function Sidebar(props) {
   const [showSidebar, setShowSidebar] = useState(false);
+  console.log(props);
   return (
     <div>
       <Bars3Icon
-        className="flex w-9 mt-5 ml-4 fill-white cursor-pointer fixed right-5 top-0 z-50"
+        className={`flex w-9 mt-5 ml-4 ${
+          showSidebar ? "fill-white" : "fill-black"
+        } cursor-pointer fixed right-5 top-0 z-50`}
         onClick={() => setShowSidebar(!showSidebar)}
       ></Bars3Icon>
       <div
@@ -15,6 +18,12 @@ export default function Sidebar(props) {
           showSidebar ? "translate-x-0 " : "translate-x-full"
         }`}
       >
+        {props.user ? (
+          <div className="flex">
+            <img src={props.user.photos} className="w-11 h-11 rounded-full" />
+            <p>{props.user.displayName}</p>
+          </div>
+        ) : null}
         <ul className="mt-5">
           <li className="pr-1">
             <Link
