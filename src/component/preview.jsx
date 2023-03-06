@@ -46,6 +46,21 @@ export default function Preview(props) {
       } catch (err) {}
     }
   };
+  async function follow() {
+    await axios.get(
+      "https://api-wallpaper-io.onrender.com/follow/" + props.UploaderID,
+
+      {
+        withCredentials: true,
+        headers: {
+          "Access-Control-Allow-Origin": true,
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+          "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689",
+        },
+      }
+    );
+  }
   useEffect(() => {
     window.history.pushState("", "", "/photo/" + props.Filename.split(".")[0]);
     if (user) {
@@ -118,7 +133,10 @@ export default function Preview(props) {
                 <h1 className="mt-3 font-semibold text-lg xs:hidden sm:hidden md:block lg:block ">
                   {props.name}
                 </h1>
-                <h1 className=" text-sm font-semibold text-gray-400 p-0 hover:text-slate-500 cursor-pointer xs:hidden sm:hidden md:block lg:block">
+                <h1
+                  onClick={follow}
+                  className=" text-sm font-semibold text-gray-400 p-0 hover:text-slate-500 cursor-pointer xs:hidden sm:hidden md:block lg:block"
+                >
                   follow
                 </h1>
               </div>
