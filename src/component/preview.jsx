@@ -98,7 +98,7 @@ export default function Preview(props) {
                 />
               </Link>
               <div>
-                <h1 className="mt-3 font-semibold text-lg xs:hidden lg:block ">
+                <h1 className="mt-3 font-semibold text-lg xs:hidden sm:block md:block lg:block ">
                   {props.name}
                 </h1>
                 <a className=" text-sm font-semibold text-gray-400 p-0  hover:text-slate-500 cursor-pointer">
@@ -109,7 +109,7 @@ export default function Preview(props) {
             <div className="flex">
               <button
                 type="button"
-                className="pr-2 pl-2 h-12 border border-gray-300  hover:bg-slate-100 rounded-lg mt-4 mr-4 flex p-2 w-[120px] justify-center"
+                className="pr-2 pl-2 h-12 border border-gray-300  hover:bg-slate-100 rounded-lg mt-4 mr-4 flex p-2 sm:w-[120px] w-[40px] justify-center"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -117,7 +117,7 @@ export default function Preview(props) {
                   viewBox="0 0 24 24"
                   strokeWidth={1}
                   stroke="currentColor"
-                  className="w-6 h-6 mr-2 mt-[2px]"
+                  className="w-6 h-6 xs:mr-0 mr-2 mt-[2px] "
                 >
                   <path
                     strokeLinecap="round"
@@ -132,7 +132,7 @@ export default function Preview(props) {
               </button>
               <button
                 type="button"
-                className="pr-2 pl-2 h-12 border border-gray-300 hover:bg-slate-100 rounded-lg w-[120px] mt-4 mr-4 flex p-2 justify-center"
+                className="pr-2 pl-2 h-12 border border-gray-300 hover:bg-slate-100 rounded-lg sm:w-[120px] w-[40px] mt-4 mr-4 flex p-2 justify-center"
                 onClick={HandleLike}
               >
                 <svg
@@ -141,7 +141,7 @@ export default function Preview(props) {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke={`${like ? "red" : "red"}`}
-                  className={`w-6 h-6 mr-2 ${like ? "likes" : "null"} mt-[2px]`}
+                  className={`w-6 h-6  ${like ? "likes" : "null"} mt-[2px]`}
                 >
                   <path
                     strokeLinecap="round"
@@ -156,7 +156,7 @@ export default function Preview(props) {
               </button>
               <a
                 href={props.Image}
-                className="w-44 h-12 mr-1 group rounded-lg mt-4 flex bg-violet-600 duration-200 ease-in hover:bg-violet-500 text-stone-50 p-3 justify-center hover:border-black"
+                className="sm:w-44 w-14 h-12 mr-5 group rounded-lg mt-4 flex bg-violet-600 duration-200 ease-in hover:bg-violet-500 text-stone-50 p-3 justify-center hover:border-black"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -164,7 +164,7 @@ export default function Preview(props) {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6 mr-2 group-hover:animate-bounce duration-200"
+                  className="w-6 h-6 sm:mr-2 mr-0 group-hover:animate-bounce duration-200"
                 >
                   <path
                     strokeLinecap="round"
@@ -172,7 +172,7 @@ export default function Preview(props) {
                     d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m.75 12l3 3m0 0l3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
                   />
                 </svg>
-                <span>Download</span>
+                <span className="sm:block hidden">Download</span>
               </a>
             </div>
           </div>

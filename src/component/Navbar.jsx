@@ -60,7 +60,7 @@ export default function Navbar() {
             <div className="w-40 h-20 flex">
               <Link to={"/"}>
                 <h2
-                  className={`font-semibold text-lg mt-3 ${
+                  className={`font-semibold text-lg mt-3 sm:block hidden ${
                     offset ? " text-black" : "text-white"
                   }  tracking-wid text-center p-3 cursor-pointer `}
                 >
@@ -69,10 +69,10 @@ export default function Navbar() {
               </Link>
             </div>
             <div>
-              <div className="lg:w-[1000px] md:w-[600px] sm:w-[320px] xs:w-[300px] flex justify-center ">
+              <div className="lg:w-[1000px] md:w-[600px] sm:w-[320px] xs:w-[300px] flex justify-center">
                 <input
                   type="text"
-                  className={`relative font-semibold outline-none bg-gray-300 focus:outline-none focus:border-white focus:ring-0 rounded-t-lg border-0 w-full sm:w-2/3 p-3 mt-4  text-base text-black placeholder-gray-400  focus:shadow-outline h-12 mr-2 ${
+                  className={`relative font-semibold outline-none bg-gray-300 focus:outline-none focus:border-white focus:ring-0 rounded-t-lg border-0 w-full sm:w-/3 p-3 mt-4  text-base text-black placeholder-gray-400  focus:shadow-outline h-12 mr-2 ${
                     suggest ? "null" : "rounded-b-lg"
                   }`}
                   placeholder="Search for photos"
@@ -108,14 +108,14 @@ export default function Navbar() {
                 {!user ? (
                   <a
                     onClick={() => setshow(!show)}
-                    className="font-semibold decoration-teal-700 h-11 mt-4 cursor-pointer text-base p-2  mr-4 rounded-lg bg-purple-500"
+                    className="font-semibold  h-11 mt-4 cursor-pointer text-base p-2  mr-4 rounded-lg bg-purple-500"
                   >
                     Register
                   </a>
                 ) : (
                   <Link
                     to={"/Upload"}
-                    className={`font-semibold decoration-teal-700 cursor-pointer mt-4 text-base p-3  mr-4 ${
+                    className={`font-semibold  cursor-pointer mt-4 text-base p-3  mr-4 ${
                       offset ? " text-black" : "text-white"
                     }`}
                   >
@@ -202,7 +202,7 @@ export default function Navbar() {
                           viewBox="0 0 24 24"
                           strokeWidth={1.5}
                           stroke="currentColor"
-                          className="w-5 h-5 mr-2 mt-1 ml-1"
+                          className="w-5 h-5 mr-2 ml-1"
                         >
                           <path
                             strokeLinecap="round"
@@ -217,7 +217,7 @@ export default function Navbar() {
                 </div>
               </Transition>
               <div className="sm:hidden flex justify-around">
-                <Sidebar />
+                <Sidebar user={user} logout={logout} />
               </div>
             </div>
           </nav>

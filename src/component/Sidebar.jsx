@@ -1,37 +1,60 @@
 import { React, useState } from "react";
 import { Bars3Icon } from "@heroicons/react/20/solid";
+import { Link } from "react-router-dom";
 
-export default function Sidebar() {
+export default function Sidebar(props) {
   const [showSidebar, setShowSidebar] = useState(false);
   return (
     <div>
       <Bars3Icon
-        className="flex w-9 mt-2 ml-4 fill-gray-500 cursor-pointer fixed right-5 top-0 z-50"
+        className="flex w-9 mt-5 ml-4 fill-white cursor-pointer fixed right-5 top-0 z-50"
         onClick={() => setShowSidebar(!showSidebar)}
       ></Bars3Icon>
       <div
-        className={`top-0 right-0 w-[39vw] bg-violet-500 p-10 pl-15 text-white fixed h-full z-40  ease-in-out duration-300 ${
+        className={`top-0 right-0 w-[59vw] bg-black p-10 pl-15 text-white fixed h-full z-40  ease-in-out duration-300 ${
           showSidebar ? "translate-x-0 " : "translate-x-full"
         }`}
       >
-        <ul>
+        <ul className="mt-5">
           <li className="pr-1">
-            <a
-              href={""}
-              className="font-sans decoration-teal-700 cursor-pointer text-base p-3 font-semibold"
+            <Link
+              to={"/"}
+              className="font-bold decoration-teal-700 cursor-pointer text-base"
+            >
+              Home
+            </Link>
+          </li>
+          <li className="pr-1 mt-4">
+            <Link
+              to={"/upload"}
+              className="font-bold decoration-teal-700 cursor-pointer text-base"
             >
               Upload
-            </a>
+            </Link>
           </li>
           <li className="mt-4">
-            <a
-              href={""}
-              className="font-sans decoration-teal-700 cursor-pointer text-base font-semibold bg-violet-500 w-18 h-11 rounded-lg mt-1 mr-2 pt-2 p-2"
-            >
-              Sign in
-            </a>
+            {!props.user ? (
+              <Link
+                to={"/login"}
+                className="font-bold cursor-pointer text-base  rounded-lg"
+              >
+                Sign in
+              </Link>
+            ) : (
+              <p
+                className="font-bold cursor-pointer text-base  rounded-lg"
+                onClick={() => {
+                  props.logout();
+                }}
+              >
+                logout
+              </p>
+            )}
           </li>
         </ul>
+        <div className=" absolute bottom-5 right-3 font-semibold ">
+          <p>wallpaper.io</p>
+        </div>
       </div>
     </div>
   );
