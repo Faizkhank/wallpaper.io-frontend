@@ -7,6 +7,7 @@ export default function Card(props) {
   const [show, setshow] = useState(false);
   const [load, setload] = useState(false);
   const [button, showbutton] = useState(false);
+  console.log(show);
   function HandleModal() {
     setshow(true);
   }

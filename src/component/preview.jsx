@@ -68,7 +68,7 @@ export default function Preview(props) {
     }
   }, []);
   return (
-    <div className="w-full block">
+    <div className="w-full block h-[100vh]">
       <a onClick={setclose}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +86,7 @@ export default function Preview(props) {
         </svg>
       </a>
       <div className="h-full w-full lg:flex justify-center sm:block">
-        <div className="lg:max-w-[90vw] h-[90vh] relative z-50 bg-white shadow-lg border-1 block justify-between rounded-lg md:m-11 sm:m-16 lg:m-7 sm:mt-0 mt-14">
+        <div className="lg:max-w-[90vw] h-[100vh] relative z-50 bg-white shadow-lg border-1 block justify-between rounded-lg md:m-11 sm:m-16 lg:m-7 sm:mt-0 mt-14">
           <div className="flex lg:ml-4 rounded-lg lg:mr-4 sm:m-2 bg-white justify-between">
             <div className="flex">
               <Link to={"/user/" + props.UploaderID}>
@@ -98,12 +98,12 @@ export default function Preview(props) {
                 />
               </Link>
               <div>
-                <h1 className="mt-3 font-semibold text-lg xs:hidden sm:block md:block lg:block ">
+                <h1 className="mt-3 font-semibold text-lg xs:hidden sm:hidden md:block lg:block ">
                   {props.name}
                 </h1>
-                <a className=" text-sm font-semibold text-gray-400 p-0  hover:text-slate-500 cursor-pointer">
+                <h1 className=" text-sm font-semibold text-gray-400 p-0 hover:text-slate-500 cursor-pointer xs:hidden sm:hidden md:block lg:block">
                   follow
-                </a>
+                </h1>
               </div>
             </div>
             <div className="flex">
