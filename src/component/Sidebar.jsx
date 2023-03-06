@@ -25,7 +25,7 @@ export default function Sidebar(props) {
               src={props.user.user.photos}
               className="w-11 h-11 rounded-full border-2 border-white mr-2"
             />
-            <p className="mt-4 ml-2 font-bold">{props.user.user.displayName}</p>
+            <p className="mt-2 ml-2 font-bold">{props.user.user.displayName}</p>
           </div>
         ) : null}
         <ul className="mt-5">
