@@ -10,6 +10,7 @@ export default function Sidebar(props) {
       <Bars3Icon
         className={`flex w-9 mt-5 ml-4 ${
           showSidebar ? "fill-white" : "fill-black"
+        }
         } cursor-pointer fixed right-5 top-0 z-50`}
         onClick={() => setShowSidebar(!showSidebar)}
       ></Bars3Icon>
