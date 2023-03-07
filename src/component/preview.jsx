@@ -25,7 +25,6 @@ export default function Preview(props) {
   }
   const HandleLike = async () => {
     if (user) {
-      console.log();
       setlike(!like);
       try {
         axios.post(
@@ -83,7 +82,10 @@ export default function Preview(props) {
       }
       async function checklike() {
         const check = await axios.get(
-          "https://api-wallpaper-io.onrender.com/checklike/" + props._id,
+          "https://api-wallpaper-io.onrender.com/checklike/" +
+            props._id +
+            "/" +
+            user.user.id,
 
           {
             withCredentials: true,
