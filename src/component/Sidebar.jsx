@@ -4,9 +4,15 @@ import { Link } from "react-router-dom";
 
 export default function Sidebar(props) {
   const [showSidebar, setShowSidebar] = useState(false);
-  console.log(props);
+
   return (
     <div>
+      {showSidebar ? (
+        <div
+          className=" bg-transparent w-screen h-screen fixed z-40 left-0"
+          onClick={() => setShowSidebar(!showSidebar)}
+        ></div>
+      ) : null}
       <Bars3Icon
         className={`flex w-9 mt-5 ml-4 ${
           showSidebar ? "fill-white" : "fill-black"

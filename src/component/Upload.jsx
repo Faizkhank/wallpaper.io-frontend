@@ -2,16 +2,22 @@ import { React, useState } from "react";
 import axios from "axios";
 import { UserAuth } from "../component/services/ContextAuth";
 import { Transition } from "@headlessui/react";
-import uploadimg from "./images/image-.gif";
+import uploading from "./images/image-.gif";
 export default function Upload() {
   const { user } = UserAuth() || {};
   const [file, setfile] = useState("");
   const [Bar, setbar] = useState(0);
   const [res, setres] = useState("");
-
+  const [preview, setpreview] = useState("");
   const config = {
     onUploadProgress: (progressEvent) =>
       setbar((progressEvent.loaded / file[0].size) * 100),
+  };
+  console.log(preview);
+  const handleFileInputChange = (e) => {
+    const file = e.target.files[0];
+    const blobURL = URL.createObjectURL(file);
+    setpreview(blobURL);
   };
   function Upload() {
     setbar(!Bar);
@@ -21,6 +27,7 @@ export default function Upload() {
     formData.append("Name", user.user.displayName);
     formData.append("UserIMG", user.user.photos);
     formData.append("UploaderID", user.user.id);
+    formData.append("filename", user.user.id);
     console.log(formData);
     axios
       .post(
@@ -51,17 +58,24 @@ export default function Upload() {
         <div className="flex items-center justify-center w-4/6 lg:mt-11 md:mt-20 sm:mt-60 ">
           <label
             for="dropzone-file"
-            className="flex flex-col items-center justify-center w-full h-80 border-4 border-purple-700 border-dashed border-6 rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700  dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+            className="flex flex-col items-center justify-center w-full h-auto border-4 border-purple-700 border-dashed border-6 rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700  dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
           >
             <div className="flex flex-col items-center justify-center pt-5 pb-">
-              <img src={uploadimg} className=" w-36" />
-              <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                <span className="font-semibold">Click to upload</span> or drag
-                and drop
-              </p>
-              <p className="text-xs text-gray-500 dark:text-gray-400">
-                JPG or MP4
-              </p>
+              {preview ? (
+                <img src={preview} className="w-[40vw]" alt="image" />
+              ) : (
+                <div className="w-full h-[200px] flex justify-center">
+                  <img src={uploading} className=" w-36" alt="Preview" />
+
+                  <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                    <span className="font-semibold">Click to upload</span> or
+                    drag and drop
+                  </p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                    JPG or MP4
+                  </p>
+                </div>
+              )}
             </div>
             <form>
               <input
@@ -72,6 +86,7 @@ export default function Upload() {
                 accept=".png, .jpg, .jpeg, .mp4,.webp"
                 onChange={(e) => {
                   setfile(e.target.files);
+                  handleFileInputChange(e);
                   setres("");
                 }}
               />

@@ -9,11 +9,12 @@ import { useLocation } from "react-router-dom";
 import "./collage.css";
 export default function Navbar() {
   const location = useLocation();
-  const { user, logout } = UserAuth();
+  const { user, logout, Handlesearch } = UserAuth();
   const [show, setshow] = useState(false);
   const [drop, setdrop] = useState(false);
   const [suggest, setsuggest] = useState(false);
   const [offset, setOffset] = useState(false);
+  const [searchquery, setquery] = useState("");
   useEffect(() => {
     const onScroll = () => {
       if (location.pathname != "/") {
@@ -34,7 +35,10 @@ export default function Navbar() {
       setOffset(false);
     }
   }, [location.pathname]);
-
+  const findsetquery = (e) => {
+    e.preventDefault();
+    Handlesearch(searchquery);
+  };
   return (
     <div>
       <Transition
@@ -69,39 +73,47 @@ export default function Navbar() {
               </Link>
             </div>
             <div>
-              <div className="lg:w-[1000px] md:w-[600px] sm:w-[320px] xs:w-[300px] flex justify-center sm:mr-0 mr-6">
-                <input
-                  type="text"
-                  className={`relative font-semibold outline-none bg-gray-300 focus:outline-none focus:border-white focus:ring-0 rounded-t-lg border-0 w-full sm:w-/3 p-3 mt-4  text-base text-black placeholder-gray-400  focus:shadow-outline h-12 mr-2 ${
-                    suggest ? "null" : "rounded-b-lg"
-                  }`}
-                  placeholder="Search for photos"
-                  onClick={() => {
-                    setsuggest(!suggest);
-                  }}
-                />
-                <MagnifyingGlassIcon className="w-9 fill-gray-300 relative right-11 mt-3" />
-              </div>
-              {suggest ? (
-                <div className="lg:w-[1000px] md:w-[600px] sm:w-[320px] xs:w-[300px] flex justify-center">
-                  <div className="relative z-50 top-0 right-0 left-0 bg-white shadow-xl w-2/3 mr-11 rounded-b-lg ">
-                    <ul>
-                      <li className="font-bold">
-                        <a>Abstract</a>
-                      </li>
-                      <li>
-                        <a>Abstract</a>
-                      </li>
-                      <li>
-                        <a>Abstract</a>
-                      </li>
-                      <li>
-                        <a>Abstract</a>
-                      </li>
-                    </ul>
-                  </div>
+              <form type="submit" onSubmit={findsetquery}>
+                <div className="lg:w-[1000px] md:w-[600px] sm:w-[320px] xs:w-[300px] flex justify-center sm:mr-0 mr-6">
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      setquery(e.target.value);
+                    }}
+                    className={`relative font-semibold outline-none bg-gray-300 focus:outline-none focus:border-white focus:ring-0 rounded-t-lg border-0 w-full sm:w-/3 p-3 mt-4  text-base text-black placeholder-gray-400  focus:shadow-outline h-12 mr-2 ${
+                      suggest ? "null" : "rounded-b-lg"
+                    }`}
+                    placeholder="Search for photos"
+                    onClick={() => {
+                      setsuggest(!suggest);
+                    }}
+                  />
+                  <MagnifyingGlassIcon
+                    className="w-9 fill-gray-400 relative right-11 mt-4"
+                    onClick={findsetquery}
+                  />
                 </div>
-              ) : null}
+                {suggest ? (
+                  <div className="flex justify-center w-full">
+                    <div className="relative z-50 top-0 right-0 left-0 bg-white shadow-xl w-full mr-[41.3px] rounded-b-lg ">
+                      <ul>
+                        <li className="font-bold">
+                          <a>Abstract</a>
+                        </li>
+                        <li>
+                          <a>Abstract</a>
+                        </li>
+                        <li>
+                          <a>Abstract</a>
+                        </li>
+                        <li>
+                          <a>Abstract</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                ) : null}
+              </form>
             </div>
             <div>
               <div className="justify-center sm:flex hidden">
@@ -137,13 +149,20 @@ export default function Navbar() {
                   </Link>
                 )}
               </div>
+              {drop ? (
+                <div
+                  className=" bg-transparent w-screen h-screen fixed z-40 left-0"
+                  onClick={() => setdrop(!drop)}
+                ></div>
+              ) : null}
+
               <Transition
                 as="div"
                 show={drop}
                 enter="transition-all duration-100"
                 enterFrom="transform translate-y-0 scale-90"
                 enterTo="transform translate-y-2 scale-100"
-                className="fixed top-12 right-24 shadow-lg z-50 bg-white w-36 h-auto rounded-lg p-1"
+                className="fixed top-16 right-36 shadow-lg z-50 bg-white w-36 h-auto rounded-lg p-1"
               >
                 <div className="w-full m-auto">
                   <ul>

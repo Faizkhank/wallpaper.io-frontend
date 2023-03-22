@@ -1,29 +1,10 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { UserAuth } from "../component/services/ContextAuth";
 import "./collage.css";
 import Card from "./Card";
 
 export default function Collage() {
-  const [Data, setData] = useState([]);
-  useEffect(() => {
-    axios
-      .get("https://api-wallpaper-io.onrender.com/home", {
-        withCredentials: true,
-        headers: {
-          "Access-Control-Allow-Origin": true,
-          "Content-Type": "application/json",
-          "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689",
-        },
-      })
-      .then((data) => {
-        if (data.data !== null) {
-          setData(data.data);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  const { Data } = UserAuth();
   return (
     <div className="mt-36 bg-white">
       <div className="flex justify-center">
