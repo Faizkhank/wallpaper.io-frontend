@@ -12,7 +12,10 @@ export const AuthContextProvider = ({ children }) => {
   };
   async function follow(data) {
     const res = await axios.put(
-      "https://api-wallpaper-io.onrender.com/follow/" + data,
+      "https://api-wallpaper-io.onrender.com/follow/" +
+        data +
+        "/" +
+        user.user.id,
 
       {
         withCredentials: true,
