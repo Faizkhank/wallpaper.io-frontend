@@ -1,13 +1,16 @@
 import { React, useEffect, useState } from "react";
 import axios from "axios";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { UserAuth } from "../component/services/ContextAuth";
 import Card from "./Card";
 import Minicard from "./Minicard";
 export default function UserProfile() {
   const param = useParams();
   const [userpic, setuserpic] = useState([]);
   const [user, setUser] = useState("");
-  console.log(user);
+  console.log(param.id);
+
+  const { follows, setfollow, follow } = UserAuth();
   useEffect(() => {
     axios
       .get("https://api-wallpaper-io.onrender.com/user/" + param.id, {
@@ -20,6 +23,7 @@ export default function UserProfile() {
       .then((data) => {
         setuserpic(data.data);
       });
+
     axios
       .get("https://api-wallpaper-io.onrender.com/users/info/" + param.id, {
         headers: {
@@ -31,6 +35,30 @@ export default function UserProfile() {
       .then((res) => {
         setUser(res.data);
       });
+    if (user) {
+      axios
+        .get(
+          "https://api-wallpaper-io.onrender.com/checkfollow/" +
+            user.id +
+            "/" +
+            user.user.id,
+          {
+            withCredentials: true,
+            headers: {
+              "Access-Control-Allow-Origin": true,
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Credentials": true,
+              "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689",
+            },
+          }
+        )
+        .then((response) => {
+          setfollow(response.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, []);
   return (
     <div>
@@ -55,8 +83,18 @@ export default function UserProfile() {
       </div>
       <div className="flex justify-center mt-6">
         <div className="flex justify-between w-[250px]">
-          <button className=" w-28 h-12 bg-violet-500 rounded-lg">
-            <span className=" font-bold text-md text-white">Follow</span>
+          <button
+            className=" w-28 h-12 bg-violet-500 rounded-lg duration-200 hover:scale-95"
+            type="button"
+            onClick={() => {
+              follow(user.id);
+            }}
+          >
+            {follows ? (
+              <span className=" font-bold text-md text-white">Following</span>
+            ) : (
+              <span className=" font-bold text-md text-white">follow</span>
+            )}
           </button>
           <button className=" w-28 h-12 bg-white border rounded-lg">
             <span className=" font-bold text-md">Message</span>
@@ -71,7 +109,11 @@ export default function UserProfile() {
         </p>
       </div>
       <div></div>
-      <Minicard user={user} total={userpic ? userpic.length : 0} />
+      <Minicard
+        user={user}
+        total={userpic ? userpic.length : 0}
+        setuserpic={setuserpic}
+      />
       <div className="flex justify-center mt-4">
         <div className="lg:columns-3 sm:columns-1 md:columns-2 container">
           {userpic.map((item) => (

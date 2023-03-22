@@ -5,12 +5,13 @@ import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./collage.css";
 export default function Preview(props) {
-  const { user } = UserAuth();
+  const { user, follows, setfollow, HandleLike, follow, like, setlike } =
+    UserAuth();
   const [zoom, setzoom] = useState(false);
   const [x, setx] = useState("20%");
   const [y, sety] = useState("20%");
-  const [like, setlike] = useState(false);
   const location = useLocation();
+
   const styleZoom = {
     transform: `translate3d(${50 - (x / window.innerWidth) * 100 + "%"}, ${
       50 - (y / window.innerHeight) * 100 + "%"
@@ -23,13 +24,15 @@ export default function Preview(props) {
     window.history.pushState("", "", location.pathname);
     props.state(false);
   }
-  const HandleLike = async () => {
+
+  useEffect(() => {
+    window.history.pushState("", "", "/photo/" + props.Filename.split(".")[0]);
     if (user) {
-      setlike(!like);
-      try {
-        axios.post(
-          "https://api-wallpaper-io.onrender.com/Likes/wallpaper/" +
-            props._id +
+      checklike();
+      axios
+        .get(
+          "https://api-wallpaper-io.onrender.com/checkfollow/" +
+            props.UploaderID +
             "/" +
             user.user.id,
           {
@@ -41,45 +44,14 @@ export default function Preview(props) {
               "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689",
             },
           }
-        );
-      } catch (err) {}
-    }
-  };
-  async function follow() {
-    await axios.get(
-      "https://api-wallpaper-io.onrender.com/follow/" + props.UploaderID,
+        )
+        .then((response) => {
+          setfollow(response.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
 
-      {
-        withCredentials: true,
-        headers: {
-          "Access-Control-Allow-Origin": true,
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
-          "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689",
-        },
-      }
-    );
-  }
-  useEffect(() => {
-    window.history.pushState("", "", "/photo/" + props.Filename.split(".")[0]);
-    if (user) {
-      checklike();
-      Views();
-      async function Views() {
-        await axios.get(
-          "https://api-wallpaper-io.onrender.com/userview/" + props._id,
-
-          {
-            withCredentials: true,
-            headers: {
-              "Access-Control-Allow-Origin": true,
-              "Content-Type": "application/json",
-              "Access-Control-Allow-Credentials": true,
-              "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689",
-            },
-          }
-        );
-      }
       async function checklike() {
         const check = await axios.get(
           "https://api-wallpaper-io.onrender.com/checklike/" +
@@ -135,12 +107,21 @@ export default function Preview(props) {
                 <h1 className="mt-3 font-semibold text-lg xs:hidden sm:hidden md:block lg:block ">
                   {props.name}
                 </h1>
-                <h1
-                  onClick={follow}
-                  className=" text-sm font-semibold text-gray-400 p-0 hover:text-slate-500 cursor-pointer xs:hidden sm:hidden md:block lg:block"
-                >
-                  follow
-                </h1>
+                {follows ? (
+                  <h1
+                    onClick={() => follow(props.UploaderID)}
+                    className=" text-sm font-semibold text-gray-400 p-0 hover:text-slate-500 cursor-pointer xs:hidden sm:hidden md:block lg:block"
+                  >
+                    following
+                  </h1>
+                ) : (
+                  <h1
+                    onClick={() => follow(props.UploaderID)}
+                    className=" text-sm font-semibold text-gray-400 p-0 hover:text-slate-500 cursor-pointer xs:hidden sm:hidden md:block lg:block"
+                  >
+                    follow
+                  </h1>
+                )}
               </div>
             </div>
             <div className="flex">
@@ -170,7 +151,7 @@ export default function Preview(props) {
               <button
                 type="button"
                 className="pr-2 pl-2 h-12 border border-gray-300 hover:bg-slate-100 rounded-lg sm:w-[120px] w-[40px] mt-4 mr-4 flex p-2 justify-center"
-                onClick={HandleLike}
+                onClick={() => HandleLike(props._id)}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -187,9 +168,7 @@ export default function Preview(props) {
                   />
                 </svg>
                 <span className="sm:block hidden mr-2 mt-[2px]">Likes</span>
-                <span className="sm:block hidden mt-[3px]">
-                  {props.Likes.length}
-                </span>
+                <span className="sm:block hidden mt-[3px]">{props.Likes}</span>
               </button>
               <a
                 href={props.Image}

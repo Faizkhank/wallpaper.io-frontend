@@ -1,6 +1,38 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 const Minicard = (props) => {
   const [drop, setdrop] = useState(false);
+  const param = useParams();
+  const filterfollowers = async () => {
+    const data = await axios.get(
+      "https://api-wallpaper-io.onrender.com/filter/follower",
+      {
+        withCredentials: true,
+        headers: {
+          "Access-Control-Allow-Origin": true,
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+          "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689",
+        },
+      }
+    );
+    props.setuserpic(data.data);
+  };
+  const Gallary = () => {
+    axios
+      .get("https://api-wallpaper-io.onrender.com/user/" + param.id, {
+        headers: {
+          "Access-Control-Allow-Origin": true,
+          "Content-Type": "application/json",
+          "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689",
+        },
+      })
+      .then((data) => {
+        props.setuserpic(data.data);
+      });
+  };
   return (
     <div className="w-full">
       <div className="flex justify-center">
@@ -23,17 +55,20 @@ const Minicard = (props) => {
       </div>
       <div className="flex mt-16 mb-11  justify-between w-full">
         <div className="flex ml-11">
-          <a href={"/user"}>
+          <Link onClick={Gallary}>
             <span className=" bg-black text-sm flex text-white w-32 pt-3 pb-3 pr-5 pl-5 font-bold rounded-3xl tracking-widest">
-              Gallary{" "}
+              Gallary
               <p className="ml-4 text-grey-300 text-sm">{props.total}</p>
             </span>
-          </a>
-          <a href={"/user"} className="mt-2">
-            <span className=" text-md ml-4 text-black w-16 font-bold rounded-3xl tracking-widest">
+          </Link>
+          <Link
+            className="mt-2 hover:border-b-2 border-black ml-6"
+            onClick={filterfollowers}
+          >
+            <span className=" text-md text-black w-16 font-bold  hover:tracking-widest tracking-normal duration-200">
               Following
             </span>
-          </a>
+          </Link>
         </div>
         <div>
           <button
