@@ -17,6 +17,7 @@ export default function Upload() {
   const handleFileInputChange = (e) => {
     const file = e.target.files[0];
     const blobURL = URL.createObjectURL(file);
+    console.log(file);
     setpreview(blobURL);
   };
   function Upload() {
