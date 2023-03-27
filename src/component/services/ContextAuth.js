@@ -6,9 +6,22 @@ export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState("");
   const [follows, setfollow] = useState(false);
   const [like, setlike] = useState(false);
-  const [Data, setData] = useState([]);
+  const [Data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [pageNumber, setPageNumber] = useState(1);
+  console.log(Data);
   const logout = () => {
     window.open("https://api-wallpaper-io.onrender.com/logout", "_self");
+  };
+  const fetchData = async () => {
+    setIsLoading(true);
+    const response = await fetch(
+      `https://api-wallpaper-io.onrender.com/data?page=${pageNumber}`
+    );
+    const newData = await response.json();
+    setData([...Data, ...newData]);
+    setPageNumber(pageNumber + 1);
+    setIsLoading(false);
   };
   async function follow(data) {
     const res = await axios.put(
@@ -118,6 +131,9 @@ export const AuthContextProvider = ({ children }) => {
         setlike,
         Data,
         Handlesearch,
+        fetchData,
+        isLoading,
+        setIsLoading,
       }}
     >
       {children}
