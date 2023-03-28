@@ -57,7 +57,7 @@ export default function Upload() {
               {preview ? (
                 <img
                   src={preview}
-                  className="w-[40vw] h-[40hv] rounded-lg pb-8"
+                  className="w-[20vw] h-[20hv] ease-in duration-200 rounded-lg mb-6 scale-100 hover:scale-125"
                   alt="image"
                 />
               ) : (
