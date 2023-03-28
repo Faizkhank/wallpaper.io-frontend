@@ -8,7 +8,7 @@ export const AuthContextProvider = ({ children }) => {
   const [like, setlike] = useState(false);
   const [Data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [pageNumber, setPageNumber] = useState(1);
+  const [pageNumber, setPageNumber] = useState(0);
 
   const logout = () => {
     window.open("https://api-wallpaper-io.onrender.com/logout", "_self");
@@ -20,7 +20,7 @@ export const AuthContextProvider = ({ children }) => {
     );
     const newData = await response.json();
     setData([...Data, ...newData]);
-    setPageNumber(pageNumber + 1);
+    setPageNumber(pageNumber + 10);
     setIsLoading(false);
   };
   async function follow(data) {
