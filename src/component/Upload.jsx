@@ -1,7 +1,6 @@
 import { React, useState } from "react";
 import axios from "axios";
 import { UserAuth } from "../component/services/ContextAuth";
-import { Transition } from "@headlessui/react";
 import uploading from "./images/image-.gif";
 export default function Upload() {
   const { user } = UserAuth() || {};
@@ -13,14 +12,13 @@ export default function Upload() {
     onUploadProgress: (progressEvent) =>
       setbar((progressEvent.loaded / file[0].size) * 100),
   };
-  console.log(preview);
   const handleFileInputChange = (e) => {
-    const file = e.target.files[0];
-    const blobURL = URL.createObjectURL(file);
-    console.log(file);
+    const files = e.target.files[0];
+    const blobURL = URL.createObjectURL(files);
+    setfile(files);
     setpreview(blobURL);
   };
-  function Upload() {
+  async function Upload() {
     setbar(!Bar);
     const form = document.querySelector("form");
     let formData = new FormData(form);
@@ -28,22 +26,16 @@ export default function Upload() {
     formData.append("Name", user.user.displayName);
     formData.append("UserIMG", user.user.photos);
     formData.append("UploaderID", user.user.id);
-    formData.append("filename", user.user.id);
-    console.log(formData);
+    console.log(formData.get("Image"));
     axios
-      .post(
-        "https://api-wallpaper-io.onrender.com/file/upload",
-        formData,
-        config,
-        {
-          withCredentials: true,
-          headers: {
-            "Access-Control-Allow-Origin": true,
-            "Content-Type": "application/json",
-            "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689",
-          },
-        }
-      )
+      .post("http://localhost:4000/file/upload", formData, config, {
+        withCredentials: true,
+        headers: {
+          "Access-Control-Allow-Origin": true,
+          "Content-Type": "application/json",
+          "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689",
+        },
+      })
       .then((res) => {
         console.log(res);
         setbar(0);
@@ -63,7 +55,11 @@ export default function Upload() {
           >
             <div className="flex flex-col items-center justify-center pt-5 pb-">
               {preview ? (
-                <img src={preview} className="w-[40vw]" alt="image" />
+                <img
+                  src={preview}
+                  className="w-[40vw] h-[40hv] rounded-lg pb-8"
+                  alt="image"
+                />
               ) : (
                 <div className="w-full h-[200px] flex justify-center">
                   <img src={uploading} className=" w-36" alt="Preview" />
@@ -86,7 +82,6 @@ export default function Upload() {
                 name="Image"
                 accept=".png, .jpg, .jpeg, .mp4,.webp"
                 onChange={(e) => {
-                  setfile(e.target.files);
                   handleFileInputChange(e);
                   setres("");
                 }}
