@@ -1,15 +1,33 @@
+import axios from "axios";
 import { React, useState } from "react";
 import "./collage.css";
 
 const Register = (props) => {
   const [process, setprocess] = useState(false);
-  const [user, setuser] = useState();
-  function RegisterHandle() {
+  const [response, setresponse] = useState("");
+  async function RegisterHandle(e) {
+    e.preventDefault();
     setprocess(true);
     const form = document.querySelector("form");
     let formData = new FormData(form);
-    console.log(formData);
+    axios
+      .post("https://api-wallpaper-io.onrender.com/register", formData, {
+        headers: {
+          "Access-Control-Allow-Origin": true,
+          "Content-Type": "application/json",
+          "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689",
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setresponse(res.data);
+        setprocess(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
+
   function setclose() {
     props.state(false);
   }
@@ -41,14 +59,14 @@ const Register = (props) => {
               <div class="relative z-0 w-5/6 mb-6 group">
                 <input
                   type="text"
-                  name="first-name"
-                  id="firs-name"
+                  name="first_name"
+                  id="first_name"
                   className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-500 peer"
                   placeholder=" "
                   required
                 />
                 <label
-                  for="first-name"
+                  for="first_name"
                   className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                 >
                   First Name
@@ -57,14 +75,14 @@ const Register = (props) => {
               <div class="relative z-0 w-5/6 mb-6 group">
                 <input
                   type="text"
-                  name="last-name"
-                  id="last-name"
+                  name="last_name"
+                  id="last_name"
                   className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-500 peer"
                   placeholder=" "
                   required
                 />
                 <label
-                  for="last -name"
+                  for="last_name"
                   className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                 >
                   last Name
@@ -74,14 +92,14 @@ const Register = (props) => {
             <div class="relative z-0 w-full mb-6 group">
               <input
                 type="email"
-                name="floating_email"
-                id="floating_email"
+                name="email"
+                id="email"
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-500 peer"
                 placeholder=" "
                 required
               />
               <label
-                for="floating_email"
+                for="email"
                 className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
                 Email
@@ -90,14 +108,14 @@ const Register = (props) => {
             <div class="relative z-0 w-full mb-6 group">
               <input
                 type="password"
-                name="floating_password"
-                id="floating_password"
+                name="passwordpassword"
+                id="password"
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-500 peer"
                 placeholder=" "
                 required
               />
               <label
-                for="floating_password"
+                for="password"
                 className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
                 Password
@@ -129,10 +147,16 @@ const Register = (props) => {
                       fill="currentFill"
                     />
                   </svg>
-                  <span class="sr-only">Loading...</span>
                 </div>
               )}
             </div>
+            <p
+              className={` text-red-600 text-sm mt-2 flex justify-center ${
+                response ? "shake" : "hidden"
+              }`}
+            >
+              {response + " !"}
+            </p>
           </div>
         </form>
       </div>
