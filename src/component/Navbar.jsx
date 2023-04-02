@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import Register from "./Register";
 import { useLocation } from "react-router-dom";
 import "./collage.css";
+import img from "./images/user.jpeg";
 export default function Navbar() {
   const location = useLocation();
   const { user, logout, Handlesearch } = UserAuth();
@@ -137,7 +138,7 @@ export default function Navbar() {
                 {user ? (
                   <img
                     className=" w-11 h-11 rounded-full mt-4 hover:border-3 border-0"
-                    src={user.user.photos}
+                    src={user.user.photos || img}
                     onClick={() => setdrop(!drop)}
                   />
                 ) : (
