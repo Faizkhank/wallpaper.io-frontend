@@ -15,12 +15,11 @@ export default function Collage() {
     };
 
     const handleTouchMove = () => {
-  if (
-    window.innerHeight + document.documentElement.scrollTop ===
-    document.documentElement.offsetHeight
-  ) {
-    fetchData();
-  }
+  const { scrollTop, clientHeight, scrollHeight } =
+        document.documentElement;
+      if (scrollTop + clientHeight+60 >= scrollHeight && !isLoading) {
+        fetchData();
+      }
 };
 
 
