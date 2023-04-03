@@ -24,6 +24,7 @@ const Login = () => {
         "https://api-wallpaper-io.onrender.com/user/login",
         { email: Email, password: Password },
         {
+          withCredentials: true,
           headers: {
             "Access-Control-Allow-Origin": true,
             "content-type": "application/x-www-form-urlencoded",
