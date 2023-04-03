@@ -14,7 +14,7 @@ export default function Collage() {
       }
     };
 
-    const handleScroll = () => {
+    const handleTouchMove = () => {
   if (
     window.innerHeight + document.documentElement.scrollTop ===
     document.documentElement.offsetHeight
