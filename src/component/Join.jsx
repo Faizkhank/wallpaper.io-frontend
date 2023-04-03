@@ -21,7 +21,7 @@ const Login = () => {
     setprocess(true);
     axios
       .post(
-        "https://api-wallpaper-io.onrender.com/user/login",
+        "http://localhost:4000/user/login",
         { email: Email, password: Password },
         {
           withCredentials: true,
@@ -32,8 +32,10 @@ const Login = () => {
         }
       )
       .then((res) => {
-        console.log(res);
         setprocess(false);
+        if (res.data === true) {
+          navigate("/");
+        }
       })
       .catch((err) => {
         console.log(err);
