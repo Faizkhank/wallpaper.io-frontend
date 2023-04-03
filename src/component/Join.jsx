@@ -32,9 +32,6 @@ const Login = () => {
       )
       .then((res) => {
         setprocess(false);
-        if (res.data === true) {
-          navigate("/");
-        }
       })
       .catch((err) => {
         console.log(err);
