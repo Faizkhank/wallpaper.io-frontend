@@ -113,6 +113,7 @@ export const AuthContextProvider = ({ children }) => {
       })
       .then((res) => {
         setUser(res.data);
+        console.log(res);
       })
       .catch((err) => {
         console.log(err);
