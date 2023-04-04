@@ -15,16 +15,13 @@ export default function Collage() {
     };
 
     const handleTouchMove = () => {
-      const { clientHeight, scrollHeight, scrollTop } =
+  const { scrollTop, clientHeight, scrollHeight } =
         document.documentElement;
-      if (
-        window.pageYOffset + clientHeight + 30 >= scrollHeight &&
-        !isLoading
-      ) {
-        console.log(window.pageYOffset + clientHeight);
+      if (scrollTop + clientHeight+60 >= scrollHeight && !isLoading) {
         fetchData();
       }
-    };
+};
+
 
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("touchmove", handleTouchMove);
