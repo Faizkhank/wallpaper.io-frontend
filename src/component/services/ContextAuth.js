@@ -40,8 +40,7 @@ export const AuthContextProvider = ({ children }) => {
         },
       }
     );
-    console.log(res);
-    setfollow(!follows);
+    setfollow(true);
   }
   const HandleLike = async (data) => {
     if (user) {
