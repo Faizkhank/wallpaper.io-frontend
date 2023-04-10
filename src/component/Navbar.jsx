@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useRef } from "react";
 import Sidebar from "./Sidebar";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { UserAuth } from "../component/services/ContextAuth";
@@ -16,6 +16,10 @@ export default function Navbar() {
   const [suggest, setsuggest] = useState(false);
   const [offset, setOffset] = useState(false);
   const [searchquery, setquery] = useState("");
+  const suggestions = ["jack", "faiz", "tree", "food"];
+  const [isFocus, setIsFocus] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const inputRef = useRef();
   useEffect(() => {
     const onScroll = () => {
       if (location.pathname != "/") {
@@ -24,7 +28,6 @@ export default function Navbar() {
         setOffset(window.pageYOffset >= 400);
       }
     };
-    // clean up code
     window.removeEventListener("scroll", onScroll);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -78,42 +81,61 @@ export default function Navbar() {
                 <div className="lg:w-[1000px] md:w-[600px] sm:w-[320px] xs:w-[300px] flex justify-center sm:mr-0 mr-6">
                   <input
                     type="text"
+                    onBlur={() => {
+                      if (!isHovered) {
+                        setIsFocus(false);
+                      }
+                    }}
+                    value={searchquery}
+                    onFocus={() => setIsFocus(true)}
                     onChange={(e) => {
                       setquery(e.target.value);
                     }}
-                    className={`relative font-semibold outline-none bg-gray-300 focus:outline-none focus:border-white focus:ring-0 rounded-t-lg border-0 w-full sm:w-/3 p-3 mt-4  text-base text-black placeholder-gray-400  focus:shadow-outline h-12 mr-2 ${
-                      suggest ? "null" : "rounded-b-lg"
-                    }`}
+                    className={`relative font-semibold outline-none bg-gray-300 focus:outline-none focus:border-white focus:ring-0 rounded-t-lg border-0 w-full p-3 mt-4  text-base text-black placeholder-gray-400  focus:shadow-outline h-12 mr-2`}
                     placeholder="Search for photos"
                     onClick={() => {
                       setsuggest(!suggest);
                     }}
+                    ref={inputRef}
                   />
                   <MagnifyingGlassIcon
                     className="w-9 fill-gray-400 relative right-11 mt-4"
                     onClick={findsetquery}
                   />
                 </div>
-                {suggest ? (
-                  <div className="flex justify-center w-full">
-                    <div className="relative z-50 top-0 right-0 left-0 bg-white shadow-xl w-full mr-[41.3px] rounded-b-lg ">
-                      <ul>
-                        <li className="font-bold">
-                          <a>Abstract</a>
-                        </li>
-                        <li>
-                          <a>Abstract</a>
-                        </li>
-                        <li>
-                          <a>Abstract</a>
-                        </li>
-                        <li>
-                          <a>Abstract</a>
-                        </li>
-                      </ul>
-                    </div>
+                {isFocus && (
+                  <div
+                    className="shadow-lg relative w-full rounded-b-md"
+                    onMouseEnter={() => {
+                      setIsHovered(true);
+                    }}
+                    onMouseLeave={() => {
+                      setIsHovered(false);
+                    }}
+                  >
+                    {suggestions.map((suggestion, index) => {
+                      const isMatch =
+                        suggestion
+                          .toLowerCase()
+                          .indexOf(searchquery.toLowerCase()) > -1;
+                      return (
+                        <div key={index}>
+                          {isMatch && (
+                            <div
+                              className="p-5 hover:bg-gray-200 cursor-pointer bg-white lg:w-[958px] md:w-[558px] sm:w-[278px] xs:w-[261px]"
+                              onClick={() => {
+                                setquery(suggestion);
+                                inputRef.current.focus();
+                              }}
+                            >
+                              {suggestion}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
-                ) : null}
+                )}
               </form>
             </div>
             <div>
@@ -121,19 +143,29 @@ export default function Navbar() {
                 {!user ? (
                   <a
                     onClick={() => setshow(!show)}
-                    className="font-semibold  h-11 mt-4 cursor-pointer text-base p-2  mr-4 rounded-lg bg-purple-500"
+                    className="font-semibold  h-11 mt-4 overflow-hidden cursor-pointer text-base p-2  mr-4 rounded-lg bg-purple-500"
                   >
                     Register
                   </a>
                 ) : (
-                  <Link
-                    to={"/Upload"}
-                    className={`font-semibold  cursor-pointer mt-4 text-base p-3  mr-4 ${
-                      offset ? " text-black" : "text-white"
-                    }`}
-                  >
-                    Upload
-                  </Link>
+                  <div className="mt-7">
+                    <Link
+                      to={"/AI_generatation"}
+                      className={`font-semibold  cursor-pointer text-base p-3  mr-4 ${
+                        offset ? " text-black" : "text-white"
+                      }`}
+                    >
+                      AI Image
+                    </Link>
+                    <Link
+                      to={"/Upload"}
+                      className={`font-semibold  cursor-pointer text-base p-3  mr-4 ${
+                        offset ? " text-black" : "text-white"
+                      }`}
+                    >
+                      Upload
+                    </Link>
+                  </div>
                 )}
                 {user ? (
                   <img
