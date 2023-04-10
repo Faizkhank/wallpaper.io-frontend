@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { UserAuth } from "../component/services/ContextAuth";
 import "./collage.css";
 import Card from "./Card";
+import empty from "./images/notfound.gif";
 
 export default function Collage() {
   const { Data, isLoading, fetchData } = UserAuth();
@@ -15,13 +16,12 @@ export default function Collage() {
     };
 
     const handleTouchMove = () => {
-  const { scrollTop, clientHeight, scrollHeight } =
+      const { scrollTop, clientHeight, scrollHeight } =
         document.documentElement;
-      if (scrollTop + clientHeight+60 >= scrollHeight && !isLoading) {
+      if (scrollTop + clientHeight + 60 >= scrollHeight && !isLoading) {
         fetchData();
       }
-};
-
+    };
 
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("touchmove", handleTouchMove);
@@ -52,12 +52,12 @@ export default function Collage() {
                 fill="currentFill"
               />
             </svg>
-            <span class="sr-only">Loading...</span>
           </div>
         ) : (
           <div className="lg:columns-3 sm:columns-2 md:columns-2 xs:columns-2 container ">
-            {Data.map((item) => (
+            {Data.map((item, index) => (
               <Card
+                key={index}
                 Image={item.Url}
                 name={item.Name}
                 UserURL={item.UserURL}
@@ -88,9 +88,18 @@ export default function Collage() {
               fill="currentFill"
             />
           </svg>
-          <span class="sr-only">Loading...</span>
         </div>
       ) : null}
+      <div className="flex justify-center">
+        {Data?.length === 0 ? (
+          <div>
+            <img src={empty} className="w-[300px]" />
+            <h2 className=" font-bold text-2xl text-purple-400 opacity-50 text-center">
+              NOT FOUND
+            </h2>
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 }
