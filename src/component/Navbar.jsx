@@ -10,7 +10,7 @@ import "./collage.css";
 import img from "./images/user.jpeg";
 export default function Navbar() {
   const location = useLocation();
-  const { user, logout, Handlesearch } = UserAuth();
+  const { user, logout, Handlesearch, setuniquery } = UserAuth();
   const [show, setshow] = useState(false);
   const [drop, setdrop] = useState(false);
   const [suggest, setsuggest] = useState(false);
@@ -89,6 +89,7 @@ export default function Navbar() {
                     value={searchquery}
                     onFocus={() => setIsFocus(true)}
                     onChange={(e) => {
+                      setuniquery(e.target.value);
                       setquery(e.target.value);
                     }}
                     className={`relative font-semibold outline-none bg-gray-300 focus:outline-none focus:border-white focus:ring-0 rounded-t-lg border-0 w-full p-3 mt-4  text-base text-black placeholder-gray-400  focus:shadow-outline h-12 mr-2`}
@@ -125,6 +126,7 @@ export default function Navbar() {
                               className="p-5 hover:bg-gray-200 cursor-pointer bg-white lg:w-[958px] md:w-[558px] sm:w-[278px] xs:w-[261px] font-bold"
                               onClick={() => {
                                 setquery(suggestion);
+                                setuniquery(suggestion);
                                 setIsFocus(false);
 
                                 inputRef.current.focus();

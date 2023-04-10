@@ -5,13 +5,17 @@ import Card from "./Card";
 import empty from "./images/notfound.gif";
 
 export default function Collage() {
-  const { Data, isLoading, fetchData } = UserAuth();
+  const { Data, isLoading, fetchData, issearchquery, fetchDataquery } =
+    UserAuth();
   useEffect(() => {
     const handleScroll = () => {
       const { scrollTop, clientHeight, scrollHeight } =
         document.documentElement;
       if (scrollTop + clientHeight >= scrollHeight && !isLoading) {
-        fetchData();
+        if (issearchquery) {
+          console.log("true query");
+          fetchDataquery();
+        } else fetchData();
       }
     };
 
@@ -19,7 +23,10 @@ export default function Collage() {
       const { scrollTop, clientHeight, scrollHeight } =
         document.documentElement;
       if (scrollTop + clientHeight + 60 >= scrollHeight && !isLoading) {
-        fetchData();
+        if (issearchquery) {
+          console.log("true query");
+          fetchDataquery();
+        } else fetchData();
       }
     };
 

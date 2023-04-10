@@ -6,10 +6,12 @@ export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState("");
   const [follows, setfollow] = useState(false);
   const [like, setlike] = useState(false);
+  const [issearchquery, setissearchquery] = useState(false);
   const [Data, setData] = useState(null);
+  const [searchquery, setuniquery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [pageNumber, setPageNumber] = useState(0);
-
+  console.log(pageNumber);
   const logout = () => {
     window.open("https://api-wallpaper-io.onrender.com/logout", "_self");
   };
@@ -17,6 +19,16 @@ export const AuthContextProvider = ({ children }) => {
     setIsLoading(true);
     const response = await fetch(
       `https://api-wallpaper-io.onrender.com/data?page=${pageNumber}`
+    );
+    const newData = await response.json();
+    setData([...Data, ...newData]);
+    setPageNumber(pageNumber + 10);
+    setIsLoading(false);
+  };
+  const fetchDataquery = async () => {
+    setIsLoading(true);
+    const response = await fetch(
+      `https://api-wallpaper-io.onrender.com/api/search?q=${searchquery}&page?p=${pageNumber}`
     );
     const newData = await response.json();
     setData([...Data, ...newData]);
@@ -67,18 +79,23 @@ export const AuthContextProvider = ({ children }) => {
   const Handlesearch = async (data) => {
     try {
       axios
-        .get(`https://api-wallpaper-io.onrender.com/api/search?q=${data}`, {
-          withCredentials: true,
-          headers: {
-            "Access-Control-Allow-Origin": true,
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Credentials": true,
-            "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689",
-          },
-        })
+        .get(
+          `https://api-wallpaper-io.onrender.com/api/search?q=${searchquery}&page?p=${pageNumber}`,
+          {
+            withCredentials: true,
+            headers: {
+              "Access-Control-Allow-Origin": true,
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Credentials": true,
+              "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689",
+            },
+          }
+        )
         .then((res) => {
           setData(res.data);
+          setissearchquery(true);
         });
+      setPageNumber(pageNumber + 10);
     } catch (err) {}
   };
   useEffect(() => {
@@ -93,6 +110,7 @@ export const AuthContextProvider = ({ children }) => {
       })
       .then((data) => {
         if (data.data !== null) {
+          setissearchquery(false);
           setData(data.data);
         }
       })
@@ -133,6 +151,10 @@ export const AuthContextProvider = ({ children }) => {
         fetchData,
         isLoading,
         setIsLoading,
+        issearchquery,
+        setissearchquery,
+        setuniquery,
+        fetchDataquery,
       }}
     >
       {children}
