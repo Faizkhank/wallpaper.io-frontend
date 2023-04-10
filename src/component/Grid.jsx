@@ -7,11 +7,12 @@ import empty from "./images/notfound.gif";
 export default function Collage() {
   const { Data, isLoading, fetchData, issearchquery, fetchDataquery } =
     UserAuth();
+  console.log(isLoading);
   useEffect(() => {
     const handleScroll = () => {
       const { scrollTop, clientHeight, scrollHeight } =
         document.documentElement;
-      if (scrollTop + clientHeight >= scrollHeight && !isLoading) {
+      if (scrollTop + clientHeight >= scrollHeight && isLoading) {
         if (issearchquery) {
           console.log("true query");
           fetchDataquery();
@@ -22,7 +23,7 @@ export default function Collage() {
     const handleTouchMove = () => {
       const { scrollTop, clientHeight, scrollHeight } =
         document.documentElement;
-      if (scrollTop + clientHeight + 60 >= scrollHeight && !isLoading) {
+      if (scrollTop + clientHeight + 60 >= scrollHeight && isLoading) {
         if (issearchquery) {
           console.log("true query");
           fetchDataquery();
