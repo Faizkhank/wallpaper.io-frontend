@@ -8,7 +8,6 @@ export default function UserProfile() {
   const param = useParams();
   const [userpic, setuserpic] = useState([]);
   const [user, setUser] = useState("");
-  console.log(param.id);
 
   const { follows, setfollow, follow } = UserAuth();
   useEffect(() => {
@@ -116,8 +115,9 @@ export default function UserProfile() {
       />
       <div className="flex justify-center mt-4">
         <div className="lg:columns-3 sm:columns-1 md:columns-2 container">
-          {userpic.map((item) => (
+          {userpic.map((item, index) => (
             <Card
+              key={index}
               Image={item.Url}
               name={item.Name}
               UserURL={item.UserURL}
