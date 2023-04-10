@@ -122,9 +122,10 @@ export default function Navbar() {
                         <div key={index}>
                           {isMatch && (
                             <div
-                              className="p-5 hover:bg-gray-200 cursor-pointer bg-white lg:w-[958px] md:w-[558px] sm:w-[278px] xs:w-[261px]"
+                              className="p-5 hover:bg-gray-200 cursor-pointer bg-white lg:w-[958px] md:w-[558px] sm:w-[278px] xs:w-[261px] font-bold"
                               onClick={() => {
                                 setquery(suggestion);
+                                setIsFocus(false);
 
                                 inputRef.current.focus();
                               }}
