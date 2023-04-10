@@ -81,7 +81,7 @@ export const AuthContextProvider = ({ children }) => {
     try {
       axios
         .get(
-          `https://api-wallpaper-io.onrender.com/api/search?q=${searchquery}&page?p=${pageNumber}`,
+          `https://api-wallpaper-io.onrender.com/api/page_0/search?q=${searchquery}&page?p=${pageNumber}`,
           {
             withCredentials: true,
             headers: {
