@@ -14,7 +14,7 @@ export default function Card(props) {
   const [Delete, setdelete] = useState(false);
   const [button, showbutton] = useState(false);
   const [progress, setprogress] = useState(false);
-  const navigate = useNavigate();
+
   function HandleModal() {
     setshow(true);
   }
@@ -130,7 +130,7 @@ export default function Card(props) {
             </div>
           </div>
 
-          <a
+          <div
             className="sm:top-0 relative top-0 right-14"
             onClick={() => {
               setdelete(!Delete);
@@ -150,7 +150,7 @@ export default function Card(props) {
                 d="M6 18L18 6M6 6l12 12"
               />
             </svg>
-          </a>
+          </div>
         </div>
       </Transition>
       <div
@@ -158,7 +158,7 @@ export default function Card(props) {
         onMouseLeave={() => showbutton(false)}
         className={`relative mb-2 ${load ? "null" : "hidden"}`}
       >
-        <a>
+        <div>
           <img
             className="rounded-lg w-full h-auto block  hover:brightness-75"
             src={props.Image}
@@ -253,7 +253,7 @@ export default function Card(props) {
               </div>
             </div>
           ) : null}
-        </a>
+        </div>
       </div>
     </>
   );
