@@ -31,7 +31,7 @@ export default function Card(props) {
       })
       .then((res) => {
         if (res) {
-          navigate("/");
+          window.location.reload();
           setprogress(!progress);
         }
       })
