@@ -28,16 +28,20 @@ export default function Upload() {
     formData.append("UploaderID", user.user.id);
     console.log(formData.get("Image"));
     axios
-      .post("https://api-wallpaper-io.onrender.com/file/upload", formData, config, {
-        withCredentials: true,
-        headers: {
-          "Access-Control-Allow-Origin": true,
-          "Content-Type": "application/json",
-          "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689",
-        },
-      })
+      .post(
+        "https://api-wallpaper-io.onrender.com/file/upload",
+        formData,
+        config,
+        {
+          withCredentials: true,
+          headers: {
+            "Access-Control-Allow-Origin": true,
+            "Content-Type": "application/json",
+            "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689",
+          },
+        }
+      )
       .then((res) => {
-        console.log(res);
         setbar(0);
         setres(res);
       })

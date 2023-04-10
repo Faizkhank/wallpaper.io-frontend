@@ -2,6 +2,7 @@ import { React, useState } from "react";
 import { Transition } from "@headlessui/react";
 import axios from "axios";
 import Preview from "./preview";
+import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../component/services/ContextAuth";
 import "./collage.css";
 
@@ -13,6 +14,7 @@ export default function Card(props) {
   const [Delete, setdelete] = useState(false);
   const [button, showbutton] = useState(false);
   const [progress, setprogress] = useState(false);
+  const navigate = useNavigate();
   function HandleModal() {
     setshow(true);
   }
@@ -28,8 +30,8 @@ export default function Card(props) {
         },
       })
       .then((res) => {
-        console.log(res);
         if (res.data === true) {
+          navigate("/");
           setprogress(!progress);
         }
       })
