@@ -86,10 +86,12 @@ export default function Card(props) {
             </div>
             <div className="flex justify-center mt-3 pb-2">
               {!progress ? (
-                <label className=" font-semibold space-x-4">
-                  Do you want to Delete it!
+                <div>
+                  <label className=" font-semibold space-x-4">
+                    Do you want to Delete it!{" "}
+                  </label>
                   <button
-                    className=" bg-red-600 duration-200 p-2 rounded-xl pr-5 pl-5 ml-3 hover:scale-110"
+                    className=" bg-red-600 duration-200 p-2 rounded-xl pr-5 pl-5 ml-3 mr-3 hover:scale-110"
                     onClick={() => {
                       Handledelete();
                       setprogress(!progress);
@@ -100,13 +102,12 @@ export default function Card(props) {
                   <button
                     className=" bg-white p-2 rounded-xl pr-5 pl-5 border hover:scale-110 duration-200"
                     onClick={() => {
-                      Handledelete();
                       setdelete(false);
                     }}
                   >
                     No
                   </button>
-                </label>
+                </div>
               ) : (
                 <div role="status">
                   <svg
