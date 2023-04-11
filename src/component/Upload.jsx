@@ -65,14 +65,15 @@ export default function Upload() {
                   alt="image"
                 />
               ) : (
-                <div className="w-full h-[200px] flex justify-center">
-                  <img src={uploading} className=" w-36" alt="Preview" />
-
+                <div className=" pb-7">
+                  <div className="w-full h-[200px] flex justify-center">
+                    <img src={uploading} className=" w-36" alt="Preview" />
+                  </div>
                   <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
                     <span className="font-semibold">Click to upload</span> or
                     drag and drop
                   </p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                  <p className="text-xs text-center text-gray-500 dark:text-gray-400">
                     JPG or MP4
                   </p>
                 </div>
