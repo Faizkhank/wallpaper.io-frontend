@@ -108,7 +108,7 @@ export default function Navbar() {
                 </div>
                 {isFocus && (
                   <div
-                    className="shadow-lg relative w-full rounded-b-md bg-white lg:w-[958px] md:w-[558px] sm:w-[278px] xs:w-[261px]"
+                    className="shadow-lg relative w-full  rounded-b-md bg-white lg:w-[958px] md:w-[558px] sm:w-[278px] xs:w-[261px]"
                     onMouseEnter={() => {
                       setIsHovered(true);
                     }}
@@ -125,7 +125,7 @@ export default function Navbar() {
                         <div key={index}>
                           {isMatch && (
                             <div
-                              className="p-5  cursor-pointer   font-bold text-gray-400 hover:text-black"
+                              className="p-3 pl-5 cursor-pointer font-bold text-gray-400 hover:text-black"
                               onClick={() => {
                                 setquery(suggestion);
                                 setuniquery(suggestion);
