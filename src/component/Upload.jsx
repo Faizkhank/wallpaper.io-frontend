@@ -7,6 +7,9 @@ export default function Upload() {
   const [file, setfile] = useState("");
   const [Bar, setbar] = useState(0);
   const [res, setres] = useState("");
+  const [Name, setName] = useState(0);
+  const [Location, setLocation] = useState(0);
+  const [tags, settags] = useState(0);
   const [preview, setpreview] = useState("");
   const config = {
     onUploadProgress: (progressEvent) =>
@@ -25,6 +28,8 @@ export default function Upload() {
     formData.append("Image", file);
     formData.append("Name", user.user.displayName);
     formData.append("UserIMG", user.user.photos);
+    formData.append("Location", Location);
+    formData.append("tags", tags);
     formData.append("UploaderID", user.user.id);
     console.log(formData.get("Image"));
     axios
@@ -55,7 +60,9 @@ export default function Upload() {
         <div className="flex items-center justify-center w-4/6 lg:mt-11 md:mt-20 sm:mt-60 ">
           <label
             for="dropzone-file"
-            className="flex flex-col items-center justify-center w-full h-auto border-4 border-purple-700 border-dashed border-6 rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700  dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+            className={`flex flex-col items-center justify-center w-full h-auto border-4 ${
+              file ? "border-white" : "border-purple-700"
+            } border-dashed border-6 rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700  dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600`}
           >
             <div className="flex flex-col items-center justify-center pt-5 pb-">
               {preview ? (
@@ -97,12 +104,60 @@ export default function Upload() {
       </div>
       <div className="flex justify-center mt-7">
         {file ? (
-          <button
-            className="bg-purple-700 text-white h-7 w-20 rounded-2xl"
-            onClick={Upload}
-          >
-            Upload
-          </button>
+          <div>
+            <div class="relative z-0 w-full mb-6 group right-0">
+              <input
+                type="Name"
+                name="Name"
+                id="Name"
+                className="block py-2.5 px-0 w-[400px] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-500 peer"
+                placeholder=" "
+                required
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              />
+              <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                Name
+              </label>
+            </div>
+            <div class="relative z-0 w-full mb-6 group right-0">
+              <input
+                type="tag"
+                name="tag"
+                id="tag"
+                className="block py-2.5 px-0 w-[180px] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-500 peer"
+                placeholder=" "
+                onChange={(e) => {
+                  settags(e.target.value);
+                }}
+              />
+              <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                Tag
+              </label>
+            </div>
+            <div class="relative z-0 w-full mb-6 group right-0">
+              <input
+                type="location"
+                name="location"
+                id="location"
+                className="block py-2.5 px-0 w-[180px] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-500 peer"
+                placeholder=" "
+                onChange={(e) => {
+                  setLocation(e.target.value);
+                }}
+              />
+              <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                location
+              </label>
+            </div>
+            <button
+              className="bg-purple-700 align-middle text-white h-7 w-20 rounded-2xl"
+              onClick={Upload}
+            >
+              Upload
+            </button>
+          </div>
         ) : null}
       </div>
       <div className="flex justify-center mt-4">
