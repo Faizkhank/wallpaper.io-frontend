@@ -105,6 +105,35 @@ export default function Upload() {
       <div className="flex justify-center mt-7">
         {file ? (
           <div>
+            <div className="flex justify-center mt-4">
+              {Bar ? (
+                <div className="w-2/6 bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                  <div
+                    className="bg-purple-700 h-2.5 rounded-full"
+                    style={{ width: Bar + "%" }}
+                  ></div>
+                </div>
+              ) : null}
+              {res ? (
+                <p className="flex p-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-4 h-4 p-1 bg-green-600 rounded-full text-white mr-3 mt-1 ml-2"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M4.5 12.75l6 6 9-13.5"
+                    />
+                  </svg>
+                  <span className="font-bold">Uploaded</span>
+                </p>
+              ) : null}
+            </div>
             <div class="relative z-0 w-full mb-6 group right-0">
               <input
                 type="Name"
@@ -158,35 +187,6 @@ export default function Upload() {
               Upload
             </button>
           </div>
-        ) : null}
-      </div>
-      <div className="flex justify-center mt-4">
-        {Bar ? (
-          <div className="w-2/6 bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-            <div
-              className="bg-purple-700 h-2.5 rounded-full"
-              style={{ width: Bar + "%" }}
-            ></div>
-          </div>
-        ) : null}
-        {res ? (
-          <p className="flex p-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-4 h-4 p-1 bg-green-600 rounded-full text-white mr-3 mt-1 ml-2"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4.5 12.75l6 6 9-13.5"
-              />
-            </svg>
-            <span className="font-bold">Uploaded</span>
-          </p>
         ) : null}
       </div>
 
