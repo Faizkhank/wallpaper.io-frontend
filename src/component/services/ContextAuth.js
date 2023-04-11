@@ -12,7 +12,6 @@ export const AuthContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [pageNumber, setPageNumber] = useState(10);
   const [qNumber, setqNumber] = useState(10);
-  console.log(qNumber);
   const logout = () => {
     window.open("https://api-wallpaper-io.onrender.com/logout", "_self");
   };
@@ -21,10 +20,11 @@ export const AuthContextProvider = ({ children }) => {
     const response = await fetch(
       `https://api-wallpaper-io.onrender.com/data?page=${pageNumber}`
     );
-    setPageNumber(pageNumber + 10);
+
     const newData = await response.json();
-    console.log(newData);
+    console.log(pageNumber);
     setData([...Data, ...newData]);
+    setPageNumber(pageNumber + 10);
     setIsLoading(false);
   };
   const fetchDataquery = async () => {
@@ -34,7 +34,6 @@ export const AuthContextProvider = ({ children }) => {
     );
     setqNumber(qNumber + 10);
     const newdata = await response.json();
-    console.log(newdata);
     setData([...Data, ...newdata]);
 
     setIsLoading(false);
