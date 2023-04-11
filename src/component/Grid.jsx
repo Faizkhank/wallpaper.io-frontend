@@ -7,14 +7,13 @@ import empty from "./images/notfound.gif";
 export default function Collage() {
   const { Data, isLoading, fetchData, issearchquery, fetchDataquery } =
     UserAuth();
-  console.log(isLoading);
+  console.log(issearchquery);
   useEffect(() => {
     const handleScroll = () => {
       const { scrollTop, clientHeight, scrollHeight } =
         document.documentElement;
       if (scrollTop + clientHeight >= scrollHeight && !isLoading) {
         if (issearchquery) {
-          console.log("true query");
           fetchDataquery();
         } else fetchData();
       }
@@ -25,7 +24,6 @@ export default function Collage() {
         document.documentElement;
       if (scrollTop + clientHeight + 60 >= scrollHeight && !isLoading) {
         if (issearchquery) {
-          console.log("true query");
           fetchDataquery();
         } else fetchData();
       }

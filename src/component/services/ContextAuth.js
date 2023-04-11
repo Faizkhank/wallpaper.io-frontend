@@ -12,7 +12,7 @@ export const AuthContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [pageNumber, setPageNumber] = useState(10);
   const [qNumber, setqNumber] = useState(10);
-  console.log(pageNumber);
+  console.log(qNumber);
   const logout = () => {
     window.open("https://api-wallpaper-io.onrender.com/logout", "_self");
   };
@@ -23,17 +23,20 @@ export const AuthContextProvider = ({ children }) => {
     );
     setPageNumber(pageNumber + 10);
     const newData = await response.json();
+    console.log(newData);
     setData([...Data, ...newData]);
     setIsLoading(false);
   };
   const fetchDataquery = async () => {
     setIsLoading(true);
     const response = await fetch(
-      `https://api-wallpaper-io.onrender.com/api/search?q=${searchquery}&page?p=${qNumber}`
+      `https://api-wallpaper-io.onrender.com/api/search?q=${searchquery}&p=${qNumber}`
     );
     setqNumber(qNumber + 10);
-    const newData = await response.json();
-    setData([...Data, ...newData]);
+    const newdata = await response.json();
+    console.log(newdata);
+    setData([...Data, ...newdata]);
+
     setIsLoading(false);
   };
   async function follow(data) {
@@ -77,11 +80,12 @@ export const AuthContextProvider = ({ children }) => {
       } catch (err) {}
     }
   };
-  const Handlesearch = async (data) => {
+  const Handlesearch = async () => {
+    setissearchquery(true);
     try {
       axios
         .get(
-          `https://api-wallpaper-io.onrender.com/api/page_0/search?q=${searchquery}`,
+          `https://api-wallpaper-io.onrender.com/api/search?q=${searchquery}&page?p=${pageNumber}`,
           {
             withCredentials: true,
             headers: {
@@ -96,7 +100,6 @@ export const AuthContextProvider = ({ children }) => {
           setData(res.data);
           setissearchquery(true);
         });
-      setPageNumber(pageNumber + 10);
     } catch (err) {}
   };
   useEffect(() => {
