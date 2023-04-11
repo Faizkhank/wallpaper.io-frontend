@@ -22,7 +22,7 @@ export default function Navbar() {
   const inputRef = useRef();
   useEffect(() => {
     const onScroll = () => {
-      if (location.pathname != "/") {
+      if (location.pathname !== "/") {
         setOffset(true);
       } else {
         setOffset(window.pageYOffset >= 400);
@@ -31,7 +31,7 @@ export default function Navbar() {
     window.removeEventListener("scroll", onScroll);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [location]);
   useEffect(() => {
     if (location.pathname != "/") {
       setOffset(true);
