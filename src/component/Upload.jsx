@@ -23,11 +23,13 @@ export default function Upload() {
   };
   async function Upload() {
     setbar(!Bar);
+    Name;
     const form = document.querySelector("form");
     let formData = new FormData(form);
     formData.append("Image", file);
-    formData.append("Name", user.user.displayName);
+    formData.append("UserName", user.user.displayName);
     formData.append("UserIMG", user.user.photos);
+    formData.append("ImageName", Name);
     formData.append("Location", Location);
     formData.append("tags", tags);
     formData.append("UploaderID", user.user.id);
