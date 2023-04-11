@@ -92,7 +92,9 @@ export default function Navbar() {
                       setuniquery(e.target.value);
                       setquery(e.target.value);
                     }}
-                    className={`relative font-semibold outline-none bg-gray-300 focus:outline-none focus:border-white focus:ring-0 rounded-t-lg border-0 w-full p-3 mt-4  text-base text-black placeholder-gray-400  focus:shadow-outline h-12 mr-2`}
+                    className={`relative font-semibold outline-none bg-gray-300 focus:outline-none rounded-t-md focus:border-white focus:ring-0 ${
+                      isFocus ? "null" : "rounded-b-md"
+                    } border-0 w-full p-3 mt-4  text-base text-black placeholder-gray-400  focus:shadow-outline h-12 mr-2`}
                     placeholder="Search for photos"
                     onClick={() => {
                       setsuggest(!suggest);
@@ -106,7 +108,7 @@ export default function Navbar() {
                 </div>
                 {isFocus && (
                   <div
-                    className="shadow-lg relative w-full rounded-b-md"
+                    className="shadow-lg relative w-full rounded-b-md bg-white lg:w-[958px] md:w-[558px] sm:w-[278px] xs:w-[261px]"
                     onMouseEnter={() => {
                       setIsHovered(true);
                     }}
@@ -123,7 +125,7 @@ export default function Navbar() {
                         <div key={index}>
                           {isMatch && (
                             <div
-                              className="p-5 hover:bg-gray-200 cursor-pointer bg-white lg:w-[958px] md:w-[558px] sm:w-[278px] xs:w-[261px] font-bold"
+                              className="p-5  cursor-pointer   font-bold text-gray-400 hover:text-black"
                               onClick={() => {
                                 setquery(suggestion);
                                 setuniquery(suggestion);
