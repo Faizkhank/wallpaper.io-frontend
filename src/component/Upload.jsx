@@ -23,7 +23,6 @@ export default function Upload() {
   };
   async function Upload() {
     setbar(!Bar);
-    Name;
     const form = document.querySelector("form");
     let formData = new FormData(form);
     formData.append("Image", file);
