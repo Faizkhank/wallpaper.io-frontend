@@ -1,6 +1,8 @@
 import { React, useState } from "react";
 import { UserAuth } from "../component/services/ContextAuth";
 import { Transition } from "@headlessui/react";
+import gif from "./images/giphy.gif";
+import collage from "./images/collage.jpeg";
 import axios from "axios";
 import "./collage.css";
 
@@ -44,7 +46,11 @@ const AI_generatation = () => {
       });
   };
   return (
-    <div className="relative top-24">
+    <div
+      className={`relative w-full h-[100vh] duration-300  ${
+        process ? "bg-gradient-to-br" : "bg-gradient-to-tr"
+      } from-black to-purple-600 background-animate`}
+    >
       <Transition
         as="div"
         show={Uploadmenu}
@@ -56,7 +62,7 @@ const AI_generatation = () => {
         leaveTo="opacity-0 scale-55"
         className="fixed z-50 left-0 right-0 bottom-0 color"
       >
-        <div className="flex justify-center mt-11">
+        <div className="flex justify-center mt-24">
           <div className="w-[60vw] h-[70vh] bg-white shadow-md  border rounded-md border-gray-200">
             <div className="flex justify-center ">
               <div className="w-[550px] h-[400px] rounded-md mt-2">
@@ -92,10 +98,10 @@ const AI_generatation = () => {
           </a>
         </div>
       </Transition>
-      <div className="flex justify-center lg:mt-10 xs:mt-8 ">
-        <div className=" lg:columns-2 sm:columns-1  p-11">
+      <div className=" lg:mt-22 xs:mt-8 ">
+        <div className="p-11 pt-28 flex justify-center flex-wrap">
           <div className=" relative group">
-            <div className=" hidden group-hover:block absolute rounded-md z-30  w-[600px] h-[600px] bg-white/30 backdrop-blur-sm"></div>{" "}
+            <div className=" hidden group-hover:block absolute rounded-md z-30  w-[560px] h-[600px] bg-white/30 backdrop-blur-sm"></div>{" "}
             <div className=" absolute z-30 hidden group-hover:block left-64 top-64 hover:scale-110 duration-200">
               <div className="flex justify-center mb-3">
                 <svg
@@ -114,7 +120,7 @@ const AI_generatation = () => {
                 </svg>
               </div>
               <button
-                className=" bg-emerald-400 font-semibold p-2 rounded-md"
+                className=" from-emerald-500 via-purple-500 to-red-600 background-animate bg-gradient-to-r  font-semibold p-2 rounded-md"
                 onClick={() => {
                   setuploadmenu(!Uploadmenu);
                 }}
@@ -122,7 +128,7 @@ const AI_generatation = () => {
                 Upload
               </button>
             </div>
-            <div className=" w-[600px] border-emerald-400  flex justify-center border-2 h-[600px] rounded-md">
+            <div className=" w-[560px] border-emerald-400  flex justify-center border-2 h-[600px] rounded-md">
               <div>
                 {Image ? (
                   <img
@@ -134,20 +140,31 @@ const AI_generatation = () => {
                     }}
                   />
                 ) : (
-                  <p className=" font-semibold text-emerald-400">
-                    Image generated here
-                  </p>
+                  <div className=" mr-6">
+                    <div className="w-[490px] h-auto rounded-md ">
+                      <img
+                        src={gif}
+                        value
+                        className=" w-[100vw] object-contain rounded-md relative z-0 m-4"
+                      />
+                      <img
+                        src={collage}
+                        value
+                        className="  w-[100vw] object-contain rounded-md relative z-0 m-4"
+                      />
+                    </div>
+                  </div>
                 )}
               </div>
             </div>
           </div>
-          <div className="w-[600px] border-black flex justify-center h-[600px] ">
+          <div className="w-[600px] border-black flex justify-center h-[200px] mt-4">
             <div class="relative z-0 w-3/5 mb-6 group">
               <input
                 type="prompt"
                 name="prompt"
                 id="prompt"
-                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-emerald-400urple-500 focus:outline-none focus:ring-0 focus:border-emerald-400 peer"
+                className="block py-2.5 px-0 w-full text-sm  border-0 border-b-2 border-gray-300 appearance-none text-white dark:border-gray-600 dark:focus:border-emerald-400 focus:outline-none focus:ring-0 focus:border-emerald-400 peer font-semibold bg-transparent"
                 placeholder=" "
                 onChange={(e) => {
                   setpromt(e.target.value);
@@ -155,7 +172,7 @@ const AI_generatation = () => {
               />
               <label
                 for="prompt"
-                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-emerald-400 peer-focus:dark:text-emerald-400 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-95 peer-focus:-translate-y-6"
+                className="peer-focus:font-medium absolute text-sm font-semibold text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-emerald-400 peer-focus:dark:text-emerald-400 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-95 peer-focus:-translate-y-6"
               >
                 Describe Image here
               </label>
@@ -163,7 +180,7 @@ const AI_generatation = () => {
                 <button
                   type="button"
                   onClick={Handlegenerate}
-                  className=" bg-emerald-400 rounded-md font-semibold p-2 mt-4 hover:scale-95 duration-150"
+                  className=" from-emerald-500 via-purple-500 to-red-600 background-animate text-white bg-gradient-to-r rounded-md font-semibold p-2 mt-4 hover:scale-95 duration-150"
                 >
                   Generate
                 </button>
