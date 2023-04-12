@@ -12,7 +12,7 @@ export const AuthContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [pageNumber, setPageNumber] = useState(10);
   const [qNumber, setqNumber] = useState(10);
-  console.log(Data);
+
   const logout = () => {
     window.open("https://api-wallpaper-io.onrender.com/logout", "_self");
   };
