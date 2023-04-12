@@ -16,7 +16,7 @@ const AI_generatation = () => {
   console.log(file);
   const uploadImage = () => {
     axios
-      .post("http://localhost:4000/gen/upload", { Image: file })
+      .post("https://api-wallpaper-io.onrender.com/gen/upload", { Image: file })
       .then((response) => {
         console.log(response);
       });
@@ -25,7 +25,7 @@ const AI_generatation = () => {
     setprocess(!process);
     axios
       .post(
-        "http://localhost:4000/gen",
+        "https://api-wallpaper-io.onrender.com/gen",
         { prompt: promt },
         {
           withCredentials: true,
