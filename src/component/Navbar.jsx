@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import Register from "./Register";
 import { useLocation } from "react-router-dom";
 import "./collage.css";
-import img from "./images/user.jpeg";
+import img from "./images/default.png";
 export default function Navbar() {
   const location = useLocation();
   const { user, logout, Handlesearch, setuniquery } = UserAuth();
@@ -154,18 +154,18 @@ export default function Navbar() {
                     Register
                   </a>
                 ) : (
-                  <div className="mt-7">
+                  <div className="mt-7 flex space-x-4 mr-2">
                     <Link
                       to={"/AI_generatation"}
-                      className={`font-semibold  cursor-pointer text-base p-3  mr-4 ${
+                      className={`font-semibold  cursor-pointer text-base ${
                         offset ? " text-black" : "text-white"
                       }`}
                     >
-                      AI Image
+                      <p className="hover:scale-105 duration-150">AI Image</p>
                     </Link>
                     <Link
                       to={"/Upload"}
-                      className={`font-semibold  cursor-pointer text-base p-3  mr-4 ${
+                      className={`font-semibold  cursor-pointer text-base  hover:scale-105 duration-150   ${
                         offset ? " text-black" : "text-white"
                       }`}
                     >
@@ -174,11 +174,13 @@ export default function Navbar() {
                   </div>
                 )}
                 {user ? (
-                  <img
-                    className=" w-11 h-11 rounded-full mt-4 hover:border-3 border-0"
-                    src={user.user.photos || img}
-                    onClick={() => setdrop(!drop)}
-                  />
+                  <div className=" hover:scale-125 duration-150 flex justify-center from-emerald-500 via-purple-500 to-red-600 background-animate bg-gradient-to-r mt-4 rounded-full  w-[47px] h-[47px] p-0">
+                    <img
+                      className=" w-[42px] h-[42px] rounded-full mt-[2px]"
+                      src={user.user.photos || img}
+                      onClick={() => setdrop(!drop)}
+                    />
+                  </div>
                 ) : (
                   <Link
                     className="font-semibold mt-4 decoration-teal-700 cursor-pointer text-base bg-violet-500 w-18 h-11 rounded-lg  mr-2 pt-2 p-2 mb-1 overflow-clip"

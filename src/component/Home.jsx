@@ -15,17 +15,17 @@ export default function Home() {
         </div>
       </div>
       <div className="flex justify-center xs:null mt-1 mb-6">
-        <div className="flex">
+        <div className="flex space-x-5">
           <Link
             to={"/"}
-            className="text-lg mr-3 font-semibold cursor-pointer bg-black text-white rounded-2xl w-[80px] h-[35px] flex justify-center pl-2 pr-2 pt-1"
+            className="text-lg mr-3 font-semibold cursor-pointer bg-black  text-white rounded-2xl duration-200 hover:w-[100px] w-[80px] h-[35px] flex justify-center pl-2 pr-2 pt-1"
           >
-            Home
+            <p>Home</p>
           </Link>
-          <Link className="text-lg  mr-3 text-white font-semibold cursor-pointer rounded-2xl w-[80px] h-[35px] flex justify-center pl-2 pr-2 pt-1">
-            Videos
+          <Link className="text-lg w-[100px] mr-3 text-white font-semibold cursor-pointer rounded-2xl hover:bg-black duration-200 hover:w-[120px]  h-[35px] flex justify-center pl-2 pr-2 pt-1">
+            <p>AI images</p>
           </Link>
-          <Link className="text-lg  mr-3  text-white font-semibold cursor-pointer rounded-2xl w-[80px] h-[35px] flex justify-center pl-2 pr-2 pt-1">
+          <Link className="text-lg  mr-3  text-white font-semibold cursor-pointer rounded-2xl  hover:bg-black duration-200 hover:w-[120px]  h-[35px] flex justify-center pl-2 pr-2 pt-1">
             Activity
           </Link>
         </div>

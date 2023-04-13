@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import { UserAuth } from "../component/services/ContextAuth";
 import { Transition } from "@headlessui/react";
-import gif from "./images/giphy.gif";
+import gif from "./images/teaser.jpeg";
 import collage from "./images/collage.jpeg";
 import axios from "axios";
 import "./collage.css";
@@ -63,7 +63,7 @@ const AI_generatation = () => {
         className="fixed z-50 left-0 right-0 bottom-0 color"
       >
         <div className="flex justify-center mt-24">
-          <div className="w-[60vw] h-[70vh] bg-white shadow-md  border rounded-md border-gray-200">
+          <div className="w-[70vw] h-[70vh] bg-white shadow-md  border rounded-md border-gray-200">
             <div className="flex justify-center ">
               <div className="w-[550px] h-[400px] rounded-md mt-2">
                 <img
@@ -101,34 +101,21 @@ const AI_generatation = () => {
       <div className=" lg:mt-22 xs:mt-8 ">
         <div className="p-11 pt-28 flex justify-center flex-wrap">
           <div className=" relative group">
-            <div className=" hidden group-hover:block absolute rounded-md z-30  w-[560px] h-[600px] bg-white/30 backdrop-blur-sm"></div>{" "}
-            <div className=" absolute z-30 hidden group-hover:block left-64 top-64 hover:scale-110 duration-200">
-              <div className="flex justify-center mb-3">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25H15m0-3l-3-3m0 0l-3 3m3-3V15"
-                  />
-                </svg>
+            <div className=" lg:w-[510px] xs:w-[400px] h-auto border-emerald-400  flex justify-center border-2  rounded-md">
+              <div className=" hidden group-hover:block absolute rounded-md z-30 left-0 right-0 top-0 bottom-0 h-auto bg-white/30 backdrop-blur-sm">
+                <div className=" absolute z-30 hidden group-hover:block left-0 right-0 top-1/2 bottom-0 hover:scale-110 duration-200">
+                  <div className="flex justify-center mb-3">
+                    <button
+                      className=" from-emerald-500 via-purple-500 to-red-600 background-animate bg-gradient-to-r  font-semibold p-2 rounded-md text-white"
+                      onClick={() => {
+                        setuploadmenu(!Uploadmenu);
+                      }}
+                    >
+                      Upload
+                    </button>
+                  </div>
+                </div>
               </div>
-              <button
-                className=" from-emerald-500 via-purple-500 to-red-600 background-animate bg-gradient-to-r  font-semibold p-2 rounded-md"
-                onClick={() => {
-                  setuploadmenu(!Uploadmenu);
-                }}
-              >
-                Upload
-              </button>
-            </div>
-            <div className=" w-[560px] border-emerald-400  flex justify-center border-2 h-[600px] rounded-md">
               <div>
                 {Image ? (
                   <img
@@ -140,17 +127,17 @@ const AI_generatation = () => {
                     }}
                   />
                 ) : (
-                  <div className=" mr-6">
-                    <div className="w-[490px] h-auto rounded-md ">
+                  <div>
+                    <div className="lg:w-[510px] xs:w-[380px] h-auto rounded-md p-2">
                       <img
                         src={gif}
                         value
-                        className=" w-[100vw] object-contain rounded-md relative z-0 m-4"
+                        className=" w-[100vw] object-contain rounded-md relative z-0"
                       />
                       <img
                         src={collage}
                         value
-                        className="  w-[100vw] object-contain rounded-md relative z-0 m-4"
+                        className="  w-[100vw] object-contain rounded-md relative z-0"
                       />
                     </div>
                   </div>

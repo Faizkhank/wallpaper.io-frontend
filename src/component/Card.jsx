@@ -2,8 +2,8 @@ import { React, useState } from "react";
 import { Transition } from "@headlessui/react";
 import axios from "axios";
 import Preview from "./preview";
-import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../component/services/ContextAuth";
+import img from "./images/default.png";
 import "./collage.css";
 
 export default function Card(props) {
@@ -172,7 +172,7 @@ export default function Card(props) {
             <div className="absolute  right-0 left-0 bottom-1">
               <div className="flex justify-between ">
                 <img
-                  src={props.UserURL}
+                  src={props.UserURL || img}
                   className={`rounded-full h-11 w-11 ml-5 border-2 border-white ${
                     button ? "button" : "hidden"
                   }`}

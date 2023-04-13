@@ -38,7 +38,7 @@ export default function Collage() {
   }, [Data, isLoading]);
 
   return (
-    <div className="mt-36 bg-white">
+    <div className=" mt-32 bg-white">
       <div className="flex justify-center">
         {Data == null ? (
           <div role="status">
