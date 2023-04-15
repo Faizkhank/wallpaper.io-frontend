@@ -32,17 +32,16 @@ export default function Upload() {
     formData.append("Location", Location);
     formData.append("tags", tags);
     formData.append("UploaderID", user.user.id);
-    console.log(formData.get("Image"));
     axios
       .post("https://api-wallpaper-io.onrender.com/file/upload", {
-        formData,
-        config,
         withCredentials: true,
         headers: {
           "Access-Control-Allow-Origin": true,
           "Content-Type": "application/json",
           "x-api-key": process.env.REACT_APP_API_KEY_WALLPAPER,
         },
+        formData,
+        config,
       })
       .then((res) => {
         setbar(0);
