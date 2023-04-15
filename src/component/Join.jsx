@@ -11,9 +11,7 @@ const Login = () => {
   const [response, setresponse] = useState("");
   const navigate = useNavigate();
   const googleLogin = () => {
-    window.open("https://api-wallpaper-io.onrender.com/google", "_self", {
-      headers: { "x-api-key": process.env.REACT_APP_API_KEY_WALLPAPER },
-    });
+    window.open("https://api-wallpaper-io.onrender.com/google", "_self");
   };
   const loginHandle = (e) => {
     e.preventDefault();
