@@ -28,21 +28,18 @@ export default function Upload() {
     formData.append("Location", Location);
     formData.append("tags", tags);
     formData.append("UploaderID", user.user.id);
-    const config = {
-      formData,
-      withCredentials: true,
-      headers: {
-        "Access-Control-Allow-Origin": true,
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Credentials": true,
-        "x-api-key": process.env.REACT_APP_API_KEY_WALLPAPER,
-      },
 
-      onUploadProgress: (progressEvent) =>
-        setbar((progressEvent.loaded / file.size) * 100),
-    };
     axios
-      .post("http://localhost:4000/file/upload", config)
+      .post("http://localhost:4000/file/upload", formData, {
+        headers: {
+          "Access-Control-Allow-Origin": true,
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+          "x-api-key": process.env.REACT_APP_API_KEY_WALLPAPER,
+        },
+        onUploadProgress: (progressEvent) =>
+          setbar((progressEvent.loaded / file.size) * 100),
+      })
       .then((res) => {
         setbar(0);
         setres(res);
