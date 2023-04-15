@@ -12,6 +12,13 @@ export default function Upload() {
   const [tags, settags] = useState(0);
   const [preview, setpreview] = useState("");
   const config = {
+    withCredentials: true,
+    headers: {
+      "Access-Control-Allow-Origin": true,
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Credentials": true,
+      "x-api-key": process.env.REACT_APP_API_KEY_WALLPAPER,
+    },
     onUploadProgress: (progressEvent) =>
       setbar((progressEvent.loaded / file.size) * 100),
   };
@@ -32,17 +39,9 @@ export default function Upload() {
     formData.append("Location", Location);
     formData.append("tags", tags);
     formData.append("UploaderID", user.user.id);
+    console.log(formData.get("Image"));
     axios
-      .post("https://api-wallpaper-io.onrender.com/file/upload", {
-        withCredentials: true,
-        headers: {
-          "Access-Control-Allow-Origin": true,
-          "Content-Type": "application/json",
-          "x-api-key": process.env.REACT_APP_API_KEY_WALLPAPER,
-        },
-        formData,
-        config,
-      })
+      .post("http://localhost:4000/file/upload", formData, config)
       .then((res) => {
         setbar(0);
         setres(res);
