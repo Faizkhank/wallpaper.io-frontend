@@ -19,7 +19,16 @@ export const AuthContextProvider = ({ children }) => {
   const fetchData = async () => {
     setIsLoading(true);
     const response = await fetch(
-      `https://api-wallpaper-io.onrender.com/data?page=${pageNumber}`
+      `https://api-wallpaper-io.onrender.com/data?page=${pageNumber}`,
+      {
+        withCredentials: true,
+        headers: {
+          "Access-Control-Allow-Origin": true,
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+          "x-api-key": process.env.REACT_APP_API_KEY_WALLPAPER,
+        },
+      }
     );
 
     const newData = await response.json();
@@ -31,7 +40,16 @@ export const AuthContextProvider = ({ children }) => {
   const fetchDataquery = async () => {
     setIsLoading(true);
     const response = await fetch(
-      `https://api-wallpaper-io.onrender.com/api/search?q=${searchquery}&p=${qNumber}`
+      `https://api-wallpaper-io.onrender.com/api/search?q=${searchquery}&p=${qNumber}`,
+      {
+        withCredentials: true,
+        headers: {
+          "Access-Control-Allow-Origin": true,
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+          "x-api-key": process.env.REACT_APP_API_KEY_WALLPAPER,
+        },
+      }
     );
     setqNumber(qNumber + 10);
     const newdata = await response.json();
