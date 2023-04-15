@@ -77,7 +77,7 @@ export default function Navbar() {
                 </h2>
                 <img
                   src={icon}
-                  className=" w-[45px] h-[45px] sm:hidden block rounded-xl mt-4"
+                  className=" w-[85px] h-[85px] sm:hidden block rounded-xl mt-4"
                 />
               </Link>
             </div>
