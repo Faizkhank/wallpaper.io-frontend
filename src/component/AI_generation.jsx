@@ -33,7 +33,7 @@ const AI_generatation = () => {
             "Access-Control-Allow-Origin": true,
             "Content-Type": "application/json",
             "Access-Control-Allow-Credentials": true,
-            "x-api-key": process.env.API_KEY_WALLPAPER,
+            "x-api-key": process.env.REACT_APP_API_KEY_WALLPAPER,
           },
         }
       )
