@@ -30,7 +30,8 @@ export default function Upload() {
     formData.append("UploaderID", user.user.id);
 
     axios
-      .post("https://api-wallpaper-io.onrender.com/file/upload", formData, {
+      .post("https://api-wallpaper-io.onrender.com/file/upload", {
+        formData,
         headers: {
           "Access-Control-Allow-Origin": true,
           "Content-Type": "application/json",
