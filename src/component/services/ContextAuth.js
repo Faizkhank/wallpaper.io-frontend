@@ -59,11 +59,7 @@ export const AuthContextProvider = ({ children }) => {
   };
   async function follow(data) {
     const res = await axios.put(
-      "https://api-wallpaper-io.onrender.com/follow/" +
-        data +
-        "/" +
-        user.user.id,
-
+      `https://api-wallpaper-io.onrender.com/follow/${data}/${user.user.id}`,
       {
         withCredentials: true,
         headers: {
@@ -81,10 +77,7 @@ export const AuthContextProvider = ({ children }) => {
       setlike(!like);
       try {
         axios.post(
-          "https://api-wallpaper-io.onrender.com/Likes/wallpaper/" +
-            data +
-            "/" +
-            user.user.id,
+          `https://api-wallpaper-io.onrender.com/Likes/wallpaper/${data}/${user.user.id}`,
           {
             withCredentials: true,
             headers: {

@@ -12,7 +12,7 @@ export default function UserProfile() {
   const { follows, setfollow, follow } = UserAuth();
   useEffect(() => {
     axios
-      .get("https://api-wallpaper-io.onrender.com/user/" + param.id, {
+      .get(`https://api-wallpaper-io.onrender.com/user/${param.id}`, {
         headers: {
           "Access-Control-Allow-Origin": true,
           "Content-Type": "application/json",
@@ -25,7 +25,7 @@ export default function UserProfile() {
       });
 
     axios
-      .get("https://api-wallpaper-io.onrender.com/users/info/" + param.id, {
+      .get(`https://api-wallpaper-io.onrender.com/users/info/${param.id}`, {
         headers: {
           "Access-Control-Allow-Origin": true,
           "Content-Type": "application/json",
@@ -39,10 +39,7 @@ export default function UserProfile() {
     if (user) {
       axios
         .get(
-          "https://api-wallpaper-io.onrender.com/checkfollow/" +
-            user.id +
-            "/" +
-            user.user.id,
+          `https://api-wallpaper-io.onrender.com/checkfollow/${user.id}/${user.user.id}`,
           {
             withCredentials: true,
             headers: {

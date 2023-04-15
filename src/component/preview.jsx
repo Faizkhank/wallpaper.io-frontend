@@ -31,10 +31,7 @@ export default function Preview(props) {
       checklike();
       axios
         .get(
-          "https://api-wallpaper-io.onrender.com/checkfollow/" +
-            props.UploaderID +
-            "/" +
-            user.user.id,
+          `https://api-wallpaper-io.onrender.com/checkfollow/${props.UploaderID}/${user.user.id}`,
           {
             withCredentials: true,
             headers: {
@@ -54,10 +51,7 @@ export default function Preview(props) {
 
       async function checklike() {
         const check = await axios.get(
-          "https://api-wallpaper-io.onrender.com/checklike/" +
-            props._id +
-            "/" +
-            user.user.id,
+          ` https://api-wallpaper-io.onrender.com/checklike/${props._id}/${user.user.id}`,
 
           {
             withCredentials: true,

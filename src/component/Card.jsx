@@ -20,7 +20,7 @@ export default function Card(props) {
   }
   const Handledelete = async () => {
     axios
-      .delete("https://api-wallpaper-io.onrender.com/" + props._id, {
+      .delete(`https://api-wallpaper-io.onrender.com/${props._id}`, {
         withCredentials: true,
         headers: {
           "Access-Control-Allow-Origin": true,
