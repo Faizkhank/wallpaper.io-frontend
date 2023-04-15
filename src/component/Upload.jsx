@@ -13,7 +13,7 @@ export default function Upload() {
   const [preview, setpreview] = useState("");
   const config = {
     onUploadProgress: (progressEvent) =>
-      setbar((progressEvent.loaded / file[0].size) * 100),
+      setbar((progressEvent.loaded / file.size) * 100),
   };
   const handleFileInputChange = (e) => {
     const files = e.target.files[0];
@@ -64,10 +64,14 @@ export default function Upload() {
             {preview ? (
               <div className="flex w-full justify-center">
                 <div className="flex flex-wrap bg-gray-100 rounded-2xl p-4 lg:w-8/12 xs:w-11/12 min-h-fit justify-between  px-7">
-                  <div className="w-[480px] md:m-auto flex justify-center">
+                  <div className=" lg:w-[490px] xs:w-full md:m-auto h-auto relative">
+                    <div
+                      className=" rounded-lg bg-black h-full animate-pulse duration-150 pointer-events-none absolute top-0 left-0 z-50 opacity-30"
+                      style={{ width: Bar + "%" }}
+                    ></div>
                     <img
                       src={preview}
-                      className="w-[60vw] xs:h-[35vh] lg:h-[55vh] ease-in duration-200 rounded-lg mb-6 scale-100 "
+                      className="ease-in w-full duration-200 rounded-lg scale-100 "
                       alt="image"
                     />
                   </div>
@@ -81,7 +85,7 @@ export default function Upload() {
                           type="Name"
                           name="Name"
                           id="Name"
-                          className="block rounded-xl py-3.5 px-0 w-full text-sm text-gray-900 border-0 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-500 peer"
+                          className="block font-bold rounded-xl py-3.5 px-3 w-full text-sm text-gray-900 border-0 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-500 peer"
                           placeholder=" "
                           required
                           onChange={(e) => {
@@ -97,7 +101,7 @@ export default function Upload() {
                           type="tag"
                           name="tag"
                           id="tag"
-                          className="block rounded-xl py-3.5 px-0 w-full text-sm text-gray-900 border-0 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-500 peer"
+                          className="block font-bold rounded-xl py-3.5 px-3 w-full text-sm text-gray-900 border-0 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-500 peer"
                           placeholder=" "
                           onChange={(e) => {
                             settags(e.target.value);
@@ -112,7 +116,7 @@ export default function Upload() {
                           type="location"
                           name="location"
                           id="location"
-                          className="block rounded-xl py-3.5 px-0 w-full text-sm text-gray-900 border-0 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-500 peer"
+                          className="block font-bold rounded-xl py-3.5 px-3 w-full text-sm text-gray-900 border-0 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-500 peer"
                           placeholder=" "
                           onChange={(e) => {
                             setLocation(e.target.value);
@@ -122,7 +126,7 @@ export default function Upload() {
                     </div>
                   </div>
                 </div>
-                <div className="m-auto mx-2 xs:hidden">
+                <div className="m-auto mx-2 xs:hidden lg:block  md:block">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -145,9 +149,9 @@ export default function Upload() {
             ) : (
               <label
                 for="dropzone-file"
-                className={`flex flex-col items-center justify-center w-8/12  h-auto border-4 ${
+                className={`flex flex-col items-center justify-center w-8/12 h-[420px] border-4 ${
                   file ? "border-white" : "border-purple-400"
-                } border-dashed border-6 rounded-lg cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700  dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600`}
+                } border-dashed border-8 rounded-2xl cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700  dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600`}
               >
                 <div className=" pb-7">
                   <div className="w-full h-[200px] flex justify-center">
@@ -183,14 +187,6 @@ export default function Upload() {
         {file ? (
           <div>
             <div className="flex justify-center mt-4">
-              {Bar ? (
-                <div className="w-2/6 bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                  <div
-                    className="bg-purple-700 h-2.5 rounded-full"
-                    style={{ width: Bar + "%" }}
-                  ></div>
-                </div>
-              ) : null}
               {res ? (
                 <p className="flex p-2">
                   <svg

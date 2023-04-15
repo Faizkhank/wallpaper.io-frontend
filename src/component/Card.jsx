@@ -72,15 +72,15 @@ export default function Card(props) {
         leave="transition-opacity duration-100 "
         leaveFrom="opacity-100 scale-100"
         leaveTo="opacity-0 scale-55"
-        className="fixed z-50 left-0 right-0 bottom-0 top-36 color"
+        className="fixed z-50 left-0 right-0 bottom-0 top-36 color "
       >
-        <div className="flex justify-center">
-          <div className="lg:w-[45vw] xs:w-[80vw] h-auto bg-white shadow-md  border rounded-md border-gray-200">
+        <div className="flex justify-center ">
+          <div className="lg:w-[45vw] xs:w-full h-auto ml-11 bg-white shadow-md  border rounded-md border-gray-200">
             <div className="flex justify-center ">
               <div className="w-[450px] h-auto rounded-md mt-2">
                 <img
                   src={props.Image}
-                  className="object-contain rounded-md w-[80vw] mr-3"
+                  className="object-contain rounded-md w-[90vw] m-auto"
                 />
               </div>
             </div>
