@@ -8,6 +8,7 @@ import Register from "./Register";
 import { useLocation } from "react-router-dom";
 import "./collage.css";
 import img from "./images/default.png";
+import icon from "./images/icon.png";
 export default function Navbar() {
   const location = useLocation();
   const { user, logout, Handlesearch, setuniquery } = UserAuth();
@@ -74,6 +75,10 @@ export default function Navbar() {
                 >
                   Wallpaper.io
                 </h2>
+                <img
+                  src={icon}
+                  className=" w-[45px] h-[45px] sm:hidden block rounded-xl mt-4"
+                />
               </Link>
             </div>
             <div>

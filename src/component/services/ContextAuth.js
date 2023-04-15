@@ -52,7 +52,7 @@ export const AuthContextProvider = ({ children }) => {
           "Access-Control-Allow-Origin": true,
           "Content-Type": "application/json",
           "Access-Control-Allow-Credentials": true,
-          "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689",
+          "x-api-key": process.env.API_KEY_WALLPAPER,
         },
       }
     );
@@ -73,7 +73,7 @@ export const AuthContextProvider = ({ children }) => {
               "Access-Control-Allow-Origin": true,
               "Content-Type": "application/json",
               "Access-Control-Allow-Credentials": true,
-              "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689",
+              "x-api-key": process.env.API_KEY_WALLPAPER,
             },
           }
         );
@@ -92,7 +92,7 @@ export const AuthContextProvider = ({ children }) => {
               "Access-Control-Allow-Origin": true,
               "Content-Type": "application/json",
               "Access-Control-Allow-Credentials": true,
-              "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689",
+              "x-api-key": process.env.API_KEY_WALLPAPER,
             },
           }
         )
@@ -109,7 +109,8 @@ export const AuthContextProvider = ({ children }) => {
         headers: {
           "Access-Control-Allow-Origin": true,
           "Content-Type": "application/json",
-          "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689",
+          "Access-Control-Allow-Credentials": true,
+          "x-api-key": process.env.API_KEY_WALLPAPER,
         },
       })
       .then((data) => {
@@ -129,7 +130,7 @@ export const AuthContextProvider = ({ children }) => {
           "Access-Control-Allow-Origin": true,
           "Content-Type": "application/json",
           "Access-Control-Allow-Credentials": true,
-          "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689",
+          "x-api-key": process.env.API_KEY_WALLPAPER,
         },
       })
       .then((res) => {

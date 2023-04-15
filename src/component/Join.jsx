@@ -12,7 +12,7 @@ const Login = () => {
   const navigate = useNavigate();
   const googleLogin = () => {
     window.open("https://api-wallpaper-io.onrender.com/google", "_self", {
-      headers: { "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689" },
+      headers: { "x-api-key": process.env.API_KEY_WALLPAPER },
     });
   };
   const loginHandle = (e) => {
@@ -26,7 +26,9 @@ const Login = () => {
           withCredentials: true,
           headers: {
             "Access-Control-Allow-Origin": true,
-            "content-type": "application/x-www-form-urlencoded",
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Credentials": true,
+            "x-api-key": process.env.API_KEY_WALLPAPER,
           },
         }
       )

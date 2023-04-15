@@ -26,7 +26,7 @@ export default function Card(props) {
           "Access-Control-Allow-Origin": true,
           "Content-Type": "application/json",
           "Access-Control-Allow-Credentials": true,
-          "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689",
+          "x-api-key": process.env.API_KEY_WALLPAPER,
         },
       })
       .then((res) => {
@@ -75,7 +75,7 @@ export default function Card(props) {
         className="fixed z-50 left-0 right-0 bottom-0 top-36 color"
       >
         <div className="flex justify-center">
-          <div className="w-[45vw] h-auto bg-white shadow-md  border rounded-md border-gray-200">
+          <div className="lg:w-[45vw] xs:w-[80vw] h-auto bg-white shadow-md  border rounded-md border-gray-200">
             <div className="flex justify-center ">
               <div className="w-[450px] h-auto rounded-md mt-2">
                 <img
