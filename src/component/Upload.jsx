@@ -11,17 +11,6 @@ export default function Upload() {
   const [Location, setLocation] = useState(0);
   const [tags, settags] = useState(0);
   const [preview, setpreview] = useState("");
-  const config = {
-    withCredentials: true,
-    headers: {
-      "Access-Control-Allow-Origin": true,
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Credentials": true,
-      "x-api-key": process.env.REACT_APP_API_KEY_WALLPAPER,
-    },
-    onUploadProgress: (progressEvent) =>
-      setbar((progressEvent.loaded / file.size) * 100),
-  };
   const handleFileInputChange = (e) => {
     const files = e.target.files[0];
     const blobURL = URL.createObjectURL(files);
@@ -39,9 +28,21 @@ export default function Upload() {
     formData.append("Location", Location);
     formData.append("tags", tags);
     formData.append("UploaderID", user.user.id);
-    console.log(formData.get("Image"));
+    const config = {
+      formData,
+      withCredentials: true,
+      headers: {
+        "Access-Control-Allow-Origin": true,
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Credentials": true,
+        "x-api-key": process.env.REACT_APP_API_KEY_WALLPAPER,
+      },
+
+      onUploadProgress: (progressEvent) =>
+        setbar((progressEvent.loaded / file.size) * 100),
+    };
     axios
-      .post("http://localhost:4000/file/upload", formData, config)
+      .post("http://localhost:4000/file/upload", config)
       .then((res) => {
         setbar(0);
         setres(res);
@@ -127,7 +128,6 @@ export default function Upload() {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     onClick={(e) => {
-                      setfile("");
                       setpreview("");
                     }}
                     className=" w-20 h-20 stroke-slate-300 bg-slate-100  rounded-full p-3 ml-1"
