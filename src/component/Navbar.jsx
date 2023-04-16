@@ -83,7 +83,7 @@ export default function Navbar() {
             </div>
             <div>
               <form type="submit" onSubmit={findsetquery}>
-                <div className="lg:w-[1000px] md:w-[600px] sm:w-[320px] xs:w-[300px] flex justify-center sm:mr-0 mr-6">
+                <div className="lg:w-[1000px] md:w-[600px] sm:w-[320px] xs:w-[240px] flex justify-center sm:mr-0 mr-6">
                   <input
                     type="text"
                     onBlur={() => {
@@ -113,7 +113,7 @@ export default function Navbar() {
                 </div>
                 {isFocus && (
                   <div
-                    className="shadow-lg relative w-full  rounded-b-md bg-white lg:w-[958px] md:w-[558px] sm:w-[278px] xs:w-[261px]"
+                    className="shadow-lg relative w-full  rounded-b-md bg-white lg:w-[958px] md:w-[558px] sm:w-[278px] xs:w-[204px]"
                     onMouseEnter={() => {
                       setIsHovered(true);
                     }}

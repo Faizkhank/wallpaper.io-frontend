@@ -30,7 +30,7 @@ export default function Upload() {
     formData.append("UploaderID", user.user.id);
 
     axios
-      .post("https://api-wallpaper-io.onrender.com/file/upload",formData,{
+      .post("https://api-wallpaper-io.onrender.com/file/upload", formData, {
         headers: {
           "Access-Control-Allow-Origin": true,
           "Content-Type": "multipart/form-data",
@@ -55,19 +55,19 @@ export default function Upload() {
           <div className="flex items-center justify-center pt-5 w-full">
             {preview ? (
               <div className="flex w-full justify-center">
-                <div className="flex flex-wrap bg-gray-100 rounded-2xl p-4 lg:w-8/12 xs:w-11/12 min-h-fit justify-between  px-7">
-                  <div className=" lg:w-[490px] xs:w-full md:m-auto h-auto relative">
+                <div className="flex flex-wrap bg-gray-100 rounded-2xl duration-200  scale-100 p-4 lg:w-8/12 xs:w-11/12 min-h-fit justify-between  px-7">
+                  <div className="lg:w-[490px] md:w-[490px] xs:w-full md:m-auto h-auto relative ">
                     <div
                       className=" rounded-lg bg-black h-full animate-pulse duration-150 pointer-events-none absolute top-0 left-0 z-50 opacity-30"
                       style={{ width: Bar + "%" }}
                     ></div>
                     <img
                       src={preview}
-                      className="ease-in w-full duration-200 rounded-lg scale-100 "
+                      className="ease-in w-full rounded-lg"
                       alt="image"
                     />
                   </div>
-                  <div className="flex xs:w-full lg:w-2/5 justify-center">
+                  <div className="flex xs:w-full lg:w-2/5 justify-center sm:mt-4 xs:mt-4">
                     <div className="xs:w-4/5 lg:w-4/5 sm:w-3/5">
                       <div class="relative z-0 w-full mb-6 group right-0">
                         <label className=" text-gray-400 font-extrabold text-lg">
@@ -138,39 +138,53 @@ export default function Upload() {
                 </div>
               </div>
             ) : (
-              <label
-                for="dropzone-file"
-                className={`flex flex-col items-center justify-center w-8/12 h-[420px] border-4 ${
-                  file ? "border-white" : "border-purple-400"
-                } border-dashed border-8 rounded-2xl cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700  dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600`}
+              <div
+                className={`flex flex-col items-center justify-center w-8/12 h-[420px] border ${
+                  file ? "border-white" : "border-gray-300"
+                } border-dashed border-4 rounded-2xl cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700  dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600`}
               >
                 <div className=" pb-7">
                   <div className="w-full h-[200px] flex justify-center">
                     <img src={uploading} className=" w-36" alt="Preview" />
                   </div>
-                  <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                    <span className="font-semibold">Click to upload</span> or
+                  <p className="mb-2 text-2xl text-black dark:text-gray-400">
+                    <span className="font-semibold ">Click to upload</span> or
                     drag and drop
                   </p>
-                  <p className="text-xs text-center text-gray-500 dark:text-gray-400">
+
+                  <div className="flex justify-center">
+                    <label
+                      for="dropzone-file"
+                      className=" bg-purple-500 px-4 py-3 rounded-xl font-semibold text-center duration-150 hover:text-white"
+                    >
+                      Browse
+                      <form>
+                        <input
+                          id="dropzone-file"
+                          type="file"
+                          className="hidden"
+                          name="Image"
+                          accept=".png, .jpg, .jpeg, .mp4,.webp"
+                          onChange={(e) => {
+                            handleFileInputChange(e);
+                            setfile("");
+                            setres("");
+                          }}
+                        />
+                      </form>
+                    </label>
+                  </div>
+
+                  <p className="text-sm text-center text-gray-500 dark:text-gray-400 mt-2">
                     JPG or MP4
                   </p>
-                  <form>
-                    <input
-                      id="dropzone-file"
-                      type="file"
-                      className="hidden"
-                      name="Image"
-                      accept=".png, .jpg, .jpeg, .mp4,.webp"
-                      onChange={(e) => {
-                        handleFileInputChange(e);
-                        setfile("");
-                        setres("");
-                      }}
-                    />
-                  </form>
+                  <p className=" font-semibold flex justify-center">
+                    (You can only
+                    <p className=" text-purple-500 mx-1">upload</p> file less
+                    than 10 MB)
+                  </p>
                 </div>
-              </label>
+              </div>
             )}
           </div>
         </div>
