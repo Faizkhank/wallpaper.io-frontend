@@ -155,7 +155,7 @@ export default function Upload() {
                   </p>
                   <p className="text-xs text-center text-gray-500 dark:text-gray-400">
                     JPG or MP4
-                  </p>{" "}
+                  </p>
                   <form>
                     <input
                       id="dropzone-file"
@@ -165,6 +165,7 @@ export default function Upload() {
                       accept=".png, .jpg, .jpeg, .mp4,.webp"
                       onChange={(e) => {
                         handleFileInputChange(e);
+                        setfile("");
                         setres("");
                       }}
                     />
