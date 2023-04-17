@@ -11,7 +11,7 @@ import img from "./images/default.png";
 import icon from "./images/icon.png";
 export default function Navbar() {
   const location = useLocation();
-  const { user, logout, Handlesearch, setuniquery } = UserAuth();
+  const { user, logout, HandleData, setuniquery, issearchquery } = UserAuth();
   const [show, setshow] = useState(false);
   const [drop, setdrop] = useState(false);
   const [suggest, setsuggest] = useState(false);
@@ -34,16 +34,12 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [location]);
   useEffect(() => {
-    if (location.pathname != "/") {
+    if (location.pathname !== "/") {
       setOffset(true);
     } else {
       setOffset(false);
     }
   }, [location.pathname]);
-  const findsetquery = (e) => {
-    e.preventDefault();
-    Handlesearch(searchquery);
-  };
   return (
     <div>
       <Transition
@@ -68,101 +64,102 @@ export default function Navbar() {
           <nav className=" bg-transparent  h-14 px-8 flex lg:justify-around sm:justify-between ">
             <div className="w-40 h-20 flex">
               <Link to={"/"}>
-                <h2
-                  className={`font-semibold text-lg mt-3 sm:block hidden ${
-                    offset ? " text-black" : "text-white"
-                  }  tracking-wid text-center p-3 cursor-pointer `}
-                >
-                  Wallpaper.io
-                </h2>
-                <img
-                  src={icon}
-                  className="w-[45px] h-[45px] sm:hidden block rounded-xl mt-4"
-                />
+                <div className=" flex">
+                  <img
+                    src={icon}
+                    className="w-[45px] h-[45px] rounded-xl mt-4"
+                    alt="img"
+                  />{" "}
+                  <h2
+                    className={`font-semibold text-lg mt-3 sm:block hidden  ${
+                      offset ? " text-black" : "text-white"
+                    }  tracking-wid text-center p-3 cursor-pointer `}
+                  >
+                    Wallpaper.io
+                  </h2>
+                </div>
               </Link>
             </div>
             <div>
-              <form type="submit" onSubmit={findsetquery}>
-                <div className="lg:w-[1000px] md:w-[600px] sm:w-[320px] xs:w-[240px] flex justify-center sm:mr-0 mr-6">
-                  <input
-                    type="text"
-                    onBlur={() => {
-                      if (!isHovered) {
-                        setIsFocus(false);
-                      }
-                    }}
-                    value={searchquery}
-                    onFocus={() => setIsFocus(true)}
-                    onChange={(e) => {
-                      setuniquery(e.target.value);
-                      setquery(e.target.value);
-                    }}
-                    className={`relative font-semibold outline-none bg-gray-300 focus:outline-none rounded-t-md focus:border-white focus:ring-0 ${
-                      isFocus ? "null" : "rounded-b-md"
-                    } border-0 w-full p-3 mt-4  text-base text-black placeholder-gray-400  focus:shadow-outline h-12 mr-2`}
-                    placeholder="Search for photos"
-                    onClick={() => {
-                      setsuggest(!suggest);
-                    }}
-                    ref={inputRef}
-                  />
-                  <MagnifyingGlassIcon
-                    className="w-9 fill-gray-400 relative right-11 mt-4"
-                    onClick={findsetquery}
-                  />
-                </div>
-                {isFocus && (
-                  <div
-                    className="shadow-lg relative w-full  rounded-b-md bg-white lg:w-[958px] md:w-[558px] sm:w-[278px] xs:w-[204px]"
-                    onMouseEnter={() => {
-                      setIsHovered(true);
-                    }}
-                    onMouseLeave={() => {
-                      setIsHovered(false);
-                    }}
-                  >
-                    {suggestions.map((suggestion, index) => {
-                      const isMatch =
-                        suggestion
-                          .toLowerCase()
-                          .indexOf(searchquery.toLowerCase()) > -1;
-                      return (
-                        <div key={index}>
-                          {isMatch && (
-                            <div
-                              className="p-3 pl-5 cursor-pointer font-bold text-gray-400 hover:text-black"
-                              onClick={() => {
-                                setquery(suggestion);
-                                setuniquery(suggestion);
-                                setIsFocus(false);
+              <div className="lg:w-[1000px] md:w-[320px] sm:w-[320px] xs:w-[240px] flex justify-center sm:mr-0 mr-6">
+                <input
+                  type="text"
+                  onBlur={() => {
+                    if (!isHovered) {
+                      setIsFocus(false);
+                    }
+                  }}
+                  value={searchquery}
+                  onFocus={() => setIsFocus(true)}
+                  onChange={(e) => {
+                    setuniquery(e.target.value);
+                    setquery(e.target.value);
+                  }}
+                  className={`relative font-semibold outline-none bg-gray-300 focus:outline-none rounded-t-md focus:border-white focus:ring-0 ${
+                    isFocus ? "null" : "rounded-b-md"
+                  } border-0 w-full p-3 mt-4  text-base text-black placeholder-gray-400  focus:shadow-outline h-12 mr-2`}
+                  placeholder="Search for photos"
+                  onClick={() => {
+                    setsuggest(!suggest);
+                  }}
+                  ref={inputRef}
+                />
+                <Link to={`/photo/${searchquery}`} className="mt-5">
+                  <MagnifyingGlassIcon className="w-9 fill-gray-400 relative right-11" />
+                </Link>
+              </div>
+              {isFocus && (
+                <div
+                  className="shadow-lg relative w-full  rounded-b-md bg-white lg:w-[956px] md:w-[276px] sm:w-[278px] xs:w-[204px]"
+                  onMouseEnter={() => {
+                    setIsHovered(true);
+                  }}
+                  onMouseLeave={() => {
+                    setIsHovered(false);
+                  }}
+                >
+                  {suggestions.map((suggestion, index) => {
+                    const isMatch =
+                      suggestion
+                        .toLowerCase()
+                        .indexOf(searchquery.toLowerCase()) > -1;
+                    return (
+                      <div key={index}>
+                        {isMatch && (
+                          <div
+                            className="p-3 pl-5 cursor-pointer font-bold text-gray-400 hover:text-black"
+                            onClick={() => {
+                              setquery(suggestion);
+                              setuniquery(suggestion);
 
-                                inputRef.current.focus();
+                              setIsFocus(false);
+
+                              inputRef.current.focus();
+                            }}
+                          >
+                            <Link
+                              to={`/photo/${suggestion}`}
+                              onClick={() => {
+                                HandleData(searchquery);
                               }}
                             >
                               {suggestion}
-                            </div>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
-              </form>
+                            </Link>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
             <div>
               <div className="justify-center sm:flex hidden">
-                {!user ? (
-                  <a
-                    onClick={() => setshow(!show)}
-                    className="font-semibold  h-11 mt-4 overflow-hidden cursor-pointer text-base p-2  mr-4 rounded-lg bg-purple-500"
-                  >
-                    Register
-                  </a>
-                ) : (
-                  <div className="mt-7 flex space-x-4 mr-2">
+                <div>
+                  <div className=" flex space-x-4 mr-2">
                     <Link
                       to={"/AI_generatation"}
-                      className={`font-semibold  cursor-pointer text-base ${
+                      className={`font-semibold mt-6 cursor-pointer text-base ${
                         offset ? " text-black" : "text-white"
                       }`}
                     >
@@ -170,25 +167,35 @@ export default function Navbar() {
                     </Link>
                     <Link
                       to={"/Upload"}
-                      className={`font-semibold  cursor-pointer text-base  hover:scale-105 duration-150   ${
+                      className={`font-semibold mt-4  cursor-pointer shadow-xl border py-2 rounded-lg px-2 text-base h-[44px]  hover:scale-105 duration-150   ${
                         offset ? " text-black" : "text-white"
                       }`}
                     >
                       Upload
                     </Link>
+                    {!user ? (
+                      <a
+                        onClick={() => setshow(!show)}
+                        className="font-semibold text-white duration-150 hover:scale-105 hover:shadow-xl h-11 mt-4 overflow-hidden cursor-pointer text-base p-2  mr-4 rounded-lg bg-purple-500"
+                      >
+                        Register
+                      </a>
+                    ) : null}
                   </div>
-                )}
+                </div>
+
                 {user ? (
                   <div className=" hover:scale-125 duration-150 flex justify-center from-emerald-500 via-purple-500 to-red-600 background-animate bg-gradient-to-r mt-4 rounded-full  w-[47px] h-[47px] p-0">
                     <img
-                      className=" w-[42px] h-[42px] rounded-full mt-[2px]"
+                      className=" w-[42px] h-[42px] rounded-full mt-[2px] shadow-2xl"
                       src={user.user.photos || img}
+                      alt="img"
                       onClick={() => setdrop(!drop)}
                     />
                   </div>
                 ) : (
                   <Link
-                    className="font-semibold mt-4 decoration-teal-700 cursor-pointer text-base bg-violet-500 w-18 h-11 rounded-lg  mr-2 pt-2 p-2 mb-1 overflow-clip"
+                    className="font-semibold  text-white duration-150 hover:scale-105 hover:shadow-xl mt-4 decoration-teal-700 cursor-pointer text-base bg-violet-500 w-18 h-11 rounded-lg  mr-2 pt-2 p-2 mb-1 overflow-clip"
                     to={"/login"}
                   >
                     Sign in
@@ -281,7 +288,7 @@ export default function Navbar() {
                   </ul>
                 </div>
               </Transition>
-              <div className="sm:hidden flex justify-around">
+              <div className="sm:hidden  flex justify-around">
                 <Sidebar user={user} logout={logout} offset={offset} />
               </div>
             </div>

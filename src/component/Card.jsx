@@ -81,6 +81,7 @@ export default function Card(props) {
                 <img
                   src={props.Image}
                   className="object-contain rounded-md w-[90vw] m-auto"
+                  alt="img"
                 />
               </div>
             </div>
@@ -162,6 +163,7 @@ export default function Card(props) {
         <div>
           <img
             className="rounded-lg w-full h-auto block  hover:brightness-75"
+            alt="img"
             src={props.Image}
             onClick={HandleModal}
             onLoad={() => {
@@ -173,6 +175,7 @@ export default function Card(props) {
               <div className="flex justify-between ">
                 <img
                   src={props.UserURL || img}
+                  alt="img"
                   className={`rounded-full h-11 w-11 ml-5 border-2 border-white ${
                     button ? "button" : "hidden"
                   }`}

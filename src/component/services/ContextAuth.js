@@ -19,7 +19,7 @@ export const AuthContextProvider = ({ children }) => {
   const fetchData = async () => {
     setIsLoading(true);
     const response = await fetch(
-      `https://api-wallpaper-io.onrender.com/data?page=${pageNumber}`,
+      `https://api-wallpaper-io.onrender.com/api/search?q=&p=${pageNumber}`,
       {
         withCredentials: true,
         headers: {
@@ -91,12 +91,12 @@ export const AuthContextProvider = ({ children }) => {
       } catch (err) {}
     }
   };
-  const Handlesearch = async () => {
+  const HandleData = async (query) => {
     setissearchquery(true);
     try {
       axios
         .get(
-          `https://api-wallpaper-io.onrender.com/api/search?q=${searchquery}&page?p=${pageNumber}`,
+          `https://api-wallpaper-io.onrender.com/api/search?q=${query}&page?p=${pageNumber}`,
           {
             withCredentials: true,
             headers: {
@@ -114,25 +114,6 @@ export const AuthContextProvider = ({ children }) => {
     } catch (err) {}
   };
   useEffect(() => {
-    axios
-      .get("https://api-wallpaper-io.onrender.com/home", {
-        withCredentials: true,
-        headers: {
-          "Access-Control-Allow-Origin": true,
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
-          "x-api-key": process.env.REACT_APP_API_KEY_WALLPAPER,
-        },
-      })
-      .then((data) => {
-        if (data.data !== null) {
-          setissearchquery(false);
-          setData(data.data);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
     // home page data request //
     axios
       .get("https://api-wallpaper-io.onrender.com/login/success", {
@@ -163,12 +144,13 @@ export const AuthContextProvider = ({ children }) => {
         like,
         setlike,
         Data,
-        Handlesearch,
+        HandleData,
         fetchData,
         isLoading,
         setIsLoading,
         issearchquery,
         setissearchquery,
+        searchquery,
         setuniquery,
         fetchDataquery,
       }}

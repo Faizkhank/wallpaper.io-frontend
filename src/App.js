@@ -9,6 +9,7 @@ import Home from "./component/Home";
 import Register from "./component/Register";
 import AI_generatation from "./component/AI_generation";
 import ProtectAuth from "./component/services/ProtectAuth";
+import Search from "./component/Search";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/user/:id" element={<UserProfile />}></Route>
           <Route path="/login" element={<Join />}></Route>
           <Route path="/Register" element={<Register />}></Route>
+          <Route path="/photo/:q" element={<Search />}></Route>
         </Routes>
       </AuthContextProvider>
     </Router>

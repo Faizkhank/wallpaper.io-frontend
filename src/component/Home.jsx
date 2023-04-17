@@ -1,9 +1,14 @@
-import React from "react";
+import { React, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Grid from "./Grid";
+import { UserAuth } from "../component/services/ContextAuth";
 import img from "./images/background.jpg";
 
 export default function Home() {
+  const { HandleData } = UserAuth();
+  useEffect(() => {
+    HandleData("");
+  }, []);
   return (
     <div>
       <div>
@@ -14,6 +19,7 @@ export default function Home() {
           <h1 className="text-5xl mr-1 text-white">Discover Your picture</h1>
         </div>
       </div>
+
       <div className="flex justify-center xs:null mt-1 mb-6">
         <div className="flex space-x-5">
           <Link
