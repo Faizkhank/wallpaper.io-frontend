@@ -2,12 +2,10 @@ import React, { useEffect, useState } from "react";
 import { UserAuth } from "../component/services/ContextAuth";
 import "./collage.css";
 import Card from "./Card";
-import empty from "./images/notfound.gif";
 
 export default function Collage() {
   const { Data, isLoading, fetchData, issearchquery, fetchDataquery } =
     UserAuth();
-  console.log(issearchquery);
   useEffect(() => {
     const handleScroll = () => {
       const { scrollTop, clientHeight, scrollHeight } =
@@ -96,16 +94,6 @@ export default function Collage() {
           </svg>
         </div>
       ) : null}
-      <div className="flex justify-center">
-        {Data?.length === 0 ? (
-          <div>
-            <img src={empty} className="w-[300px]" />
-            <h2 className=" font-bold text-2xl text-purple-400 opacity-50 text-center">
-              NOT FOUND
-            </h2>
-          </div>
-        ) : null}
-      </div>
     </div>
   );
 }

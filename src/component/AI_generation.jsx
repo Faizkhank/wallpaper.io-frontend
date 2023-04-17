@@ -69,6 +69,7 @@ const AI_generatation = () => {
                 <img
                   src={Image}
                   className="object-contain rounded-md w-[100vw]"
+                  alt="img"
                 />
               </div>
             </div>
@@ -121,6 +122,7 @@ const AI_generatation = () => {
                   <img
                     src={Image}
                     value
+                    alt="img"
                     className=" w-[100vw] object-contain rounded-md relative z-0 group-hover:brightness-75"
                     onChange={(e) => {
                       setfile(e.target.value);
@@ -132,12 +134,14 @@ const AI_generatation = () => {
                       <img
                         src={gif}
                         value
-                        className=" w-[100vw] object-contain rounded-md relative z-0"
+                        alt="img"
+                        className="w-[100vw] object-contain rounded-md relative z-0"
                       />
                       <img
                         src={collage}
                         value
-                        className="  w-[100vw] object-contain rounded-md relative z-0"
+                        alt="img"
+                        className="w-[100vw] object-contain rounded-md relative z-0"
                       />
                     </div>
                   </div>

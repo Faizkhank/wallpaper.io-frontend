@@ -13,8 +13,8 @@ export default function Upload() {
   const [preview, setpreview] = useState("");
   const handleFileInputChange = (e) => {
     const files = e.target.files[0];
-    const blobURL = URL.createObjectURL(files);
     setfile(files);
+    const blobURL = URL.createObjectURL(files);
     setpreview(blobURL);
   };
   async function Upload() {
@@ -68,54 +68,56 @@ export default function Upload() {
                     />
                   </div>
                   <div className="flex xs:w-full lg:w-2/5 justify-center sm:mt-4 xs:mt-4">
-                    <div className="xs:w-4/5 lg:w-4/5 sm:w-3/5">
-                      <div class="relative z-0 w-full mb-6 group right-0">
-                        <label className=" text-gray-400 font-extrabold text-lg">
-                          Name
-                        </label>
-                        <input
-                          type="Name"
-                          name="Name"
-                          id="Name"
-                          className="block font-bold rounded-xl py-3.5 px-3 w-full text-sm text-gray-900 border-0 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-500 peer"
-                          placeholder=" "
-                          required
-                          onChange={(e) => {
-                            setName(e.target.value);
-                          }}
-                        />
+                    <form className="w-full">
+                      <div className="xs:w-4/5 lg:w-4/5 sm:w-3/5">
+                        <div class="relative z-0 w-full mb-6 group right-0">
+                          <label className=" text-gray-400 font-extrabold text-lg">
+                            Name
+                          </label>
+                          <input
+                            type="Name"
+                            name="Name"
+                            id="Name"
+                            className="block font-bold rounded-xl py-3.5 px-3 w-full text-sm text-gray-900 border-0 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-500 peer"
+                            placeholder=" "
+                            required
+                            onChange={(e) => {
+                              setName(e.target.value);
+                            }}
+                          />
+                        </div>
+                        <div class="relative z-0 w-full mb-6 group right-0">
+                          <label className=" text-gray-400 font-extrabold text-lg">
+                            Tag (optional)
+                          </label>
+                          <input
+                            type="tag"
+                            name="tag"
+                            id="tag"
+                            className="block font-bold rounded-xl py-3.5 px-3 w-full text-sm text-gray-900 border-0 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-500 peer"
+                            placeholder=" "
+                            onChange={(e) => {
+                              settags(e.target.value);
+                            }}
+                          />
+                        </div>
+                        <div class="relative z-0 w-full mb-6 group right-0">
+                          <label className=" text-gray-400 font-extrabold text-lg">
+                            location (optional)
+                          </label>
+                          <input
+                            type="location"
+                            name="location"
+                            id="location"
+                            className="block font-bold rounded-xl py-3.5 px-3 w-full text-sm text-gray-900 border-0 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-500 peer"
+                            placeholder=" "
+                            onChange={(e) => {
+                              setLocation(e.target.value);
+                            }}
+                          />
+                        </div>
                       </div>
-                      <div class="relative z-0 w-full mb-6 group right-0">
-                        <label className=" text-gray-400 font-extrabold text-lg">
-                          Tag (optional)
-                        </label>
-                        <input
-                          type="tag"
-                          name="tag"
-                          id="tag"
-                          className="block font-bold rounded-xl py-3.5 px-3 w-full text-sm text-gray-900 border-0 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-500 peer"
-                          placeholder=" "
-                          onChange={(e) => {
-                            settags(e.target.value);
-                          }}
-                        />
-                      </div>
-                      <div class="relative z-0 w-full mb-6 group right-0">
-                        <label className=" text-gray-400 font-extrabold text-lg">
-                          location (optional)
-                        </label>
-                        <input
-                          type="location"
-                          name="location"
-                          id="location"
-                          className="block font-bold rounded-xl py-3.5 px-3 w-full text-sm text-gray-900 border-0 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-500 peer"
-                          placeholder=" "
-                          onChange={(e) => {
-                            setLocation(e.target.value);
-                          }}
-                        />
-                      </div>
-                    </div>
+                    </form>
                   </div>
                 </div>
                 <div className="m-auto mx-2 xs:hidden lg:block  md:block">
@@ -167,7 +169,6 @@ export default function Upload() {
                           accept=".png, .jpg, .jpeg, .mp4,.webp"
                           onChange={(e) => {
                             handleFileInputChange(e);
-                            setfile("");
                             setres("");
                           }}
                         />
