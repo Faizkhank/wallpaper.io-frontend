@@ -24,7 +24,7 @@ export default function Search() {
           </div>
         ) : (
           <div>
-            <p className="font-bold text-5xl text-black mt-28">
+            <p className="font-bold text-5xl text-black mt-28 h-[200px]">
               Free {query.q} Images here
             </p>
             <Grid />
