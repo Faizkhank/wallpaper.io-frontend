@@ -41,6 +41,11 @@ export default function Sidebar(props) {
               className="font-bold decoration-teal-700 cursor-pointer text-base"
             >
               Home
+            </Link><Link
+              to={"/AI_generatation"}
+              className="font-bold decoration-teal-700 cursor-pointer text-base"
+            >
+              AI image
             </Link>
           </li>
           <li className="pr-1 mt-4">
