@@ -24,19 +24,17 @@ const Login = () => {
     e.preventDefault();
     setprocess(true);
     axios
-      .post(
-        "https://api-wallpaper-io.onrender.com/user/login",
-        { email: Email, password: Password },
-        {
-          withCredentials: true,
-          headers: {
-            "Access-Control-Allow-Origin": true,
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Credentials": true,
-            "x-api-key": process.env.REACT_APP_API_KEY_WALLPAPER,
-          },
-        }
-      )
+      .post("https://api-wallpaper-io.onrender.com/user/login", {
+        email: Email,
+        password: Password,
+        withCredentials: true,
+        headers: {
+          "Access-Control-Allow-Origin": true,
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+          "x-api-key": process.env.REACT_APP_API_KEY_WALLPAPER,
+        },
+      })
       .then((res) => {
         setprocess(false);
         if (res.data === true) {
