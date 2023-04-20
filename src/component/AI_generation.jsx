@@ -24,19 +24,15 @@ const AI_generatation = () => {
   const Handlegenerate = async () => {
     setprocess(!process);
     axios
-      .post(
-        "https://api-wallpaper-io.onrender.com/gen",
-        { prompt: promt },
-        {
-          withCredentials: true,
-          headers: {
-            "Access-Control-Allow-Origin": true,
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Credentials": true,
-            "x-api-key": process.env.REACT_APP_API_KEY_WALLPAPER,
-          },
-        }
-      )
+      .post("https://api-wallpaper-io.onrender.com/gen", {
+        prompt: promt,
+        headers: {
+          "Access-Control-Allow-Origin": true,
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+          "x-api-key": process.env.REACT_APP_API_KEY_WALLPAPER,
+        },
+      })
       .then((res) => {
         setImage(res.data.data);
         setprocess(false);
