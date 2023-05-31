@@ -10,7 +10,7 @@ const Login = () => {
   const [Password, setPassword] = useState("");
   const [response, setresponse] = useState("");
   const navigate = useNavigate();
-  console.log(process.env.REACT_APP_API_KEY_WALLPAPER);
+
   const googleLogin = () => {
     window.open("https://api-wallpaper-io.onrender.com/google", "_self", {
       headers: {
