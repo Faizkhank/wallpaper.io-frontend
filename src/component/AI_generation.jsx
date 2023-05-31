@@ -30,10 +30,10 @@ const AI_generatation = () => {
           "Access-Control-Allow-Origin": true,
           "Content-Type": "application/json",
           "Access-Control-Allow-Credentials": true,
-          "x-api-key": process.env.REACT_APP_API_KEY_WALLPAPER,
         },
       })
       .then((res) => {
+        console.log(res);
         setImage(res.data.data);
         setprocess(false);
       })

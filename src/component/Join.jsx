@@ -10,13 +10,14 @@ const Login = () => {
   const [Password, setPassword] = useState("");
   const [response, setresponse] = useState("");
   const navigate = useNavigate();
+  console.log(process.env.REACT_APP_API_KEY_WALLPAPER);
   const googleLogin = () => {
     window.open("https://api-wallpaper-io.onrender.com/google", "_self", {
       headers: {
         "Access-Control-Allow-Origin": true,
         "Content-Type": "application/json",
         "Access-Control-Allow-Credentials": true,
-        "x-api-key": "2974e621-fafb-498e-ba47-1b5b6e433689",
+        "x-api-key": process.env.REACT_APP_API_KEY_WALLPAPER,
       },
     });
   };

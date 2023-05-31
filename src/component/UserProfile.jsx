@@ -7,6 +7,7 @@ import Minicard from "./Minicard";
 export default function UserProfile() {
   const param = useParams();
   const [userpic, setuserpic] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [user, setUser] = useState("");
 
   const { follows, setfollow, follow } = UserAuth();
@@ -64,11 +65,21 @@ export default function UserProfile() {
         <div className="flex">
           <div>
             {param ? (
-              <div className="flex justify-center">
-                <img
-                  src={user.photos}
-                  className=" rounded-full lg:w-[125px] lg:h-[125px] md:w-[100px] md:h-[100px] sm:w-[100px] xs:w-[100px] xs:h-[100px]"
-                />
+              <div className="relative">
+                <div
+                  className={` w-28 h-28 rounded-full mx-auto duration-700 ${
+                    isLoaded ? "ring-4 ring-blue-500 translate-y-3 " : ""
+                  }`}
+                >
+                  <img
+                    src={user?.photos}
+                    alt="User Profile Image"
+                    className={`w-full h-full rounded-full duration-600 ${
+                      isLoaded ? "opacity-100" : "opacity-0 transition-opacity"
+                    }`}
+                    onLoad={() => setIsLoaded(true)}
+                  />
+                </div>
               </div>
             ) : null}
             <div className="flex justify-center">
