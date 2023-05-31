@@ -7,7 +7,6 @@ import axios from "axios";
 import "./collage.css";
 
 const AI_generatation = () => {
-  const { user } = UserAuth() || {};
   const [promt, setpromt] = useState("");
   const [process, setprocess] = useState(false);
   const [file, setfile] = useState("");
