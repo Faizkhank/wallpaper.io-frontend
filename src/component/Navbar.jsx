@@ -79,7 +79,7 @@ export default function Navbar() {
                 <div>
                   <div className=" flex space-x-4 mr-2">
                     <Link
-                      to={"/AI_generatation"}
+                      to={"/AI_generation"}
                       className={`font-semibold mt-6 cursor-pointer text-base ${
                         offset ? " text-black" : "text-white"
                       }`}
