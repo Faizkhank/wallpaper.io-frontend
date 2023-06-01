@@ -36,7 +36,9 @@ const Login = () => {
       })
       .then((res) => {
         setprocess(false);
+      console.log(res)
         if (res.data === true) {
+         
           navigate("/");
         }
       })
