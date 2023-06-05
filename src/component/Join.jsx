@@ -35,6 +35,7 @@ const Login = () => {
         },
       })
       .then((res) => {
+      
         setprocess(false);
         if (res.data === true) {
           navigate("/");
@@ -50,7 +51,7 @@ const Login = () => {
       <div className="mt-40 flex">
         <div className="grid lg:grid-cols-2 w-full">
           <div className="flex justify-center mt-[10vh]">
-            <div className="rounded-xl shadow-lg border-2 bg-white w-96 h-[40vh] p-11 mb-7">
+            <div className="rounded-xl shadow-lg border-2 bg-white w-96 h-96 p-11 mb-7">
               <div>
                 <form>
                   <div class="relative z-0 w-full mb-6 group">

@@ -1,28 +1,33 @@
 import axios from "axios";
 import { React, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./collage.css";
 
 const Register = (props) => {
   const [process, setprocess] = useState(false);
   const [response, setresponse] = useState("");
+  const navigate = useNavigate();
   async function RegisterHandle(e) {
     e.preventDefault();
     setprocess(true);
     const form = document.querySelector("form");
     let formData = new FormData(form);
+
     axios
       .post("https://api-wallpaper-io.onrender.com/register", formData, {
         headers: {
           "Access-Control-Allow-Origin": true,
           "Content-Type": "application/json",
           "Access-Control-Allow-Credentials": true,
-          "x-api-key": process.env.REACT_APP_API_KEY_WALLPAPER,
         },
       })
       .then((res) => {
-        console.log(res.data);
         setresponse(res.data);
         setprocess(false);
+        props.set(false);
+        if (res.data === true) {
+          navigate("/login");
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -109,7 +114,7 @@ const Register = (props) => {
             <div class="relative z-0 w-full mb-6 group">
               <input
                 type="password"
-                name="passwordpassword"
+                name="password"
                 id="password"
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-500 peer"
                 placeholder=" "

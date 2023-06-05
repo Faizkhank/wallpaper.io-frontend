@@ -46,7 +46,7 @@ export default function Navbar() {
         leaveTo="opacity-0 scale-0"
         className="fixed left-0 right-0 bottom-0 z-50 color"
       >
-        <Register state={setshow} show={show} />
+        <Register state={setshow} show={show} set={setshow} />
       </Transition>
       <div
         className={`top-0 fixed w-[100vw] z-10 h-[80px] duration-250 ${
