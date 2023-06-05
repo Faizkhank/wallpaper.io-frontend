@@ -22,7 +22,7 @@ function App() {
           <Route element={<ProtectAuth />}>
             <Route path="/Upload" element={<Upload />}></Route>
             <Route
-              path="/AI_generatation"
+              path="/AI_generation"
               element={<AI_generatation />}
             ></Route>
           </Route>
