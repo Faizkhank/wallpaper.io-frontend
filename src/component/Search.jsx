@@ -11,13 +11,13 @@ export default function Search() {
   }, []);
 
   return (
-    <div>
-      <div className="container mx-auto">
+    <div className="flex justify-center items-center">
+      <div className="container ">
         {Data?.length === 0 ? (
           <div className="flex justify-center">
-            <div className="m-auto">
-              <img src={empty} className="w-[300px]" />
-              <h2 className=" font-bold text-2xl text-purple-400 opacity-50 text-center">
+            <div className="m-auto mt-[20%]">
+              <img src={empty} className="w-[300px]" alt="Empty" />
+              <h2 className="font-bold text-2xl text-purple-400 opacity-50 text-center">
                 NOT FOUND
               </h2>
             </div>

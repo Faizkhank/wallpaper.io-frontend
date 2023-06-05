@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { AuthContextProvider } from "./component/services/ContextAuth";
 import Upload from "./component/Upload";
 import Navbar from "./component/Navbar";
-import UserProfile from "./component/UserProfile";
+import UserProfile from "./component/Profile/UserProfile";
 import Join from "./component/Join";
 import Home from "./component/Home";
 import Register from "./component/Register";
@@ -21,10 +21,7 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route element={<ProtectAuth />}>
             <Route path="/Upload" element={<Upload />}></Route>
-            <Route
-              path="/AI_generation"
-              element={<AI_generatation />}
-            ></Route>
+            <Route path="/AI_generation" element={<AI_generatation />}></Route>
           </Route>
           <Route path="/user/:id" element={<UserProfile />}></Route>
           <Route path="/login" element={<Join />}></Route>

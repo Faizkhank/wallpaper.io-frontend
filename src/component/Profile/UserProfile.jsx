@@ -1,9 +1,10 @@
 import { React, useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { UserAuth } from "../component/services/ContextAuth";
-import Card from "./Card";
-import Minicard from "./Minicard";
+import { UserAuth } from "../services/ContextAuth";
+import Card from "../Card";
+import Minicard from "../Minicard";
+
 export default function UserProfile() {
   const param = useParams();
   const [userpic, setuserpic] = useState([]);

@@ -2,7 +2,7 @@ import { React, useState, useRef } from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { UserAuth } from "../services/ContextAuth";
 import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 export default function Searchbar() {
   const { HandleData, setuniquery } = UserAuth();
   const [isFocus, setIsFocus] = useState(false);
@@ -10,32 +10,44 @@ export default function Searchbar() {
   const [searchquery, setquery] = useState("");
   const [suggest, setsuggest] = useState(false);
   const suggestions = ["jack", "faiz", "tree", "food"];
+  const navigate = useNavigate();
   const inputRef = useRef();
+  const search = (e) => {
+    navigate(`/photo/${searchquery}`);
+  };
   return (
     <div>
       <div className="lg:w-[1000px] md:w-[320px] sm:w-[320px] xs:w-[240px] flex justify-center sm:mr-0 mr-6">
-        <input
-          type="text"
-          onBlur={() => {
-            if (!isHovered) {
-              setIsFocus(false);
-            }
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            search();
           }}
-          value={searchquery}
-          onFocus={() => setIsFocus(true)}
-          onChange={(e) => {
-            setuniquery(e.target.value);
-            setquery(e.target.value);
-          }}
-          className={`relative font-semibold outline-none bg-gray-300 focus:outline-none rounded-t-md focus:border-white focus:ring-0 ${
-            isFocus ? "null" : "rounded-b-md"
-          } border-0 w-full p-3 mt-4  text-base text-black placeholder-gray-400  focus:shadow-outline h-12 mr-2`}
-          placeholder="Search for photos"
-          onClick={() => {
-            setsuggest(!suggest);
-          }}
-          ref={inputRef}
-        />
+          className="w-full"
+        >
+          <input
+            type="text"
+            onBlur={() => {
+              if (!isHovered) {
+                setIsFocus(false);
+              }
+            }}
+            value={searchquery}
+            onFocus={() => setIsFocus(true)}
+            onChange={(e) => {
+              setuniquery(e.target.value);
+              setquery(e.target.value);
+            }}
+            className={`relative font-semibold outline-none bg-gray-300 focus:outline-none rounded-t-md focus:border-white focus:ring-0 ${
+              isFocus ? "null" : "rounded-b-md"
+            } border-0 w-full p-3 mt-4  text-base text-black placeholder-gray-400  focus:shadow-outline h-12 mr-2`}
+            placeholder="Search for photos"
+            onClick={() => {
+              setsuggest(!suggest);
+            }}
+            ref={inputRef}
+          />
+        </form>
         <Link to={`/photo/${searchquery}`} className="mt-[21px]">
           <MagnifyingGlassIcon className="w-9 fill-gray-400 relative right-11" />
         </Link>

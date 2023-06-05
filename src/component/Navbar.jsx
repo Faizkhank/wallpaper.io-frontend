@@ -14,6 +14,7 @@ export default function Navbar() {
   const [show, setshow] = useState(false);
   const [drop, setdrop] = useState(false);
   const [offset, setOffset] = useState(false);
+
   useEffect(() => {
     const onScroll = () => {
       if (location.pathname !== "/") {
@@ -27,10 +28,10 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [location]);
   useEffect(() => {
-    if (location.pathname !== "/") {
-      setOffset(true);
-    } else {
+    if (location.pathname === "/" || location.pathname === "/login") {
       setOffset(false);
+    } else {
+      setOffset(true);
     }
   }, [location.pathname]);
   return (
@@ -49,8 +50,10 @@ export default function Navbar() {
         <Register state={setshow} show={show} set={setshow} />
       </Transition>
       <div
-        className={`top-0 fixed w-[100vw] z-10 h-[80px] duration-250 ${
-          offset ? "bg-white border-b border-gray-100" : "bg-transparent"
+        className={`top-0 fixed w-[100vw] z-10 h-[80px] duration-250  ${
+          offset
+            ? "bg-white border-b border-gray-100 shadow-lg"
+            : "bg-transparent"
         }`}
       >
         <div>
