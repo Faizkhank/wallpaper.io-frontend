@@ -1,6 +1,7 @@
 import axios from "axios";
 import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserAuth } from "../component/services/ContextAuth";
 import { FcGoogle } from "react-icons/fc";
 import "./App.css";
 
@@ -9,6 +10,7 @@ const Login = () => {
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [response, setresponse] = useState("");
+  const { setUser } = UserAuth();
   const navigate = useNavigate();
 
   const googleLogin = () => {
@@ -35,11 +37,9 @@ const Login = () => {
         },
       })
       .then((res) => {
-      
         setprocess(false);
-      console.log(res)
-        if (res.data === true) {
-         
+        if (res.data) {
+          setUser(res.data);
           navigate("/");
         }
       })

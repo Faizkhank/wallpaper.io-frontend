@@ -153,6 +153,7 @@ export const AuthContextProvider = ({ children }) => {
         searchquery,
         setuniquery,
         fetchDataquery,
+        setUser,
       }}
     >
       {children}
