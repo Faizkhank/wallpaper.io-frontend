@@ -57,7 +57,7 @@ export const AuthContextProvider = ({ children }) => {
 
     setIsLoading(false);
   };
-  async function follow(data) {
+  const follow = async (data) => {
     const res = await axios.put(
       `https://api-wallpaper-io.onrender.com/follow/${data}/${user.user.id}`,
       {
