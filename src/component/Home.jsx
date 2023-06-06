@@ -1,4 +1,4 @@
-import { React, useEffect } from "react";
+import { React, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Grid from "./Grid";
 import { UserAuth } from "../component/services/ContextAuth";
@@ -6,7 +6,23 @@ import img from "./images/background.jpg";
 import Searchbar from "./Searchbar/Searchbar";
 
 export default function Home() {
-  const { HandleData } = UserAuth();
+  const [Image, setImage] = useState("");
+  const [isImageGenerated, setIsImageGenerated] = useState(false);
+  const { HandleData, Data } = UserAuth();
+
+  useEffect(() => {
+    const generateRandomImage = () => {
+      if (Data && Data.length > 0) {
+        const randomIndex = Math.floor(Math.random() * Data.length);
+        setImage(Data[randomIndex]?.Url);
+      }
+    };
+
+    if (!isImageGenerated && Data) {
+      generateRandomImage();
+      setIsImageGenerated(true);
+    }
+  }, [isImageGenerated, Data]);
   useEffect(() => {
     HandleData("");
   }, []);
@@ -15,7 +31,7 @@ export default function Home() {
       <div className="h-[420px]">
         <div>
           <div className=" absolute -z-10 object-contain overflow-hidden w-full top-0 h-[420px]">
-            <img src={img} className="w-full" />
+            <img src={Image || img} className="w-full" />
           </div>
           <div className="flex justify-center p-11 mt-10">
             <h1 className="text-5xl mr-1 text-white">Discover Your picture</h1>

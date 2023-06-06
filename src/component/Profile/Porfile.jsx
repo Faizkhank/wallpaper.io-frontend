@@ -1,19 +1,30 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { UserAuth } from "../services/ContextAuth";
 import axios from "axios";
 import img from "../images/default.png";
 const Profile = () => {
   const { user } = UserAuth();
-  const [scrollY, setScrollY] = useState(0);
+  console.log(user);
   const [isLoaded, setIsLoaded] = useState(false);
-
-  const [edit, setEdit] = useState(false);
   const [textarea, settext] = useState("");
   const [file, setfile] = useState("");
-
   const [preview, setpreview] = useState("");
   const handleFormSubmit = () => {
-    const data = { About_Me: textarea };
+    console.log("called");
+    axios
+      .put(`http://localhost:4000/users/${user.user.id}/about`, {
+        about: textarea,
+        withCredentials: true,
+        headers: {
+          "Access-Control-Allow-Origin": true,
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
   };
   const handleFileInputChange = (e) => {
     const files = e.target.files[0];
@@ -26,19 +37,19 @@ const Profile = () => {
       <div className="flex justify-center mt-32">
         <div className="flex w-[200px] h-[300px] justify-center">
           <div className="w-full">
-            <form>
-              <input
-                id="dropzone-file"
-                type="file"
-                className="hidden"
-                name="Image"
-                accept=".png, .jpg, .jpeg, .mp4,.webp"
-                onChange={(e) => {
-                  handleFileInputChange(e);
-                }}
-              />
-            </form>
             <label for="dropzone-file">
+              <form>
+                <input
+                  id="dropzone-file"
+                  type="file"
+                  className="hidden"
+                  name="Image"
+                  accept=".png, .jpg, .jpeg, .mp4,.webp"
+                  onChange={(e) => {
+                    handleFileInputChange(e);
+                  }}
+                />
+              </form>
               <div className="relative">
                 <div
                   className={`w-[200px] h-[200px] rounded-full mx-auto duration-700 ${
@@ -99,7 +110,11 @@ const Profile = () => {
         <div className="flex justify-between">
           <label className="font-semibold p-2 text-slate-500">About Me</label>
           {textarea ? (
-            <button className=" bg-red-600 rounded-xl px-4 py-2 text-white font-semibold">
+            <button
+              onClick={handleFormSubmit}
+              type="button"
+              className=" bg-red-600 rounded-xl px-4 py-2 text-white font-semibold"
+            >
               Save
             </button>
           ) : null}
@@ -110,20 +125,22 @@ const Profile = () => {
           placeholder="Add something about you"
         />
         <label className="font-semibold p-2 text-slate-500">User Name</label>
-        {textarea ? (
-          <button className=" bg-red-600 rounded-xl px-4 py-2 text-white font-semibold">
-            Save
-          </button>
-        ) : null}
+
         <input
           defaultValue={user?.user?.displayName}
           className={`bg-white mt-3  resize-none  focus:border-white focus:outline-none font-semibold rounded-lg p-4 text-slate-600 text-md w-full h-[45px] border-none`}
         />
         <div className=" mt-10 space-x-4">
-          <button className=" bg-red-600 duration-300 text-white font-semibold hover:bg-red-400 py-2 px-2 rounded-xl">
+          <button
+            type="button"
+            className=" bg-red-600 duration-300 text-white font-semibold hover:bg-red-400 py-2 px-2 rounded-xl"
+          >
             Delete Account
           </button>
-          <button className=" bg-red-600 duration-300 text-white font-semibold hover:bg-red-400 py-2 px-2 rounded-xl">
+          <button
+            type="button"
+            className=" bg-red-600 duration-300 text-white font-semibold hover:bg-red-400 py-2 px-2 rounded-xl"
+          >
             Change Password
           </button>
         </div>

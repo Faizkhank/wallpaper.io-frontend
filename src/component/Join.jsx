@@ -56,7 +56,7 @@ const Login = () => {
         <div className="flex">
           <div className="grid lg:grid-cols-2 w-full">
             <div className="flex justify-center mt-[24vh] ">
-              <div className="rounded-xl shadow-lg border bg-white w-[460px] h-[460px] duration-150 hover:scale-110 p-7 mb-7">
+              <div className="rounded-xl shadow-lg border bg-white lg:w-[460px] h-[460px] md:w-[400px] sm:w-[300px] xs:w-[350px] duration-150 hover:scale-110 p-7 mb-7">
                 <div>
                   <form>
                     <div className="flex justify-center">
@@ -66,7 +66,7 @@ const Login = () => {
                         alt="img"
                       />
                       <h2
-                        className={`font-semibold text-lg mt-3 sm:block hidden text-black tracking-wid text-center p-3 cursor-pointer `}
+                        className={`font-semibold text-lg mt-3  text-black tracking-wid text-center p-3 cursor-pointer `}
                       >
                         Wallpaper.io
                       </h2>
