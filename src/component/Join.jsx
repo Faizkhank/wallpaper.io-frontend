@@ -6,7 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import icon from "./images/icon.png";
 import "./App.css";
 import Footer from "./Footer/Footer";
-
+console.log(process.env.REACT_APP_API_KEY_WALLPAPER);
 const Login = () => {
   const [process, setprocess] = useState(false);
   const [Email, setEmail] = useState("");
@@ -21,6 +21,7 @@ const Login = () => {
         "Access-Control-Allow-Origin": true,
         "Content-Type": "application/json",
         "Access-Control-Allow-Credentials": true,
+        "x-api-key": process.env.REACT_APP_API_KEY_WALLPAPER,
       },
     });
   };
@@ -36,6 +37,7 @@ const Login = () => {
           "Access-Control-Allow-Origin": true,
           "Content-Type": "application/json",
           "Access-Control-Allow-Credentials": true,
+          "x-api-key": process.env.REACT_APP_API_KEY_WALLPAPER,
         },
       })
       .then((res) => {
