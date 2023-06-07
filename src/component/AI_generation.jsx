@@ -58,7 +58,7 @@ const AI_generatation = () => {
         className="fixed z-50 left-0 right-0 bottom-0 color"
       >
         <div className="flex justify-center mt-24">
-          <div className="w-[70vw] h-[70vh] bg-white shadow-md  border rounded-md border-gray-200">
+          <div className="w-[450px] h-[450px] bg-white shadow-md  border rounded-md border-gray-200">
             <div className="flex justify-center ">
               <div className="w-[550px] h-[400px] rounded-md mt-2">
                 <img

@@ -122,7 +122,9 @@ const Profile = () => {
         <textarea
           onChange={(e) => settext(e.target.value)}
           className={`bg-white mt-3 resize-none  focus:border-white focus:outline-none font-semibold rounded-lg p-4 text-black text-md w-full h-[150px] border-none`}
-          placeholder="Add something about you"
+          placeholder={`${
+            user?.user?.About ? user?.user?.About : "Add something about you"
+          }`}
         />
         <label className="font-semibold p-2 text-slate-500">User Name</label>
 

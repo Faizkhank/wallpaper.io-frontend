@@ -28,7 +28,7 @@ const Login = () => {
     e.preventDefault();
     setprocess(true);
     axios
-      .post("https://api-wallpaper-io.onrender.com/user/login", {
+      .post("http://localhost:4000/user/login", {
         email: Email,
         password: Password,
         withCredentials: true,
@@ -40,9 +40,11 @@ const Login = () => {
       })
       .then((res) => {
         setprocess(false);
-        if (res.data) {
+        if (res.data.success === true) {
           setUser(res.data);
           navigate("/");
+        } else {
+          setresponse(res.data);
         }
       })
       .catch((err) => {
@@ -56,10 +58,10 @@ const Login = () => {
         <div className="flex">
           <div className="grid lg:grid-cols-2 w-full">
             <div className="flex justify-center mt-[24vh] ">
-              <div className="rounded-xl shadow-lg border bg-white lg:w-[460px] h-[460px] md:w-[400px] sm:w-[300px] xs:w-[350px] duration-150 hover:scale-110 p-7 mb-7">
+              <div className="rounded-xl  shadow-lg border bg-white lg:w-[460px] h-[460px] md:w-[400px] sm:w-[300px] xs:w-[350px] duration-150 hover:scale-110 p-7 mb-7">
                 <div>
                   <form>
-                    <div className="flex justify-center">
+                    <div className="flex justify-center duration-150">
                       <img
                         src={icon}
                         className="w-[45px] h-[45px] rounded-xl mt-4"
@@ -71,7 +73,7 @@ const Login = () => {
                         Wallpaper.io
                       </h2>
                     </div>
-                    <div class="relative z-0 w-full mb-6 group mt-6">
+                    <div class="relative z-0 w-full group mt-6">
                       <input
                         type="email"
                         name="email"
@@ -85,7 +87,32 @@ const Login = () => {
                         Email
                       </label>
                     </div>
-                    <div class="relative z-0 w-full mb-6 group">
+                    {response ? (
+                      <div
+                        className="flex p-2 text-sm shake text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                        role="alert"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="flex-shrink-0 inline w-5 h-5 mr-3"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                            clip-rule="evenodd"
+                          ></path>
+                        </svg>
+                        <span className="sr-only">Info</span>
+                        <div>
+                          <span className="font-medium">alert!</span> Wrong
+                          Email
+                        </div>
+                      </div>
+                    ) : null}
+                    <div className="relative z-0 w-full mt-6 group">
                       <input
                         type="password"
                         name="password"
@@ -98,9 +125,34 @@ const Login = () => {
                       <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-7 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                         Password
                       </label>
+                      {response ? (
+                        <div
+                          className="flex p-2 shake text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                          role="alert"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="flex-shrink-0 inline w-5 h-5 mr-3"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                              clip-rule="evenodd"
+                            ></path>
+                          </svg>
+                          <span className="sr-only">Info</span>
+                          <div>
+                            <span className="font-medium">alert!</span> Wrong
+                            Password
+                          </div>
+                        </div>
+                      ) : null}
                     </div>
                   </form>
-                  <div className="flex justify-center">
+                  <div className="flex justify-center mt-4">
                     {!process ? (
                       <button
                         className=" w-16 p-1 bg-purple-500 rounded-xl text-fuchsia-50 ease-in duration-200 hover:scale-125"
@@ -129,18 +181,12 @@ const Login = () => {
                       </div>
                     )}
                   </div>
-                  <p
-                    className={` text-red-600 text-sm mt-2 flex justify-center ${
-                      response ? "shake" : "hidden"
-                    }`}
-                  >
-                    {response + " !"}
-                  </p>
+
                   <div className="flex justify-center">
                     <h2 className="text-sm mt-3 font-semibold">OR</h2>
                   </div>
                   <div
-                    className="w-full p-1 pb-2 flex justify-center rounded-lg mt-6  duration-300 hover:-translate-y-2"
+                    className="w-full p-1 pb-2 flex justify-center rounded-lg mt-2  duration-300 hover:-translate-y-2"
                     onClick={googleLogin}
                   >
                     <FcGoogle className="w-11 h-11" />

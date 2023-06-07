@@ -30,6 +30,7 @@ export default function Card(props) {
         },
       })
       .then((res) => {
+        console.log(res);
         if (res) {
           window.location.reload();
           setprogress(!progress);
