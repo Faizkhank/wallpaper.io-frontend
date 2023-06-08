@@ -4,20 +4,33 @@ import { Transition } from "@headlessui/react";
 import gif from "./images/teaser.jpeg";
 import collage from "./images/collage.jpeg";
 import axios from "axios";
+import Notification from "./Notification/Notification";
 import "./collage.css";
 
 const AI_generatation = () => {
+  const { user, setnotification } = UserAuth();
+  const [Bar, setbar] = useState(0);
+  const [Name, setName] = useState(0);
+  const [Location, setLocation] = useState(0);
+  const [tags, settags] = useState(0);
   const [promt, setpromt] = useState("");
   const [process, setprocess] = useState(false);
-  const [file, setfile] = useState("");
   const [Image, setImage] = useState("");
   const [Uploadmenu, setuploadmenu] = useState(false);
-  console.log(file);
   const uploadImage = () => {
+    setbar(100);
     axios
-      .post("https://api-wallpaper-io.onrender.com/gen/upload", { Image: file })
+      .post(`https://api-wallpaper-io.onrender.com/upload/ai/${user.user.id}`, {
+        url: Image,
+        Location: Location,
+        tags: tags,
+        Name: Name,
+      })
       .then((response) => {
-        console.log(response);
+        if (response.data) {
+          setuploadmenu(false);
+          setnotification(response.data.message);
+        }
       });
   };
   const Handlegenerate = async () => {
@@ -32,7 +45,6 @@ const AI_generatation = () => {
         },
       })
       .then((res) => {
-        console.log(res);
         setImage(res.data.data);
         setprocess(false);
       })
@@ -55,35 +67,89 @@ const AI_generatation = () => {
         leave="transition-opacity duration-100 "
         leaveFrom="opacity-100 scale-100"
         leaveTo="opacity-0 scale-55"
-        className="fixed z-50 left-0 right-0 bottom-0 color"
+        className="fixed z-50 left-0 right-0 bottom-0 color top-0"
       >
-        <div className="flex justify-center mt-24">
-          <div className="w-[450px] h-[450px] bg-white shadow-md  border rounded-md border-gray-200">
-            <div className="flex justify-center ">
-              <div className="w-[550px] h-[400px] rounded-md mt-2">
+        <div>
+          <div className="flex w-full justify-center mt-[20vh]">
+            <div className="flex flex-wrap bg-gray-100 rounded-2xl duration-200  scale-100 p-4 lg:w-8/12 xs:w-11/12 min-h-fit justify-between  px-7">
+              <div className="lg:w-[490px] md:w-[490px] xs:w-full md:m-auto h-auto relative ">
+                <div
+                  className=" rounded-lg bg-black h-full animate-pulse duration-1000 pointer-events-none absolute top-0 left-0 z-50 opacity-30"
+                  style={{ width: Bar + "%" }}
+                ></div>
                 <img
-                  src={Image}
-                  className="object-contain rounded-md w-[100vw]"
-                  alt="img"
+                  src={Image || collage}
+                  className="ease-in w-full rounded-lg"
+                  alt="image"
                 />
               </div>
+              <div className="flex xs:w-full lg:w-2/5 justify-center sm:mt-4 xs:mt-4">
+                <form className="w-full">
+                  <div className="xs:w-4/5 lg:w-4/5 sm:w-3/5">
+                    <div class="relative z-0 w-full mb-6 group right-0">
+                      <label className=" text-gray-400 font-extrabold text-lg">
+                        Name
+                      </label>
+                      <input
+                        type="text"
+                        name="Name"
+                        id="Name"
+                        className="block font-bold rounded-xl py-3.5 px-3 w-full text-sm text-gray-900 border-0 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-500 peer"
+                        placeholder={promt}
+                        required
+                        onChange={(e) => {
+                          setName(e.target.value);
+                        }}
+                      />
+                    </div>
+                    <div class="relative z-0 w-full mb-6 group right-0">
+                      <label className=" text-gray-400 font-extrabold text-lg">
+                        Tag (optional)
+                      </label>
+                      <input
+                        type="tag"
+                        name="tag"
+                        id="tag"
+                        className="block font-bold rounded-xl py-3.5 px-3 w-full text-sm text-gray-900 border-0 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-500 peer"
+                        placeholder=" "
+                        onChange={(e) => {
+                          settags(e.target.value);
+                        }}
+                      />
+                    </div>
+                    <div class="relative z-0 w-full mb-6 group right-0">
+                      <label className=" text-gray-400 font-extrabold text-lg">
+                        location (optional)
+                      </label>
+                      <input
+                        type="location"
+                        name="location"
+                        id="location"
+                        className="block font-bold rounded-xl py-3.5 px-3 w-full text-sm text-gray-900 border-0 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-500 peer"
+                        placeholder=" "
+                        onChange={(e) => {
+                          setLocation(e.target.value);
+                        }}
+                      />
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <button
+                onClick={uploadImage}
+                className="text-white h-[40px] from-emerald-500 via-purple-500 to-red-600 background-animate  bg-gradient-to-r rounded-md font-semibold p-2 mt-4 hover:scale-95 duration-150"
+              >
+                Upload
+              </button>
             </div>
-            <button onClick={uploadImage}>upload</button>
-          </div>
-
-          <a
-            className="sm:top-0 relative top-0 right-14"
-            onClick={() => {
-              setuploadmenu(!Uploadmenu);
-            }}
-          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-12 h-12 mt-2 text-black hover:scale-105 duration-150"
+              onClick={() => setuploadmenu(false)}
+              className="w-12 h-12 text-white relative top-0 right-0"
             >
               <path
                 strokeLinecap="round"
@@ -91,10 +157,11 @@ const AI_generatation = () => {
                 d="M6 18L18 6M6 6l12 12"
               />
             </svg>
-          </a>
+          </div>
         </div>
       </Transition>
       <div className=" lg:mt-22 xs:mt-8 ">
+        <Notification />
         <div className="p-11 pt-28 flex justify-center flex-wrap">
           <div className=" relative group">
             <div className=" lg:w-[510px] xs:w-[400px] h-auto border-emerald-400  flex justify-center border-2  rounded-md">
@@ -119,9 +186,6 @@ const AI_generatation = () => {
                     value
                     alt="img"
                     className=" w-[100vw] object-contain rounded-md relative z-0 group-hover:brightness-75"
-                    onChange={(e) => {
-                      setfile(e.target.value);
-                    }}
                   />
                 ) : (
                   <div>

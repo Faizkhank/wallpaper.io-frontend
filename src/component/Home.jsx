@@ -46,7 +46,10 @@ export default function Home() {
             >
               <p>Home</p>
             </Link>
-            <Link className="text-lg w-[100px] mr-3 text-white font-semibold cursor-pointer rounded-2xl hover:bg-black duration-200 hover:w-[120px]  h-[35px] flex justify-center pl-2 pr-2 pt-1">
+            <Link
+              to={`/photo/AI`}
+              className="text-lg w-[100px] mr-3 text-white font-semibold cursor-pointer rounded-2xl hover:bg-black duration-200 hover:w-[120px]  h-[35px] flex justify-center pl-2 pr-2 pt-1"
+            >
               <p>AI images</p>
             </Link>
             <Link className="text-lg  mr-3  text-white font-semibold cursor-pointer rounded-2xl  hover:bg-black duration-200 hover:w-[120px]  h-[35px] flex justify-center pl-2 pr-2 pt-1">
