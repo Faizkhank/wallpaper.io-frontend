@@ -12,6 +12,7 @@ export const AuthContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [pageNumber, setPageNumber] = useState(10);
   const [qNumber, setqNumber] = useState(10);
+  const [notification, setnotification] = useState();
 
   const logout = () => {
     window.open("https://api-wallpaper-io.onrender.com/logout", "_self");
@@ -71,7 +72,7 @@ export const AuthContextProvider = ({ children }) => {
       }
     );
     setfollow(!follows);
-  }
+  };
   const HandleLike = async (data) => {
     if (user) {
       setlike(!like);
@@ -154,6 +155,8 @@ export const AuthContextProvider = ({ children }) => {
         setuniquery,
         fetchDataquery,
         setUser,
+        setnotification,
+        notification,
       }}
     >
       {children}

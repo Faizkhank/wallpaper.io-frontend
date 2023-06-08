@@ -113,10 +113,7 @@ export default function UserProfile() {
       </div>
 
       <div className="flex justify-center mt-4">
-        <p className=" text-gray-400 font-semibold xs:ml-6">
-          IT-specialist, film (and sometimes digital) photographer and
-          videographer
-        </p>
+        <p className=" text-gray-400 font-semibold xs:ml-6">{user?.About}</p>
       </div>
       <div></div>
       <Minicard
