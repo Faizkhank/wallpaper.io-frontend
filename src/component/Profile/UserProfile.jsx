@@ -115,7 +115,7 @@ export default function UserProfile() {
       <div className="flex justify-center mt-4">
         <p className=" text-gray-400 font-semibold xs:ml-6">{user?.About}</p>
       </div>
-      <div></div>
+
       <Minicard
         user={user}
         total={userpic ? userpic.length : 0}

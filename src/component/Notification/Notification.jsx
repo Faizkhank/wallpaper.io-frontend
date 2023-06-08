@@ -10,7 +10,7 @@ const Notification = () => {
   return (
     <div>
       <div
-        className={`w-[200px] h-[80px] rounded-xl bg-black absolute right-3 px-4 py-2
+        className={`w-[200px] h-[80px] rounded-xl bg-black absolute z-50 right-3 px-4 py-2
                 duration-300 ${
                   !notification
                     ? "translate-x-0 opacity-0"
