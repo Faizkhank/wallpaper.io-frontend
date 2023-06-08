@@ -26,7 +26,7 @@ const Login = () => {
   };
   const loginHandle = () => {
     setprocess(true);
-  
+
     axios
       .post("https://api-wallpaper-io.onrender.com/user/login", {
         email: Email,
@@ -41,7 +41,6 @@ const Login = () => {
       .then((res) => {
         setprocess(false);
         if (res.data.success === true) {
-          setUser(res.data);
           navigate("/");
         } else {
           setresponse(res.data);
