@@ -1,9 +1,10 @@
 import { React, useState } from "react";
 import axios from "axios";
 import { UserAuth } from "../component/services/ContextAuth";
+import Notification from "./Notification/Notification";
 import uploading from "./images/image-.gif";
 export default function Upload() {
-  const { user } = UserAuth() || {};
+  const { user, setnotification } = UserAuth() || {};
   const [file, setfile] = useState("");
   const [Bar, setbar] = useState(0);
   const [res, setres] = useState("");
@@ -42,7 +43,7 @@ export default function Upload() {
       })
       .then((res) => {
         setbar(0);
-        setres(res);
+        setnotification(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -50,6 +51,7 @@ export default function Upload() {
   }
   return (
     <div className="w-full">
+      <Notification />
       <div className="w-full bg-white flex justify-center lg:mt-16 mt-20">
         <div className="flex flex-wrap items-center justify-center w-full lg:mt-11 md:mt-20 sm:mt-60 ">
           <div className="flex items-center justify-center pt-5 w-full">
@@ -193,29 +195,8 @@ export default function Upload() {
       <div className="flex justify-center mt-7">
         {file ? (
           <div>
-            <div className="flex justify-center mt-4">
-              {res ? (
-                <p className="flex p-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-4 h-4 p-1 bg-green-600 rounded-full text-white mr-3 mt-1 ml-2"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M4.5 12.75l6 6 9-13.5"
-                    />
-                  </svg>
-                  <span className="font-bold">Uploaded</span>
-                </p>
-              ) : null}
-            </div>
             <button
-              className="bg-purple-700 align-middle text-white h-7 w-20 rounded-2xl"
+              className="bg-purple-700 align-middle font-semibold hover:scale-125 hover:translate-x-y duration-200 text-white h-[50px] w-[100px] rounded-2xl"
               onClick={Upload}
             >
               Upload
