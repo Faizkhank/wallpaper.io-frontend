@@ -41,12 +41,7 @@ const Login = () => {
       .then((res) => {
         setprocess(false);
         if (res.data.success === true) {
-          // Save the session cookie
-          const sessionCookie = res.headers["set-cookie"];
-          console.log(sessionCookie);
-          if (sessionCookie) {
-            document.cookie = sessionCookie;
-          }
+          setUser(res.data);
           navigate("/");
         } else {
           setresponse(res.data);
