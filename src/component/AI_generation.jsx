@@ -86,7 +86,7 @@ const AI_generatation = () => {
               <div className="flex xs:w-full lg:w-2/5 justify-center sm:mt-4 xs:mt-4">
                 <form className="w-full">
                   <div className="xs:w-4/5 lg:w-4/5 sm:w-3/5">
-                    <div class="relative z-0 w-full mb-6 group right-0">
+                    <div className="relative z-0 w-full mb-6 group right-0">
                       <label className=" text-gray-400 font-extrabold text-lg">
                         Name
                       </label>
@@ -221,7 +221,7 @@ const AI_generatation = () => {
                 }}
               />
               <label
-                for="prompt"
+                htmlFor="prompt"
                 className="peer-focus:font-medium absolute text-sm font-semibold text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-emerald-400 peer-focus:dark:text-emerald-400 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-95 peer-focus:-translate-y-6"
               >
                 Describe Image here

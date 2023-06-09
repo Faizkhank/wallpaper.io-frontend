@@ -9,9 +9,8 @@ export default function UserProfile() {
   const param = useParams();
   const [userpic, setuserpic] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [user, setUser] = useState("");
-
-  const { follows, setfollow, follow } = UserAuth();
+  const [users, setUser] = useState("");
+  const { follows, setfollow, follow, user } = UserAuth();
   useEffect(() => {
     axios
       .get(`https://api-wallpaper-io.onrender.com/user/${param.id}`, {
@@ -38,27 +37,26 @@ export default function UserProfile() {
       .then((res) => {
         setUser(res.data);
       });
-    if (user) {
-      axios
-        .get(
-          `https://api-wallpaper-io.onrender.com/checkfollow/${user.id}/${user.user.id}`,
-          {
-            withCredentials: true,
-            headers: {
-              "Access-Control-Allow-Origin": true,
-              "Content-Type": "application/json",
-              "Access-Control-Allow-Credentials": true,
-              "x-api-key": process.env.REACT_APP_API_KEY_WALLPAPER,
-            },
-          }
-        )
-        .then((response) => {
-          setfollow(response.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+
+    axios
+      .get(
+        `https://api-wallpaper-io.onrender.com/checkfollow/${param?.id}/${user?.user?.id}`,
+        {
+          withCredentials: true,
+          headers: {
+            "Access-Control-Allow-Origin": true,
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Credentials": true,
+            "x-api-key": process.env.REACT_APP_API_KEY_WALLPAPER,
+          },
+        }
+      )
+      .then((response) => {
+        setfollow(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
   return (
     <div>
@@ -73,7 +71,7 @@ export default function UserProfile() {
                   }`}
                 >
                   <img
-                    src={user?.photos}
+                    src={users?.photos}
                     alt="User Profile Image"
                     className={`w-full h-full rounded-full duration-600 ${
                       isLoaded ? "opacity-100" : "opacity-0 transition-opacity"
@@ -85,7 +83,7 @@ export default function UserProfile() {
             ) : null}
             <div className="flex justify-center">
               <h1 className="lg:text-6xl sm:text-2xl sm:mt-3 lg:mt-9 font-bold mb-2">
-                {user.displayName}
+                {users.displayName}
               </h1>
             </div>
           </div>
@@ -97,7 +95,7 @@ export default function UserProfile() {
             className=" w-28 h-12 bg-violet-500 rounded-lg duration-200 hover:scale-95"
             type="button"
             onClick={() => {
-              follow(user.id);
+              follow(users.id);
             }}
           >
             {follows ? (
@@ -113,11 +111,11 @@ export default function UserProfile() {
       </div>
 
       <div className="flex justify-center mt-4">
-        <p className=" text-gray-400 font-semibold xs:ml-6">{user?.About}</p>
+        <p className=" text-gray-400 font-semibold xs:ml-6">{users?.About}</p>
       </div>
 
       <Minicard
-        user={user}
+        user={users}
         total={userpic ? userpic.length : 0}
         setuserpic={setuserpic}
       />
