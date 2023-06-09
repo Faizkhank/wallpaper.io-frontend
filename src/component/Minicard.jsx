@@ -2,9 +2,12 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { UserAuth } from "./services/ContextAuth";
 const Minicard = (props) => {
   const [drop, setdrop] = useState(false);
+  const { user } = UserAuth();
   const param = useParams();
+
   const filterfollowers = async () => {
     const data = await axios.get(
       `https://api-wallpaper-io.onrender.com/filter/follower/${param.id}`,
@@ -62,14 +65,16 @@ const Minicard = (props) => {
               <p className="ml-4 text-grey-300 text-sm">{props.total}</p>
             </span>
           </Link>
-          <p
-            className="mt-2 hover:border-b-2 border-black ml-6 cursor-pointer"
-            onClick={filterfollowers}
-          >
-            <span className=" text-md text-black w-16 font-bold  hover:tracking-widest tracking-normal duration-200">
-              Following
-            </span>
-          </p>
+          {param.id === user?.user?.id ? (
+            <p
+              className="mt-2 hover:border-b-2 border-black ml-6 cursor-pointer"
+              onClick={filterfollowers}
+            >
+              <span className=" text-md text-black w-16 font-bold  hover:tracking-widest tracking-normal duration-200">
+                Following
+              </span>
+            </p>
+          ) : null}
         </div>
         <div>
           <button

@@ -152,7 +152,7 @@ export default function Navbar() {
                           <li className="pt-2 pb-2 hover:bg-slate-100 text-center border-b-2 ">
                             <Link
                               className=" cursor-pointer font-semibold flex  duration-150 translate-x-0 hover:translate-x-3"
-                              to={`/user/${user.user.id}`}
+                              to={`/myprofile/${user.user.id}`}
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"

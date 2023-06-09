@@ -348,7 +348,7 @@ const Profile = () => {
           </div>
         ) : null}
       </div>
-      <div className="bg-slate-200 p-5 rounded-lg relative z-50">
+      <div className="bg-slate-200 p-5 rounded-lg relative z-20">
         <div className="flex justify-between">
           <label className="font-semibold p-2 text-slate-500">About Me</label>
           {textarea ? (

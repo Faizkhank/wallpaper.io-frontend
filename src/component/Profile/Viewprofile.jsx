@@ -5,7 +5,7 @@ import { UserAuth } from "../services/ContextAuth";
 import Card from "../Card";
 import Minicard from "../Minicard";
 
-export default function UserProfile() {
+export default function Viewprofile() {
   const param = useParams();
   const [userpic, setuserpic] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);

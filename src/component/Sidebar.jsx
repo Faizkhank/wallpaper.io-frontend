@@ -60,15 +60,25 @@ export default function Sidebar(props) {
             </Link>
           </li>
           {props.user ? (
-              <li className="pr-1 mt-4">
-                <Link
-                  to={"/profile"}
-                  className="font-bold decoration-teal-700 cursor-pointer text-base"
-                >
-                  profile
-                </Link>
-              </li>
-            ) : null}
+            <li className="pr-1 mt-4">
+              <Link
+                to={`/myprofile/${props.user.user.id}`}
+                className="font-bold decoration-teal-700 cursor-pointer text-base"
+              >
+                profile
+              </Link>
+            </li>
+          ) : null}
+          {props.user ? (
+            <li className="pr-1 mt-4">
+              <Link
+                to={"/profile"}
+                className="font-bold decoration-teal-700 cursor-pointer text-base"
+              >
+                profile setting
+              </Link>
+            </li>
+          ) : null}
           <li className="mt-4">
             {!props.user ? (
               <Link
@@ -87,7 +97,6 @@ export default function Sidebar(props) {
                 logout
               </p>
             )}
-           
           </li>
         </ul>
         <div className=" absolute bottom-5 right-3 font-semibold ">

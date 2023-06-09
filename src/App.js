@@ -11,6 +11,7 @@ import AI_generatation from "./component/AI_generation";
 import ProtectAuth from "./component/services/ProtectAuth";
 import Search from "./component/Search";
 import Profile from "./component/Profile/Porfile";
+import Viewprofile from "./component/Profile/Viewprofile";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/AI_generation" element={<AI_generatation />}></Route>
           </Route>
           <Route path="/user/:id" element={<UserProfile />}></Route>
+          <Route path="/myprofile/:id" element={<Viewprofile />}></Route>
           <Route path="/login" element={<Join />}></Route>
           <Route path="/Register" element={<Register />}></Route>
           <Route path="/photo/:q" element={<Search />}></Route>
