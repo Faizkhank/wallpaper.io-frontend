@@ -111,7 +111,7 @@ export default function Navbar() {
                 {user ? (
                   <div className="flex justify-center from-emerald-500 via-purple-500 to-red-600 background-animate bg-gradient-to-r mt-4 rounded-full  w-[47px] h-[47px] p-0">
                     <img
-                      className=" w-[42px] h-[42px] rounded-full duration-150  mt-[2px] shadow-2xl hover:scale-125 "
+                      className=" w-[42px] h-[42px] rounded-full object-cover duration-150  mt-[2px] shadow-2xl hover:scale-125 "
                       src={user.user.photos || img}
                       alt="img"
                       onClick={() => setdrop(!drop)}
@@ -123,7 +123,7 @@ export default function Navbar() {
                       enter="transition-all duration-100"
                       enterFrom="transform translate-y-0 scale-90"
                       enterTo="transform translate-y-2 scale-100"
-                      className="fixed top-16  shadow-lg z-50 bg-white w-36 h-auto rounded-lg p-1"
+                      className="fixed top-16  shadow-lg z-50 bg-white w-[150px] h-auto rounded-lg p-1"
                     >
                       <div className="w-full m-auto">
                         <ul>
@@ -152,7 +152,7 @@ export default function Navbar() {
                           <li className="pt-2 pb-2 hover:bg-slate-100 text-center border-b-2 ">
                             <Link
                               className=" cursor-pointer font-semibold flex  duration-150 translate-x-0 hover:translate-x-3"
-                              to={"/profile"}
+                              to={`/user/${user.user.id}`}
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -168,7 +168,29 @@ export default function Navbar() {
                                   d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
                                 />
                               </svg>
-                              Profile
+                              My Profile
+                            </Link>
+                          </li>
+                          <li className="pt-2 pb-2 hover:bg-slate-100 text-center border-b-2 ">
+                            <Link
+                              className=" cursor-pointer font-semibold flex  duration-150 translate-x-0 hover:translate-x-3"
+                              to={`/profile`}
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth={1.5}
+                                stroke="currentColor"
+                                className="w-5 h-5 mr-2 mt-1 ml-1"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"
+                                />
+                              </svg>
+                              Profile setting
                             </Link>
                           </li>
                           <li className="pt-2 pb-2  hover:bg-slate-100 rounded-lg text-center">

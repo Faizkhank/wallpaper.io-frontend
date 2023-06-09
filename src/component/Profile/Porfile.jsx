@@ -348,7 +348,7 @@ const Profile = () => {
           </div>
         ) : null}
       </div>
-      <div className="bg-slate-200 p-5 rounded-lg">
+      <div className="bg-slate-200 p-5 rounded-lg relative z-50">
         <div className="flex justify-between">
           <label className="font-semibold p-2 text-slate-500">About Me</label>
           {textarea ? (
@@ -363,9 +363,8 @@ const Profile = () => {
         <textarea
           onChange={(e) => settext(e.target.value)}
           className={`bg-white mt-3 resize-none  focus:border-white focus:outline-none font-semibold rounded-lg p-4 text-black text-md w-full h-[150px] border-none`}
-          placeholder={`${
-            user?.user?.About ? user?.user?.About : "Add something about you"
-          }`}
+          defaultValue={`${user?.user?.About ? user?.user?.About : ""}`}
+          placeholder="Add something about you"
         />
         <label className="font-semibold p-2 text-slate-500">User Name</label>
 

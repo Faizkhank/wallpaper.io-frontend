@@ -90,7 +90,7 @@ export default function Card(props) {
               {!progress ? (
                 <div>
                   <label className=" font-semibold space-x-4">
-                    Do you want to Delete it!{" "}
+                    Do you want to Delete it!
                   </label>
                   <button
                     className=" bg-red-600 duration-200 p-2 rounded-xl pr-5 pl-5 ml-3 mr-3 hover:scale-110"
@@ -174,13 +174,23 @@ export default function Card(props) {
           {button ? (
             <div className="absolute  right-0 left-0 bottom-1">
               <div className="flex justify-between ">
-                <img
-                  src={props.UserURL || img}
-                  alt="img"
-                  className={`rounded-full h-11 w-11 ml-5 border-2 border-white ${
-                    button ? "button" : "hidden"
-                  }`}
-                />
+                {props.UserURL === null ? (
+                  <img
+                    src={img}
+                    alt="img"
+                    className={`rounded-full h-11 w-11 ml-5 border-2 border-white ${
+                      button ? "button" : "hidden"
+                    }`}
+                  />
+                ) : (
+                  <img
+                    src={props.UserURL}
+                    alt="img"
+                    className={`rounded-full h-11 w-11 ml-5 border-2 border-white ${
+                      button ? "button" : "hidden"
+                    }`}
+                  />
+                )}
                 {user ? (
                   <div>
                     {user.user.id === props.UploaderID ? (

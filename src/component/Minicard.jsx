@@ -7,7 +7,7 @@ const Minicard = (props) => {
   const param = useParams();
   const filterfollowers = async () => {
     const data = await axios.get(
-      "https://api-wallpaper-io.onrender.com/filter/follower",
+      `https://api-wallpaper-io.onrender.com/filter/follower/${param.id}`,
       {
         withCredentials: true,
         headers: {
@@ -62,14 +62,14 @@ const Minicard = (props) => {
               <p className="ml-4 text-grey-300 text-sm">{props.total}</p>
             </span>
           </Link>
-          <Link
-            className="mt-2 hover:border-b-2 border-black ml-6"
+          <p
+            className="mt-2 hover:border-b-2 border-black ml-6 cursor-pointer"
             onClick={filterfollowers}
           >
             <span className=" text-md text-black w-16 font-bold  hover:tracking-widest tracking-normal duration-200">
               Following
             </span>
-          </Link>
+          </p>
         </div>
         <div>
           <button
