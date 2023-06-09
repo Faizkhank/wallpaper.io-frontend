@@ -121,29 +121,6 @@ export default function Preview(props) {
             <div className="flex">
               <button
                 type="button"
-                className="pr-2 pl-2 h-12 border border-gray-300  hover:bg-slate-100 rounded-lg mt-4 mr-4 flex p-2 sm:w-[120px] w-[40px] justify-center"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1}
-                  stroke="currentColor"
-                  className="w-6 h-6 xs:mr-0 mr-2 mt-[2px] "
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z"
-                  />
-                </svg>
-
-                <span className="sm:block hidden rounded-lg mt-[2px]">
-                  Collect
-                </span>
-              </button>
-              <button
-                type="button"
                 className="pr-2 pl-2 h-12 border border-gray-300 hover:bg-slate-100 rounded-lg sm:w-[120px] w-[40px] mt-4 mr-4 flex p-2 justify-center"
                 onClick={() => HandleLike(props._id)}
               >
