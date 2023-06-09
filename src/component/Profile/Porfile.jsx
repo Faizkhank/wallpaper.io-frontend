@@ -374,9 +374,6 @@ const Profile = () => {
           className={`bg-white mt-3  resize-none  focus:border-white focus:outline-none font-semibold rounded-lg p-4 text-slate-600 text-md w-full h-[45px] border-none`}
         />
         <div className=" mt-10 space-x-4">
-          <button className=" bg-red-600 duration-300 text-white font-semibold hover:bg-red-400 py-2 px-2 rounded-xl">
-            Delete Account
-          </button>
           <button
             type="button"
             onClick={() => setchangepass(true)}
